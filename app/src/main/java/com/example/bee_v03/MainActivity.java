@@ -85,8 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 if (isFabOpen) {
                     fabsClose();
-                }
-                else fabsOpen();
+                } else fabsOpen();
             }
         });
 
@@ -110,7 +109,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent intent = null;
         switch (item.getItemId()) {
-            case R.id.nav_dashboard: break;
+            case R.id.nav_dashboard:
+                break;
             case R.id.nav_global:
                 intent = new Intent(this, com.example.bee_v03.GlobalActivity.class);
                 startActivity(intent);
@@ -137,10 +137,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 }
