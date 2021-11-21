@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -13,6 +14,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -22,10 +24,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TabLayout tabLayout;
     ViewPager viewPager;
     DrawerLayout drawer;
-    FloatingActionButton fab;
-    FloatingActionButton fab3;
-    FloatingActionButton fab2;
-    FloatingActionButton fab1;
+    ExtendedFloatingActionButton fab;
+    FloatingActionButton fabAddRecord, fabAddHive, fabAddLocation, fabView;
+    TextView addRecordText, addHiveText, addLocationText, viewText;
     boolean isFabOpen;
 
 
@@ -74,35 +75,97 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        fab = (FloatingActionButton) findViewById(R.id.fab_main);
-        fab3 = (FloatingActionButton) findViewById(R.id.fab_main3);
-        fab2 = (FloatingActionButton) findViewById(R.id.fab_main2);
-        fab1 = (FloatingActionButton) findViewById(R.id.fab_main1);
+        initializeFabs();
+    }
+
+    private void initializeFabs() {
+        fab = (ExtendedFloatingActionButton) findViewById(R.id.fab_main);
+        fabAddLocation = (FloatingActionButton) findViewById(R.id.fab_main_add_location);
+        fabAddHive = (FloatingActionButton) findViewById(R.id.fab_main_add_hive);
+        fabAddRecord = (FloatingActionButton) findViewById(R.id.fab_main_record);
+        fabView = (FloatingActionButton) findViewById(R.id.fab_main_view);
+        addLocationText = (TextView) findViewById(R.id.fab_main_add_location_text);
+        addHiveText = (TextView) findViewById(R.id.fab_main_add_hive_text);
+        addRecordText = (TextView) findViewById(R.id.fab_main_record_text);
+        viewText = (TextView) findViewById(R.id.fab_main_view_text);
         isFabOpen = false;
 
+        fabAddLocation.setVisibility(View.GONE);
+        fabAddRecord.setVisibility(View.GONE);
+        fabAddHive.setVisibility(View.GONE);
+        fabView.setVisibility(View.GONE);
+        addLocationText.setVisibility(View.GONE);
+        addHiveText.setVisibility(View.GONE);
+        addRecordText.setVisibility(View.GONE);
+        viewText.setVisibility(View.GONE);
+
+        fab.shrink();
+
+        fabsSetOnClickListeners();
+    }
+
+    private void fabsSetOnClickListeners() {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isFabOpen) {
-                    fabsClose();
-                } else fabsOpen();
+                if (!isFabOpen) {
+                    fabAddHive.show();
+                    fabAddLocation.show();
+                    fabAddRecord.show();
+                    fabView.show();
+                    addLocationText.setVisibility(View.VISIBLE);
+                    addHiveText.setVisibility(View.VISIBLE);
+                    addRecordText.setVisibility(View.VISIBLE);
+                    viewText.setVisibility(View.VISIBLE);
+                    fab.extend();
+                    isFabOpen = true;;
+                } else {
+                    fabAddLocation.hide();
+                    fabAddHive.hide();
+                    fabAddRecord.hide();
+                    fabView.hide();
+                    addLocationText.setVisibility(View.GONE);
+                    addHiveText.setVisibility(View.GONE);
+                    addRecordText.setVisibility(View.GONE);
+                    viewText.setVisibility(View.GONE);
+                    fab.shrink();
+                    isFabOpen = false;
+                }
             }
         });
 
+        fabAddLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        fabAddRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        fabAddHive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        fabView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startSelect();
+            }
+        });
     }
 
-    private void fabsOpen() {
-        isFabOpen = true;
-        fab1.animate().translationY(-170);
-        fab2.animate().translationY(-320);
-        fab3.animate().translationY(-470);
-    }
-
-    private void fabsClose() {
-        isFabOpen = false;
-        fab1.animate().translationY(0);
-        fab2.animate().translationY(0);
-        fab3.animate().translationY(0);
+    private void startSelect() {
+        Intent intent = new Intent(this, com.example.bee_v03.SelectActivity.class);
+        startActivity(intent);
     }
 
     @Override

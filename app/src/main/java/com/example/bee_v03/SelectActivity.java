@@ -3,13 +3,30 @@ package com.example.bee_v03;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class SelectActivity extends AppCompatActivity {
-
-    Button button_go;
+    private ExpandableListView expandableListView;
+    private SelectCustomExpandableListAdapter adapter;
+    private List<String> expandableListTitle;
+    private HashMap<String, List<String>> expandableListDetail;
+    private SelectViewModel selectViewModel;
+    ExtendedFloatingActionButton fab;
+    FloatingActionButton fabAddLocation, fabAddHive;
+    TextView addLocationText, addHiveText;
+    boolean isFabOpen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,13 +34,92 @@ public class SelectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        button_go = findViewById(R.id.button_go);
-        button_go.setOnClickListener(new View.OnClickListener() {
+        expandableListView = (ExpandableListView) findViewById(R.id.expandableListViewSelect);
+        selectViewModel = new ViewModelProvider(this).get(SelectViewModel.class);
+
+        selectViewModel.getAllHives().observe(this, new Observer<List<Hive>>() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ObjectActivity.class);
-                startActivity(intent);
+            public void onChanged(List<Hive> hives) {
+                onDataChanged();
             }
         });
+
+        selectViewModel.getAllLocations().observe(this, new Observer<List<HivesLocation>>() {
+            @Override
+            public void onChanged(List<HivesLocation> hivesLocations) {
+                onDataChanged();
+            }
+        });
+
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                return false;
+            }
+        });
+
+        initializeFabs();
+    }
+
+    private void initializeFabs() {
+        fab = (ExtendedFloatingActionButton) findViewById(R.id.fab_select);
+        fabAddLocation = (FloatingActionButton) findViewById(R.id.fab_select_add_location);
+        fabAddHive = (FloatingActionButton) findViewById(R.id.fab_select_add_hive);
+        addLocationText = (TextView) findViewById(R.id.fab_select_add_location_text);
+        addHiveText = (TextView) findViewById(R.id.fab_select_add_hive_text);
+
+        fabAddLocation.setVisibility(View.GONE);
+        fabAddHive.setVisibility(View.GONE);
+        addLocationText.setVisibility(View.GONE);
+        addHiveText.setVisibility(View.GONE);
+        isFabOpen = false;
+
+        fab.shrink();
+
+        fabsSetOnClickListeners();
+    }
+
+    private void fabsSetOnClickListeners() {
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isFabOpen) {
+                    fabAddHive.show();
+                    fabAddLocation.show();
+                    addLocationText.setVisibility(View.VISIBLE);
+                    addHiveText.setVisibility(View.VISIBLE);
+                    fab.extend();
+                    isFabOpen = true;
+                } else {
+                    fabAddLocation.hide();
+                    fabAddHive.hide();
+                    addLocationText.setVisibility(View.GONE);
+                    addHiveText.setVisibility(View.GONE);
+                    fab.shrink();
+                    isFabOpen = false;
+                }
+            }
+        });
+
+        fabAddLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        fabAddHive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+    private void onDataChanged() {
+        expandableListDetail = SelectExpandableListDataPump.getData(selectViewModel);
+        expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
+        adapter = new SelectCustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
+        expandableListView.setAdapter(adapter);
     }
 }

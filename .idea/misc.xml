@@ -8,7 +8,11 @@
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/activity_object.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/activity_object2.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/activity_select.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/activity_select.xml" value="0.1" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/expandable_list_hive.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/expandable_list_location.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/expandable_list_select_hive.xml" value="0.1" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/expandable_list_select_location.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/fragment_alerts.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/fragment_history.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/fragment_stats.xml" value="0.36666666666666664" />
