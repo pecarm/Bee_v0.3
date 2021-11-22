@@ -1,17 +1,15 @@
 package com.example.bee_v03;
 
 import android.app.Application;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-
 import java.util.List;
 
 public class SelectViewModel extends AndroidViewModel {
-    BeeRepository repository;
-    LiveData<List<HivesLocation>> allLocations;
-    LiveData<List<Hive>> allHives;
+    private BeeRepository repository;
+    private LiveData<List<HivesLocation>> allLocations;
+    private LiveData<List<Hive>> allHives;
 
     //region Constructor
     public SelectViewModel(@NonNull Application application) {
@@ -39,7 +37,7 @@ public class SelectViewModel extends AndroidViewModel {
         return allLocations;
     }
 
-    public LiveData<List<Integer>> getLocationIdByName(String name) {
+    public LiveData<List<HivesLocation>> getLocationIdByName(String name) {
         return repository.getLocationIdByName(name);
     }
     //endregion

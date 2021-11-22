@@ -1,12 +1,13 @@
 package com.example.bee_v03;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -23,9 +24,9 @@ public class SelectActivity extends AppCompatActivity {
     private List<String> expandableListTitle;
     private HashMap<String, List<String>> expandableListDetail;
     private SelectViewModel selectViewModel;
-    ExtendedFloatingActionButton fab;
-    FloatingActionButton fabAddLocation, fabAddHive;
-    TextView addLocationText, addHiveText;
+    private ExtendedFloatingActionButton fab;
+    private FloatingActionButton fabAddLocation, fabAddHive;
+    private TextView addLocationText, addHiveText;
     boolean isFabOpen;
 
     @Override
@@ -54,6 +55,26 @@ public class SelectActivity extends AppCompatActivity {
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                return false;
+            }
+        });
+
+        expandableListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                long packedPosition = expandableListView.getExpandableListPosition(position);
+                int itemType = ExpandableListView.getPackedPositionType(position);
+                int groupPosition = ExpandableListView.getPackedPositionGroup(packedPosition);
+
+                if (itemType == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
+                    LiveData<List<HivesLocation>> allHivesLocations = selectViewModel.getAllLocations();
+                    String s = expandableListTitle.get(groupPosition);
+                    List<HivesLocation> a = selectViewModel.getLocationIdByName("\"" + s + "\"").getValue();
+
+                    HivesLocation hivesLocation = a.get(0);
+                    selectViewModel.delete(hivesLocation);
+                }
+
                 return false;
             }
         });

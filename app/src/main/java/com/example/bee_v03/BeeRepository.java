@@ -50,8 +50,8 @@ public class BeeRepository {
         return allLocations;
     }
 
-    public LiveData<List<Integer>> getLocationIdByName(String name) {
-        return locationDao.getIdByName(name);
+    public LiveData<List<HivesLocation>> getLocationIdByName(String name) {
+        return locationDao.getLocationsByName(name);
     }
     //endregion
 

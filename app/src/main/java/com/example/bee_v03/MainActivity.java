@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView addRecordText, addHiveText, addLocationText, viewText;
     boolean isFabOpen;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,13 +48,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        //initializes tablayout
+        //initializes tabLayout
         tabLayout.addTab(tabLayout.newTab().setText("Dashboard"));
         tabLayout.addTab(tabLayout.newTab().setText("Timeline"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         //fills viewpager with fragments
-        final com.example.bee_v03.CustomAdapter customAdapter = new com.example.bee_v03.CustomAdapter(this, getSupportFragmentManager(), tabLayout.getTabCount());
+        final com.example.bee_v03.CustomAdapter customAdapter = new CustomAdapter(this, getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(customAdapter);
 
         //tells viewpager how to behave
@@ -76,6 +75,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         initializeFabs();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.nav_dashboard:
+                break;
+            case R.id.nav_global:
+                intent = new Intent(this, com.example.bee_v03.GlobalActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_select:
+                intent = new Intent(this, com.example.bee_v03.SelectActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_settings:
+                intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                break;
+        }
+
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     private void initializeFabs() {
@@ -118,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     addRecordText.setVisibility(View.VISIBLE);
                     viewText.setVisibility(View.VISIBLE);
                     fab.extend();
-                    isFabOpen = true;;
+                    isFabOpen = true;
                 } else {
                     fabAddLocation.hide();
                     fabAddHive.hide();
@@ -137,7 +169,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fabAddLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(v.getContext(), com.example.bee_v03.AddLocationActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -166,39 +199,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void startSelect() {
         Intent intent = new Intent(this, com.example.bee_v03.SelectActivity.class);
         startActivity(intent);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Intent intent = null;
-        switch (item.getItemId()) {
-            case R.id.nav_dashboard:
-                break;
-            case R.id.nav_global:
-                intent = new Intent(this, com.example.bee_v03.GlobalActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.nav_select:
-                intent = new Intent(this, com.example.bee_v03.SelectActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.nav_settings:
-                intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
-                break;
-        }
-
-
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
     }
 }
