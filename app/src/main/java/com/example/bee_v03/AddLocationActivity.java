@@ -10,12 +10,12 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -48,6 +48,7 @@ public class AddLocationActivity extends AppCompatActivity {
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
+        //works, just need to get location first (e.g. open gmaps)
         if (ActivityCompat.checkSelfPermission(AddLocationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
                 @Override
@@ -63,6 +64,9 @@ public class AddLocationActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
+                    else {
+                        Toast.makeText(AddLocationActivity.this, "No location acquired", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         } else {
@@ -72,7 +76,14 @@ public class AddLocationActivity extends AppCompatActivity {
         buttonAddLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addLocation(editTextLocationName.getText().toString(), textViewLatitude.getText().toString(), textViewLongitude.getText().toString());
+                if (!textViewLongitude.getText().toString().equals("Longitude") && !editTextLocationName.getText().toString().equals("")) {
+                    addLocation(editTextLocationName.getText().toString(), textViewLatitude.getText().toString(), textViewLongitude.getText().toString());
+                    Toast.makeText(AddLocationActivity.this, "Location added", Toast.LENGTH_SHORT).show();
+                    AddLocationActivity.this.finish();
+                }
+                else {
+                    Toast.makeText(AddLocationActivity.this, "Name or location not provided", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

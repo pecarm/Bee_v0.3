@@ -1,5 +1,6 @@
 package com.example.bee_v03;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -59,6 +60,7 @@ public class SelectActivity extends AppCompatActivity {
             }
         });
 
+        /*  NEEDS TWEAKING, LOOK AT HivesLocationDao
         expandableListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -77,7 +79,7 @@ public class SelectActivity extends AppCompatActivity {
 
                 return false;
             }
-        });
+        });*/
 
         initializeFabs();
     }
@@ -125,7 +127,8 @@ public class SelectActivity extends AppCompatActivity {
         fabAddLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(v.getContext(), com.example.bee_v03.AddLocationActivity.class);
+                startActivity(intent);
             }
         });
 
