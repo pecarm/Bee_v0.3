@@ -57,4 +57,10 @@ public class HivesLocation {
     }
 
     //endregion
+
+    //this is for AddHiveActivity and filling up the spinner with ArrayAdapter
+    @Override
+    public String toString() {
+        return name;
+    }
 }

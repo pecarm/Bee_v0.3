@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -135,6 +136,10 @@ public class SelectActivity extends AppCompatActivity {
         fabAddHive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                 if (selectViewModel.getAllLocations().getValue().size() != 0) {
+                     Intent intent = new Intent(v.getContext(), com.example.bee_v03.AddHiveActivity.class);
+                     startActivity(intent);
+                 } else Toast.makeText(SelectActivity.this, "There are no locations, add a location first.", Toast.LENGTH_SHORT).show();
 
             }
         });
