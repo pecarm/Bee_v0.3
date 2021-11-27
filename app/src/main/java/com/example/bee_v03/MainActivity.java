@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_select:
                 intent = new Intent(this, com.example.bee_v03.SelectActivity.class);
+                intent.putExtra("TARGET", "view");
                 startActivity(intent);
                 break;
             case R.id.nav_settings:
@@ -177,27 +179,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fabAddRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(v.getContext(), com.example.bee_v03.SelectActivity.class);
+                intent.putExtra("TARGET", "record");
+                startActivity(intent);
             }
         });
 
         fabAddHive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(v.getContext(), com.example.bee_v03.AddHiveActivity.class);
+                intent.putExtra("PARENT_ACTIVITY", "dashboard");
+                startActivity(intent);
             }
         });
 
         fabView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startSelect();
+                Intent intent = new Intent(v.getContext(), com.example.bee_v03.SelectActivity.class);
+                intent.putExtra("TARGET", "view");
+                startActivity(intent);
             }
         });
-    }
-
-    private void startSelect() {
-        Intent intent = new Intent(this, com.example.bee_v03.SelectActivity.class);
-        startActivity(intent);
     }
 }

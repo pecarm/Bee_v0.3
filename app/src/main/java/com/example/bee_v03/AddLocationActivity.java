@@ -78,11 +78,11 @@ public class AddLocationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!textViewLongitude.getText().toString().equals("Longitude") && !editTextLocationName.getText().toString().equals("")) {
                     addLocation(editTextLocationName.getText().toString(), textViewLatitude.getText().toString(), textViewLongitude.getText().toString());
-                    Toast.makeText(AddLocationActivity.this, "Location added", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddLocationActivity.this, "Location added!", Toast.LENGTH_SHORT).show();
                     AddLocationActivity.this.finish();
                 }
                 else {
-                    Toast.makeText(AddLocationActivity.this, "Name or location not provided", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddLocationActivity.this, "Name or location not provided!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

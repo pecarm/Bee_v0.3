@@ -1,5 +1,6 @@
 package com.example.bee_v03;
 
+import android.bluetooth.le.ScanRecord;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,20 +17,19 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class SelectActivity extends AppCompatActivity {
     private ExpandableListView expandableListView;
     private SelectCustomExpandableListAdapter adapter;
-    private List<String> expandableListTitle;
-    private HashMap<String, List<String>> expandableListDetail;
+    private List<HivesLocation> expandableListTitle;
+    private List<Hive> expandableListDetail;
     private SelectViewModel selectViewModel;
     private ExtendedFloatingActionButton fab;
     private FloatingActionButton fabAddLocation, fabAddHive;
     private TextView addLocationText, addHiveText;
     boolean isFabOpen;
+    private String target;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +37,18 @@ public class SelectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            target = extras.getString("TARGET");
+        }
+
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListViewSelect);
         selectViewModel = new ViewModelProvider(this).get(SelectViewModel.class);
+
+        if (target.equals("record") && (selectViewModel.getAllHives().getValue() == null || selectViewModel.getAllHives().getValue().size() == 0)) {
+            Toast.makeText(this, "There are no hives, add hive first!", Toast.LENGTH_SHORT).show();
+            this.finish();
+        }
 
         selectViewModel.getAllHives().observe(this, new Observer<List<Hive>>() {
             @Override
@@ -57,30 +67,43 @@ public class SelectActivity extends AppCompatActivity {
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                return false;
-            }
-        });
-
-        /*  NEEDS TWEAKING, LOOK AT HivesLocationDao
-        expandableListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                long packedPosition = expandableListView.getExpandableListPosition(position);
-                int itemType = ExpandableListView.getPackedPositionType(position);
-                int groupPosition = ExpandableListView.getPackedPositionGroup(packedPosition);
-
-                if (itemType == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
-                    LiveData<List<HivesLocation>> allHivesLocations = selectViewModel.getAllLocations();
-                    String s = expandableListTitle.get(groupPosition);
-                    List<HivesLocation> a = selectViewModel.getLocationIdByName("\"" + s + "\"").getValue();
-
-                    HivesLocation hivesLocation = a.get(0);
-                    selectViewModel.delete(hivesLocation);
+                switch (target) {
+                    case "view":
+                        break;
+                    case "record":
+                        Intent intent = new Intent(v.getContext(), com.example.bee_v03.AddRecordActivity.class);
+                        intent.putExtra("HIVE_ID", ((Hive)adapter.getChild(groupPosition,childPosition)).getId_hive());
+                        startActivity(intent);
+                        break;
                 }
 
                 return false;
             }
-        });*/
+        });
+
+        //PŘEPSAT DO NĚČEHO JINÉHO, long click je příliš nebezpečný
+        expandableListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                long packedPosition = expandableListView.getExpandableListPosition(position);
+                int itemType = ExpandableListView.getPackedPositionType(packedPosition);
+                int groupPosition = ExpandableListView.getPackedPositionGroup(packedPosition);
+                int childPosition = ExpandableListView.getPackedPositionChild(packedPosition);
+
+                if (itemType == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
+                    if (expandableListDetail.size() != 0) {
+                        return false;
+                    }
+                    HivesLocation hivesLocation = (HivesLocation) adapter.getGroup(groupPosition);
+                    selectViewModel.delete(hivesLocation);
+                } else if (itemType == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+                    Hive hive = (Hive) adapter.getChild(groupPosition, childPosition);
+                    selectViewModel.delete(hive);
+                }
+
+                return false;
+            }
+        });
 
         initializeFabs();
     }
@@ -136,19 +159,22 @@ public class SelectActivity extends AppCompatActivity {
         fabAddHive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 if (selectViewModel.getAllLocations().getValue().size() != 0) {
-                     Intent intent = new Intent(v.getContext(), com.example.bee_v03.AddHiveActivity.class);
-                     startActivity(intent);
-                 } else Toast.makeText(SelectActivity.this, "There are no locations, add a location first.", Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(v.getContext(), com.example.bee_v03.AddHiveActivity.class);
+                intent.putExtra("PARENT_ACTIVITY", "select");
+                startActivity(intent);
             }
         });
     }
 
     private void onDataChanged() {
-        expandableListDetail = SelectExpandableListDataPump.getData(selectViewModel);
-        expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
+        expandableListTitle = selectViewModel.getAllLocations().getValue();
+        expandableListDetail = selectViewModel.getAllHives().getValue();
+
         adapter = new SelectCustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
-        expandableListView.setAdapter(adapter);
+        try {
+            expandableListView.setAdapter(adapter);
+        } catch (Exception e) {
+            Toast.makeText(this, "There are no hives!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

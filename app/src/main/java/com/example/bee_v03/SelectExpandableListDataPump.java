@@ -21,7 +21,7 @@ public class SelectExpandableListDataPump {
             }
         }
         catch (Exception e) {
-            Toast.makeText(selectViewModel.getApplication(), "There are no Locations or Hives", Toast.LENGTH_SHORT).show();
+            Toast.makeText(selectViewModel.getApplication(), "There are no hives yet!", Toast.LENGTH_SHORT).show();
         }
 
         return expandableList;

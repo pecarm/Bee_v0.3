@@ -82,7 +82,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:numStars="5"
-        android:stepSize="1"
+        android:stepSize="0.01"
+        android:isIndicator="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewAgresivnost"
         app:layout_constraintTop_toBottomOf="@+id/add_hive_row" />
@@ -109,7 +110,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:numStars="5"
-        android:stepSize="1"
+        android:stepSize="0.01"
+        android:isIndicator="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewStavZasob"
         app:layout_constraintTop_toBottomOf="@+id/ratingBarAgresivnost" />
@@ -136,7 +138,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:numStars="5"
-        android:stepSize="1"
+        android:stepSize="0.01"
+        android:isIndicator="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewMezolitostPlodu"
         app:layout_constraintTop_toBottomOf="@+id/ratingBarStavZasob" />
@@ -163,7 +166,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:numStars="5"
-        android:stepSize="1"
+        android:stepSize="0.01"
+        android:isIndicator="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewSilaVcelstva"
         app:layout_constraintTop_toBottomOf="@+id/ratingBarMezolitostPlodu" />
@@ -190,7 +194,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:numStars="5"
-        android:stepSize="1"
+        android:stepSize="0.01"
+        android:isIndicator="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewStavebniPud"
         app:layout_constraintTop_toBottomOf="@+id/ratingBarSilaVcelstva" />
@@ -217,7 +222,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:numStars="5"
-        android:stepSize="1"
+        android:stepSize="0.01"
+        android:isIndicator="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewBodavost"
         app:layout_constraintTop_toBottomOf="@+id/ratingBarStavebniPud" />
@@ -244,7 +250,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:numStars="5"
-        android:stepSize="1"
+        android:stepSize="0.01"
+        android:isIndicator="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textSlidivost"
         app:layout_constraintTop_toBottomOf="@+id/ratingBodavost" />

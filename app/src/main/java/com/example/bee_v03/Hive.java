@@ -124,4 +124,9 @@ public class Hive {
         this.slidivost = slidivost;
     }
     //endregion
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

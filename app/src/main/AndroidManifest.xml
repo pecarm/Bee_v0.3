@@ -14,8 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bee_v03">
         <activity
-            android:name=".AddHiveActivity"
+            android:name=".AddRecordActivity"
             android:exported="false" />
+        <activity
+            android:name=".AddHiveActivity"
+            android:exported="false"
+            android:parentActivityName=".SelectActivity" />
         <activity
             android:name=".AddLocationActivity"
             android:exported="false"

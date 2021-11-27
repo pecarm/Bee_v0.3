@@ -13,13 +13,14 @@ import org.w3c.dom.ls.LSException;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SelectCustomExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context;
-    private List<String> expandableListTitle;
-    private HashMap<String, List<String>> expandableListDetail;
+    private List<HivesLocation> expandableListTitle;
+    private List<Hive> expandableListDetail;
 
-    public SelectCustomExpandableListAdapter(Context context, List<String> expandableListTitle, HashMap<String, List<String>> expandableListDetail) {
+    public SelectCustomExpandableListAdapter(Context context, List<HivesLocation> expandableListTitle, List<Hive> expandableListDetail) {
         this.context = context;
         this.expandableListDetail = expandableListDetail;
         this.expandableListTitle = expandableListTitle;
@@ -34,7 +35,10 @@ public class SelectCustomExpandableListAdapter extends BaseExpandableListAdapter
     @Override
     public int getChildrenCount(int groupPosition) {
         try {
-            return this.expandableListDetail.get(this.expandableListTitle.get(groupPosition)).size();
+            List<Hive> filteredHives = this.expandableListDetail.stream()
+                    .filter(hive -> hive.getId_location() == this.expandableListTitle.get(groupPosition).getId_location())
+                    .collect(Collectors.toList());
+            return filteredHives.size();
         }
         catch (Exception e) {
             return 0;
@@ -48,7 +52,10 @@ public class SelectCustomExpandableListAdapter extends BaseExpandableListAdapter
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return this.expandableListDetail.get(this.expandableListTitle.get(groupPosition)).get(childPosition);
+        List<Hive> filteredHives = this.expandableListDetail.stream()
+                .filter(hive -> hive.getId_location() == this.expandableListTitle.get(groupPosition).getId_location())
+                .collect(Collectors.toList());
+        return filteredHives.get(childPosition);
     }
 
     @Override
@@ -68,7 +75,7 @@ public class SelectCustomExpandableListAdapter extends BaseExpandableListAdapter
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        String listTitle = (String) getGroup(groupPosition);
+        String listTitle = getGroup(groupPosition).toString();
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.expandable_list_select_location, null);
@@ -82,7 +89,7 @@ public class SelectCustomExpandableListAdapter extends BaseExpandableListAdapter
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        final String expandedListText = (String) getChild(groupPosition, childPosition);
+        final String expandedListText = getChild(groupPosition, childPosition).toString();
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.expandable_list_select_hive, null);
