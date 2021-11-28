@@ -1,6 +1,7 @@
 package com.example.bee_v03;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -37,11 +38,12 @@ public class AddHiveActivity extends AppCompatActivity {
 
         addHiveViewModel = new ViewModelProvider(this).get(AddHiveViewModel.class);
 
+        LiveData<List<HivesLocation>> a = addHiveViewModel.getAllLocations();
+        List<HivesLocation> b = a.getValue();
+
+        //CANNOT BE HERE, query doesnt process before it gets opened
         //to simplify running this activity
-        if (addHiveViewModel.getAllLocations().getValue() == null || addHiveViewModel.getAllLocations().getValue().size() == 0 ) {
-            Toast.makeText(this, "There are no locations, add a location first", Toast.LENGTH_SHORT).show();
-            this.finish();
-        }
+
 
         spinnerLocations = (Spinner) findViewById(R.id.spinnerLocations);
         editTextName = (EditText) findViewById(R.id.add_hive_name);
@@ -94,6 +96,7 @@ public class AddHiveActivity extends AppCompatActivity {
                     addHiveViewModel.insert(hive);
                     Toast.makeText(AddHiveActivity.this, "Hive added!", Toast.LENGTH_SHORT).show();
 
+                    //WHY did I make this?
                     switch (parentActivity) {
                         case "select":
                             AddHiveActivity.this.finish();

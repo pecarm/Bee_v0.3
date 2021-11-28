@@ -35,12 +35,6 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
 
         addRecordViewModel = new ViewModelProvider(this).get(AddRecordViewModel.class);
 
-        //to simplify running this activity
-        if (addRecordViewModel.getAllHives().getValue().size() == 0) {
-            Toast.makeText(this, "There are no hives, add hive first!", Toast.LENGTH_SHORT).show();
-            this.finish();
-        }
-
         buttonAddRecord = (Button) findViewById(R.id.buttonAddRecord);
         buttonSelectDate = (Button) findViewById(R.id.buttonSelectDate);
         textViewSelectedDate = (TextView) findViewById(R.id.add_record_text_view_date);
@@ -61,6 +55,7 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
                     Record r = new Record(idHive, textViewSelectedDate.getText().toString(), editText.getText().toString());
                     addRecordViewModel.insert(r);
                     Toast.makeText(AddRecordActivity.this, "Record added!", Toast.LENGTH_SHORT).show();
+                    AddRecordActivity.this.finish();
                 } else {
                     Toast.makeText(AddRecordActivity.this, "Date or text not inserted!", Toast.LENGTH_SHORT).show();
                 }

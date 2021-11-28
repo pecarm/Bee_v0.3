@@ -27,4 +27,8 @@ public interface HiveDao {
     //colon because we use parameter passed in the function
     @Query("SELECT * FROM hive_table WHERE id_location = :id")
     LiveData<List<Hive>> getHivesByLocation(int id);
+
+    //I just fucking hope this works...
+    @Query("SELECT name FROM hive_table WHERE id_hive = :id")
+    String getHiveName(int id);
 }

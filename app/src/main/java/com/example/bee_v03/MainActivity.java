@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -20,20 +23,34 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
+import java.security.cert.CollectionCertStoreParameters;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     TabLayout tabLayout;
     ViewPager viewPager;
     DrawerLayout drawer;
     ExtendedFloatingActionButton fab;
+    ListView listViewTimeline;
     FloatingActionButton fabAddRecord, fabAddHive, fabAddLocation, fabView;
     TextView addRecordText, addHiveText, addLocationText, viewText;
+    MainActivityViewModel viewModel;
     boolean isFabOpen;
+
+    List<HivesLocation> allLocations;
+    List<Hive> allHives;
+    List<Record> allRecords;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
@@ -58,6 +75,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final com.example.bee_v03.CustomAdapter customAdapter = new CustomAdapter(this, getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(customAdapter);
 
+        viewModel.getAllLocations().observe(this, new Observer<List<HivesLocation>>() {
+            @Override
+            public void onChanged(List<HivesLocation> hivesLocations) {
+                allLocations = hivesLocations;
+            }
+        });
+
+        viewModel.getAllHives().observe(this, new Observer<List<Hive>>() {
+            @Override
+            public void onChanged(List<Hive> hives) {
+                allHives = hives;
+                onDataChanged();
+            }
+        });
+
+        viewModel.getAllRecords().observe(this, new Observer<List<Record>>() {
+            @Override
+            public void onChanged(List<Record> records) {
+                allRecords = records;
+                onDataChanged();
+            }
+        });
+
         //tells viewpager how to behave
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -75,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        //This is a lot of code, moved to separate methods
         initializeFabs();
     }
 
@@ -107,7 +148,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        }
+        else if (isFabOpen) {
+            fabAddLocation.hide();
+            fabAddHive.hide();
+            fabAddRecord.hide();
+            fabView.hide();
+            addLocationText.setVisibility(View.GONE);
+            addHiveText.setVisibility(View.GONE);
+            addRecordText.setVisibility(View.GONE);
+            viewText.setVisibility(View.GONE);
+            fab.shrink();
+            isFabOpen = false;
+        }
+        else {
             super.onBackPressed();
         }
     }
@@ -179,6 +233,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fabAddRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (allHives == null || allHives.size() == 0) {
+                    Toast.makeText(MainActivity.this, "There are no hives, add hive first!", Toast.LENGTH_SHORT).show();
+                }
+
                 Intent intent = new Intent(v.getContext(), com.example.bee_v03.SelectActivity.class);
                 intent.putExtra("TARGET", "record");
                 startActivity(intent);
@@ -188,6 +246,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fabAddHive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (allLocations == null || allLocations.size() == 0) {
+                    Toast.makeText(MainActivity.this, "There are no locations, add a location first", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 Intent intent = new Intent(v.getContext(), com.example.bee_v03.AddHiveActivity.class);
                 intent.putExtra("PARENT_ACTIVITY", "dashboard");
                 startActivity(intent);
@@ -202,5 +265,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
+    }
+
+    private void onDataChanged() {
+        listViewTimeline = (ListView) findViewById(R.id.list_view_dashboard_timeline);
+
+        String[] from = new String[] {"name", "record"};
+        int[] to = new int[] {R.id.adapter_view_dashboard_timeline_hive, R.id.adapter_view_dashboard_timeline_date};
+
+        if (allRecords == null || allRecords.size() == 0) {
+            Toast.makeText(MainActivity.this, "There are no hives!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        TimelineAdapter timelineAdapter = new TimelineAdapter(this, recordData(viewModel.getAllRecords().getValue()), R.layout.adapter_view_dashboard_timeline, from, to);
+        listViewTimeline.setAdapter(timelineAdapter);
+    }
+
+    private ArrayList<HashMap<String, Object>> recordData(List<Record> records) {
+        ArrayList<HashMap<String, Object>> data = new ArrayList<>();
+        for (Record record : records) {
+            //WE CAN PUT MULTIPLE ITEMS and then PASS THEM BY KEY, even a list of WARNINGS
+            HashMap<String, Object> item = new HashMap<>();
+            //I honestly doubt this is gonna work
+            item.put("name", allHives.stream().filter(hive -> hive.getId_hive() == record.getId_hive()).collect(Collectors.toList()).get(0).getName());
+            item.put("record", record);
+            data.add(item);
+        }
+        return data;
     }
 }
