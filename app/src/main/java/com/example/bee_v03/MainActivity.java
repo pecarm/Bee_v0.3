@@ -50,8 +50,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
+        //region Toolbar and navigation drawer
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
@@ -62,7 +65,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        //endregion
 
+        //region Tablayout and viewpager
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 
@@ -74,29 +79,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //fills viewpager with fragments
         final com.example.bee_v03.CustomAdapter customAdapter = new CustomAdapter(this, getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(customAdapter);
-
-        viewModel.getAllLocations().observe(this, new Observer<List<HivesLocation>>() {
-            @Override
-            public void onChanged(List<HivesLocation> hivesLocations) {
-                allLocations = hivesLocations;
-            }
-        });
-
-        viewModel.getAllHives().observe(this, new Observer<List<Hive>>() {
-            @Override
-            public void onChanged(List<Hive> hives) {
-                allHives = hives;
-                onDataChanged();
-            }
-        });
-
-        viewModel.getAllRecords().observe(this, new Observer<List<Record>>() {
-            @Override
-            public void onChanged(List<Record> records) {
-                allRecords = records;
-                onDataChanged();
-            }
-        });
 
         //tells viewpager how to behave
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -114,6 +96,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+        //endregion
+
+        //region Observers
+        viewModel.getAllLocations().observe(this, new Observer<List<HivesLocation>>() {
+            @Override
+            public void onChanged(List<HivesLocation> hivesLocations) {
+                allLocations = hivesLocations;
+            }
+        });
+        viewModel.getAllHives().observe(this, new Observer<List<Hive>>() {
+            @Override
+            public void onChanged(List<Hive> hives) {
+                allHives = hives;
+                if (hives == null) {
+                    return;
+                }
+                onDataChanged();
+            }
+        });
+        viewModel.getAllRecords().observe(this, new Observer<List<Record>>() {
+            @Override
+            public void onChanged(List<Record> records) {
+                allRecords = records;
+                if (allHives == null) {
+                    return;
+                }
+                onDataChanged();
+            }
+        });
+        //endregion
 
         //This is a lot of code, moved to separate methods
         initializeFabs();
@@ -166,6 +178,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    //region Private methods
     private void initializeFabs() {
         fab = (ExtendedFloatingActionButton) findViewById(R.id.fab_main);
         fabAddLocation = (FloatingActionButton) findViewById(R.id.fab_main_add_location);
@@ -268,6 +281,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void onDataChanged() {
+        //TODO Fill Dashboard
+
+        //region Fills timeline
         listViewTimeline = (ListView) findViewById(R.id.list_view_dashboard_timeline);
 
         String[] from = new String[] {"name", "record"};
@@ -278,8 +294,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return;
         }
 
-        TimelineAdapter timelineAdapter = new TimelineAdapter(this, recordData(viewModel.getAllRecords().getValue()), R.layout.adapter_view_dashboard_timeline, from, to);
+        TimelineAdapter timelineAdapter = new TimelineAdapter(this, recordData(allRecords), R.layout.adapter_view_dashboard_timeline, from, to);
         listViewTimeline.setAdapter(timelineAdapter);
+        //endregion
     }
 
     private ArrayList<HashMap<String, Object>> recordData(List<Record> records) {
@@ -294,4 +311,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return data;
     }
+    //endregion
 }

@@ -14,21 +14,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89b4f3fe-88ad-44e1-ba2d-4877eef4743a" name="Default Changelist" comment="Added initial design for object">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/TimelineAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_view_dashboard_timeline.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/HistoryAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/ObjectViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_view_object_history.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/AddHiveActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/AddHiveActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/AddRecordActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/AddRecordActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/BeeDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/BeeDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/BeeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/BeeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/HiveDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/HiveDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/MainActivityViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/MainActivityViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/ObjectActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/ObjectActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/ObjectAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/ObjectAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/SelectActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/SelectActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/SelectExpandableListDataPump.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/TimelineFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/TimelineFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_timeline.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_timeline.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_history.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,17 +95,31 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android-custom-viewC:/Users/Martin/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.3.1/45a346a05e7ff27a01c59452379c5939cbb53c03/appcompat-1.3.1-sources.jar!/androidx/appcompat/widget/ActionBarOverlayLayout.java_ActionBarOverlayLayout_DIMENSIONS" value="1080&#10;1920" />
+    <property name="android-custom-viewC:/Users/Martin/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.3.1/45a346a05e7ff27a01c59452379c5939cbb53c03/appcompat-1.3.1-sources.jar!/androidx/appcompat/widget/ActionBarOverlayLayout.java_SELECTED" value="ActionBarOverlayLayout" />
+    <property name="android-custom-viewC:/Users/Martin/.gradle/caches/modules-2/files-2.1/androidx.constraintlayout/constraintlayout/2.1.2/27c8deba9cd24ac581019ea387278de2ffd396a/constraintlayout-2.1.2-sources.jar!/androidx/constraintlayout/widget/ConstraintLayout.java_ConstraintLayout_DIMENSIONS" value="1080&#10;1920" />
+    <property name="android-custom-viewC:/Users/Martin/.gradle/caches/modules-2/files-2.1/androidx.constraintlayout/constraintlayout/2.1.2/27c8deba9cd24ac581019ea387278de2ffd396a/constraintlayout-2.1.2-sources.jar!/androidx/constraintlayout/widget/ConstraintLayout.java_SELECTED" value="ConstraintLayout" />
+    <property name="android-custom-viewC:/Users/Martin/.gradle/caches/modules-2/files-2.1/androidx.viewpager/viewpager/1.0.0/db045f92188b9d247d5f556866f8861ab68528f0/viewpager-1.0.0-sources.jar!/androidx/viewpager/widget/ViewPager.java_SELECTED" value="ViewPager" />
+    <property name="android-custom-viewC:/Users/Martin/.gradle/caches/modules-2/files-2.1/androidx.viewpager/viewpager/1.0.0/db045f92188b9d247d5f556866f8861ab68528f0/viewpager-1.0.0-sources.jar!/androidx/viewpager/widget/ViewPager.java_ViewPager_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-viewC:/Users/Martin/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.4.0/51035a8f6342c20d4d8f242d100e6f25e0c271ac/material-1.4.0-sources.jar!/com/google/android/material/button/MaterialButton.java_MaterialButton_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-viewC:/Users/Martin/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.4.0/51035a8f6342c20d4d8f242d100e6f25e0c271ac/material-1.4.0-sources.jar!/com/google/android/material/button/MaterialButton.java_SELECTED" value="MaterialButton" />
     <property name="android-custom-viewC:/Users/Martin/AppData/Local/Android/Sdk/sources/android-31/android/view/View.java_SELECTED" value="View" />
     <property name="android-custom-viewC:/Users/Martin/AppData/Local/Android/Sdk/sources/android-31/android/view/View.java_View_DIMENSIONS" value="1080&#10;1920" />
+    <property name="android-custom-viewC:/Users/Martin/AppData/Local/Android/Sdk/sources/android-31/android/view/ViewGroup.java_SELECTED" value="ViewGroup" />
+    <property name="android-custom-viewC:/Users/Martin/AppData/Local/Android/Sdk/sources/android-31/android/view/ViewGroup.java_ViewGroup_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-viewC:/Users/Martin/AppData/Local/Android/Sdk/sources/android-31/android/widget/AbsListView.java_AbsListView_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-viewC:/Users/Martin/AppData/Local/Android/Sdk/sources/android-31/android/widget/AbsListView.java_SELECTED" value="AbsListView" />
     <property name="android-custom-viewC:/Users/Martin/AppData/Local/Android/Sdk/sources/android-31/android/widget/ExpandableListView.java_ExpandableListView_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-viewC:/Users/Martin/AppData/Local/Android/Sdk/sources/android-31/android/widget/ExpandableListView.java_SELECTED" value="ExpandableListView" />
+    <property name="android-custom-viewC:/Users/Martin/AppData/Local/Android/Sdk/sources/android-31/android/widget/FrameLayout.java_FrameLayout_DIMENSIONS" value="1080&#10;1920" />
+    <property name="android-custom-viewC:/Users/Martin/AppData/Local/Android/Sdk/sources/android-31/android/widget/FrameLayout.java_SELECTED" value="FrameLayout" />
+    <property name="android-custom-viewC:/Users/Martin/AppData/Local/Android/Sdk/sources/android-31/android/widget/LinearLayout.java_LinearLayout_DIMENSIONS" value="1080&#10;1920" />
+    <property name="android-custom-viewC:/Users/Martin/AppData/Local/Android/Sdk/sources/android-31/android/widget/LinearLayout.java_SELECTED" value="LinearLayout" />
+    <property name="android-custom-viewC:/Users/Martin/AppData/Local/Android/Sdk/sources/android-31/android/widget/ListView.java_ListView_DIMENSIONS" value="1080&#10;1920" />
+    <property name="android-custom-viewC:/Users/Martin/AppData/Local/Android/Sdk/sources/android-31/android/widget/ListView.java_SELECTED" value="ListView" />
     <property name="android-custom-viewC:/Users/Martin/AppData/Local/Android/Sdk/sources/android-31/android/widget/RatingBar.java_RatingBar_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-viewC:/Users/Martin/AppData/Local/Android/Sdk/sources/android-31/android/widget/RatingBar.java_SELECTED" value="RatingBar" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/bee_database" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
     <property name="project.structure.last.edited" value="Suggestions" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -286,7 +296,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637974367725</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Bugfixes, added TimelineAdapter">
+      <created>1638060171480</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1638060171481</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -329,7 +346,8 @@
     <MESSAGE value="Added design for AddHiveActivity" />
     <MESSAGE value="Implemented AddHiveActivity" />
     <MESSAGE value="Cleanup, added delete, added AddRecordActivity" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleanup, added delete, added AddRecordActivity" />
+    <MESSAGE value="Bugfixes, added TimelineAdapter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bugfixes, added TimelineAdapter" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -338,6 +356,16 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/BeeRepository.java</url>
           <line>202</line>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/ObjectActivity.java</url>
+          <line>119</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/ObjectActivity.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="60" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

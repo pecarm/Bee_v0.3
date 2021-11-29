@@ -5,9 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".DashboardFragment">
 
-    <TextView
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="HISTORY" />
+        android:id="@+id/list_view_object_history"/>
 
+    <!--
+    <ViewStub
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/history_stub"/>
+    -->
 </FrameLayout>

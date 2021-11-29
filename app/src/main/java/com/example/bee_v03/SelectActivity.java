@@ -71,15 +71,15 @@ public class SelectActivity extends AppCompatActivity {
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                Intent intent;
                 switch (target) {
                     case "view":
+                        intent = new Intent(v.getContext(), com.example.bee_v03.ObjectActivity.class);
+                        intent.putExtra("HIVE_ID", ((Hive)adapter.getChild(groupPosition,childPosition)).getId_hive());
+                        startActivity(intent);
                         break;
                     case "record":
-                        if (allHives == null || allHives.size() == 0) {
-                            Toast.makeText(SelectActivity.this, "There are no hives, add hive first!", Toast.LENGTH_SHORT).show();
-                            break;
-                        }
-                        Intent intent = new Intent(v.getContext(), com.example.bee_v03.AddRecordActivity.class);
+                        intent = new Intent(v.getContext(), com.example.bee_v03.AddRecordActivity.class);
                         intent.putExtra("HIVE_ID", ((Hive)adapter.getChild(groupPosition,childPosition)).getId_hive());
                         startActivity(intent);
                         break;
