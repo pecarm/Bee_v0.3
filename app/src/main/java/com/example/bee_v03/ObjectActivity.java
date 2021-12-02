@@ -53,8 +53,8 @@ public class ObjectActivity extends AppCompatActivity  {
         FragmentManager fm = getSupportFragmentManager();
 
         tabLayout.addTab(tabLayout.newTab().setText("Alerts"));
-        tabLayout.addTab(tabLayout.newTab().setText("Stats"));
         tabLayout.addTab(tabLayout.newTab().setText("History"));
+        tabLayout.addTab(tabLayout.newTab().setText("Stats"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         viewPager.setOffscreenPageLimit(100);
@@ -92,7 +92,7 @@ public class ObjectActivity extends AppCompatActivity  {
             public void onChanged(List<Hive> hives) {
                 allHives = hives;
                 if (allRecords != null) {
-                    adapter = new ObjectAdapter(fm, getLifecycle(), allRecords, idHive);
+                    adapter = new ObjectAdapter(fm, getLifecycle(), allHives, allRecords, idHive);
                     viewPager.setAdapter(adapter);
                 }
             }
@@ -103,7 +103,7 @@ public class ObjectActivity extends AppCompatActivity  {
             public void onChanged(List<Record> records) {
                 allRecords = records;
                 if (allRecords != null) {
-                    adapter = new ObjectAdapter(fm, getLifecycle(), allRecords, idHive);
+                    adapter = new ObjectAdapter(fm, getLifecycle(), allHives, allRecords, idHive);
                     viewPager.setAdapter(adapter);
                 }
             }

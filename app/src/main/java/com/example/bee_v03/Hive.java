@@ -4,8 +4,10 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "hive_table", foreignKeys = @ForeignKey(entity = HivesLocation.class, parentColumns = "id_location", childColumns = "id_location"))
-public class Hive {
+public class Hive implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id_hive;

@@ -10,11 +10,13 @@ import java.util.List;
 
 public class ObjectAdapter extends FragmentStateAdapter {
 
+    private List<Hive> allHives;
     private List<Record> allRecords;
     private int idHive;
 
-    public ObjectAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, List<Record> allRecords, int idHive) {
+    public ObjectAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, List<Hive> allHives, List<Record> allRecords, int idHive) {
         super(fragmentManager, lifecycle);
+        this.allHives = allHives;
         this.allRecords = allRecords;
         this.idHive = idHive;
     }
@@ -26,9 +28,9 @@ public class ObjectAdapter extends FragmentStateAdapter {
             case 0:
                 return new AlertsFragment();
             case 1:
-                return new StatsFragment();
-            case 2:
                 return HistoryFragment.newInstance(allRecords, idHive);
+            case 2:
+                return StatsFragment.newInstance(allHives, idHive);
             default:
                 return new AlertsFragment();
         }

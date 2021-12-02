@@ -3,11 +3,232 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DashboardFragment">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="STATS" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/fragment_stats_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Row"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_stats_row_number"
+            app:layout_constraintTop_toTopOf="@id/fragment_stats_row_number"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_stats_row_number"/>
+
+        <TextView
+            android:id="@+id/fragment_stats_row_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Row number"
+            android:layout_marginTop="16dp"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fragment_stats_row"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/fragment_stats_agr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Agresivnost"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_stats_rb_agr"
+            app:layout_constraintEnd_toStartOf="@id/fragment_stats_rb_agr"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/fragment_stats_rb_agr" />
+
+        <RatingBar
+            android:id="@+id/fragment_stats_rb_agr"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:numStars="5"
+            android:stepSize="0.01"
+            android:isIndicator="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fragment_stats_agr"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_stats_row_number" />
+
+        <TextView
+            android:id="@+id/fragment_stats_stz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Stav zásob"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_stats_rb_stz"
+            app:layout_constraintEnd_toStartOf="@id/fragment_stats_rb_stz"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/fragment_stats_rb_stz" />
+
+        <RatingBar
+            android:id="@+id/fragment_stats_rb_stz"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:numStars="5"
+            android:stepSize="0.01"
+            android:isIndicator="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fragment_stats_stz"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_stats_rb_agr" />
+
+        <TextView
+            android:id="@+id/fragment_stats_mep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Mezolitost plodu"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_stats_rb_mep"
+            app:layout_constraintEnd_toStartOf="@id/fragment_stats_rb_mep"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/fragment_stats_rb_mep" />
+
+        <RatingBar
+            android:id="@+id/fragment_stats_rb_mep"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:numStars="5"
+            android:stepSize="0.01"
+            android:isIndicator="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fragment_stats_mep"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_stats_rb_stz" />
+
+        <TextView
+            android:id="@+id/fragment_stats_siv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Síla včelstva"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_stats_rb_siv"
+            app:layout_constraintEnd_toStartOf="@id/fragment_stats_rb_siv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/fragment_stats_rb_siv" />
+
+        <RatingBar
+            android:id="@+id/fragment_stats_rb_siv"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:numStars="5"
+            android:stepSize="0.01"
+            android:isIndicator="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fragment_stats_siv"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_stats_rb_mep" />
+
+        <TextView
+            android:id="@+id/fragment_stats_stp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Stavební pud"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_stats_rb_stp"
+            app:layout_constraintEnd_toStartOf="@id/fragment_stats_rb_stp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/fragment_stats_rb_stp" />
+
+        <RatingBar
+            android:id="@+id/fragment_stats_rb_stp"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:numStars="5"
+            android:stepSize="0.01"
+            android:isIndicator="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fragment_stats_stp"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_stats_rb_siv" />
+
+        <TextView
+            android:id="@+id/fragment_stats_bod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Bodavost"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_stats_rb_bod"
+            app:layout_constraintEnd_toStartOf="@id/fragment_stats_rb_bod"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/fragment_stats_rb_bod" />
+
+        <RatingBar
+            android:id="@+id/fragment_stats_rb_bod"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:numStars="5"
+            android:stepSize="0.01"
+            android:isIndicator="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fragment_stats_bod"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_stats_rb_stp" />
+
+        <TextView
+            android:id="@+id/fragment_stats_sli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Slídivost"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_stats_rb_sli"
+            app:layout_constraintEnd_toStartOf="@id/fragment_stats_rb_sli"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/fragment_stats_rb_sli" />
+
+        <RatingBar
+            android:id="@+id/fragment_stats_rb_sli"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:numStars="5"
+            android:stepSize="0.01"
+            android:isIndicator="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fragment_stats_sli"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_stats_rb_bod" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
