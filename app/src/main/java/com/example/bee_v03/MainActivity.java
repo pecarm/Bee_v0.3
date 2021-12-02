@@ -50,8 +50,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
         //region Toolbar and navigation drawer

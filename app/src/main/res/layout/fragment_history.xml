@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DashboardFragment">
+    tools:context=".DashboardFragment"
+    android:id="@+id/fragment_layout_history">
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/list_view_object_history"/>
+        android:id="@+id/list_view_object_history"
+        android:visibility="visible"/>
 
     <!--
     <ViewStub

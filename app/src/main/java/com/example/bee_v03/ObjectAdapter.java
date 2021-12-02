@@ -1,40 +1,41 @@
 package com.example.bee_v03;
 
-import android.content.Context;
-
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.lifecycle.Lifecycle;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-public class ObjectAdapter extends FragmentPagerAdapter {
+import java.util.List;
 
-    private Context context;
-    int numberOfTabs;
+public class ObjectAdapter extends FragmentStateAdapter {
 
-    public ObjectAdapter(Context context, FragmentManager fm, int numberOfTabs) {
-        super(fm);
-        this.context = context;
-        this.numberOfTabs = numberOfTabs;
+    private List<Record> allRecords;
+    private int idHive;
+
+    public ObjectAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, List<Record> allRecords, int idHive) {
+        super(fragmentManager, lifecycle);
+        this.allRecords = allRecords;
+        this.idHive = idHive;
     }
 
+    @NonNull
     @Override
-    public Fragment getItem(int position) {
+    public Fragment createFragment(int position) {
         switch (position) {
-            case(0):
-                AlertsFragment alertsFragment = new AlertsFragment();
-                return alertsFragment;
-            case(1):
-                HistoryFragment historyFragment = new HistoryFragment();
-                return historyFragment;
-            case(2):
-                StatsFragment statsFragment = new StatsFragment();
-                return statsFragment;
-            default: return null;
+            case 0:
+                return new AlertsFragment();
+            case 1:
+                return new StatsFragment();
+            case 2:
+                return HistoryFragment.newInstance(allRecords, idHive);
+            default:
+                return new AlertsFragment();
         }
     }
 
     @Override
-    public int getCount() {
-        return numberOfTabs;
+    public int getItemCount() {
+        return 3;
     }
 }

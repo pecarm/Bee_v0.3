@@ -4,10 +4,11 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 @Entity(tableName = "record_table", foreignKeys = @ForeignKey(entity = Hive.class, parentColumns = "id_hive", childColumns = "id_hive"))
-public class Record {
+public class Record implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id_record;
