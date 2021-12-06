@@ -6,6 +6,7 @@ import android.location.Location;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+import androidx.loader.content.AsyncTaskLoader;
 
 import java.util.List;
 
@@ -14,10 +15,12 @@ public class BeeRepository {
     private HivesLocationDao locationDao;
     private HiveDao hiveDao;
     private RecordDao recordDao;
+    private AlertDao alertDao;
 
     private LiveData<List<HivesLocation>> allLocations;
     private LiveData<List<Hive>> allHives;
     private LiveData<List<Record>> allRecords;
+    private LiveData<List<Alert>> allAlerts;
 
     //region Constructor
     public BeeRepository(Application application) {
@@ -26,10 +29,12 @@ public class BeeRepository {
         locationDao = database.locationDao();
         hiveDao = database.hiveDao();
         recordDao = database.recordDao();
+        alertDao = database.alertDao();
 
         allLocations = locationDao.getLocations();
         allHives = hiveDao.getAllHives();
         allRecords = recordDao.getAllRecords();
+        allAlerts = alertDao.getAllAlerts();
     }
     //endregion
 
@@ -104,6 +109,24 @@ public class BeeRepository {
 
     public LiveData<List<Record>> getRecordsByLocationId(int id) {
         return recordDao.getRecordsByLocation(id);
+    }
+    //endregion
+
+    //region Alert methods
+    public void insert(Alert alert) {
+        new InsertAlertAsyncTask(alertDao).execute(alert);
+    }
+
+    public void update(Alert alert) {
+        new UpdateAlertAsyncTask(alertDao).execute(alert);
+    }
+
+    public void delete(Alert alert) {
+        new DeleteAlertAsyncTask(alertDao).execute(alert);
+    }
+
+    public LiveData<List<Alert>> getAllAlerts() {
+        return allAlerts;
     }
     //endregion
 
@@ -196,7 +219,7 @@ public class BeeRepository {
     //endregion
 
     //region Async record methods
-    private static class InsertRecordAsyncTask extends AsyncTask<Record ,Void, Void> {
+    private static class InsertRecordAsyncTask extends AsyncTask<Record, Void, Void> {
         private RecordDao recordDao;
 
         private InsertRecordAsyncTask(RecordDao recordDao) {
@@ -210,7 +233,7 @@ public class BeeRepository {
         }
     }
 
-    private static class UpdateRecordAsyncTask extends AsyncTask<Record ,Void, Void> {
+    private static class UpdateRecordAsyncTask extends AsyncTask<Record, Void, Void> {
         private RecordDao recordDao;
 
         private UpdateRecordAsyncTask(RecordDao recordDao) {
@@ -224,7 +247,7 @@ public class BeeRepository {
         }
     }
 
-    private static class DeleteRecordAsyncTask extends AsyncTask<Record ,Void, Void> {
+    private static class DeleteRecordAsyncTask extends AsyncTask<Record, Void, Void> {
         private RecordDao recordDao;
 
         private DeleteRecordAsyncTask(RecordDao recordDao) {
@@ -234,6 +257,50 @@ public class BeeRepository {
         @Override
         protected Void doInBackground(Record... records) {
             recordDao.delete(records[0]);
+            return null;
+        }
+    }
+    //endregion
+
+    //region Async alert methods
+    private static class InsertAlertAsyncTask extends AsyncTask<Alert, Void, Void> {
+        private AlertDao alertDao;
+
+        private InsertAlertAsyncTask(AlertDao alertDao) {
+            this.alertDao = alertDao;
+        }
+
+        @Override
+        protected Void doInBackground(Alert... alerts) {
+            alertDao.insert(alerts[0]);
+            return null;
+        }
+    }
+
+    private static class UpdateAlertAsyncTask extends AsyncTask<Alert, Void, Void> {
+        private AlertDao alertDao;
+
+        private UpdateAlertAsyncTask(AlertDao alertDao) {
+            this.alertDao = alertDao;
+        }
+
+        @Override
+        protected Void doInBackground(Alert... alerts) {
+            alertDao.update(alerts[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteAlertAsyncTask extends AsyncTask<Alert, Void, Void> {
+        private AlertDao alertDao;
+
+        private DeleteAlertAsyncTask(AlertDao alertDao) {
+            this.alertDao = alertDao;
+        }
+
+        @Override
+        protected Void doInBackground(Alert... alerts) {
+            alertDao.delete(alerts[0]);
             return null;
         }
     }

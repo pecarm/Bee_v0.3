@@ -5,9 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".DashboardFragment">
 
-    <TextView
+    <ExpandableListView
+        android:id="@+id/expandable_list_view_dashboard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="DASHBOARD" />
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="0.5dp"/>
 
 </FrameLayout>

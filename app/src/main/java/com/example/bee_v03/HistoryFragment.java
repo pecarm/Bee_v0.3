@@ -53,6 +53,8 @@ public class HistoryFragment extends Fragment {
         //FILL IT WITH DATA
 
         List<Record> records = new ArrayList<>();
+        String[] from = new String[] {"date", "preview"};
+        int[] to = new int[] {R.id.adapter_view_object_history_date, R.id.adapter_view_object_history_text};
 
         try {
             records = allRecords.stream().filter(record -> record.getId_hive() == idHive).collect(Collectors.toList());
@@ -62,13 +64,9 @@ public class HistoryFragment extends Fragment {
         if (records.size() == 0) {
             Toast.makeText(getContext(), "There are no records!", Toast.LENGTH_SHORT).show();
         } else {
-            String[] from = new String[] {"date", "preview"};
-            int[] to = new int[] {R.id.adapter_view_object_history_date, R.id.adapter_view_object_history_text};
-
             HistoryAdapter historyAdapter = new HistoryAdapter(getContext(), recordData(records), R.layout.adapter_view_object_history, from, to);
 
             ListView lv = getView().findViewById(R.id.list_view_object_history);
-
             lv.setAdapter(historyAdapter);
         }
     }

@@ -7,7 +7,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {HivesLocation.class, Hive.class, Record.class}, version = 1)
+@Database(entities = {HivesLocation.class, Hive.class, Record.class, Alert.class}, version = 2)
 public abstract class BeeDatabase extends RoomDatabase {
 
     private static BeeDatabase instance;
@@ -15,6 +15,7 @@ public abstract class BeeDatabase extends RoomDatabase {
     public abstract HivesLocationDao locationDao();
     public abstract HiveDao hiveDao();
     public abstract RecordDao recordDao();
+    public abstract AlertDao alertDao();
 
     public static synchronized BeeDatabase getInstance(Context context) {
         if (instance == null) {

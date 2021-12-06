@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,36 +13,34 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import java.security.cert.CollectionCertStoreParameters;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     TabLayout tabLayout;
-    ViewPager viewPager;
+    ViewPager2 viewPager;
     DrawerLayout drawer;
     ExtendedFloatingActionButton fab;
-    ListView listViewTimeline;
     FloatingActionButton fabAddRecord, fabAddHive, fabAddLocation, fabView;
     TextView addRecordText, addHiveText, addLocationText, viewText;
     MainActivityViewModel viewModel;
+    CustomAdapter adapter;
     boolean isFabOpen;
 
     List<HivesLocation> allLocations;
     List<Hive> allHives;
     List<Record> allRecords;
+    List<Alert> allAlerts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //region Tablayout and viewpager
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        viewPager = (ViewPager2) findViewById(R.id.viewPager);
 
         //initializes tabLayout
         tabLayout.addTab(tabLayout.newTab().setText("Dashboard"));
@@ -75,11 +72,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         //fills viewpager with fragments
-        final com.example.bee_v03.CustomAdapter customAdapter = new CustomAdapter(this, getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(customAdapter);
+        FragmentManager fm = getSupportFragmentManager();
 
         //tells viewpager how to behave
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -94,6 +89,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                tabLayout.selectTab(tabLayout.getTabAt(position));
+            }
+        });
         //endregion
 
         //region Observers
@@ -101,26 +103,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onChanged(List<HivesLocation> hivesLocations) {
                 allLocations = hivesLocations;
+                adapter = new CustomAdapter(fm, getLifecycle(), allRecords, allHives, allAlerts);
+                viewPager.setAdapter(adapter);
             }
         });
         viewModel.getAllHives().observe(this, new Observer<List<Hive>>() {
             @Override
             public void onChanged(List<Hive> hives) {
                 allHives = hives;
-                if (hives == null) {
-                    return;
-                }
-                onDataChanged();
+                adapter = new CustomAdapter(fm, getLifecycle(), allRecords, allHives, allAlerts);
+                viewPager.setAdapter(adapter);
             }
         });
         viewModel.getAllRecords().observe(this, new Observer<List<Record>>() {
             @Override
             public void onChanged(List<Record> records) {
                 allRecords = records;
-                if (allHives == null) {
-                    return;
-                }
-                onDataChanged();
+                adapter = new CustomAdapter(fm, getLifecycle(), allRecords, allHives, allAlerts);
+                viewPager.setAdapter(adapter);
+            }
+        });
+        viewModel.getAllAlerts().observe(this, new Observer<List<Alert>>() {
+            @Override
+            public void onChanged(List<Alert> alerts) {
+                allAlerts = alerts;
+                adapter = new CustomAdapter(fm, getLifecycle(), allRecords, allHives, allAlerts);
+                viewPager.setAdapter(adapter);
             }
         });
         //endregion
@@ -135,19 +143,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.nav_dashboard:
                 break;
-            case R.id.nav_global:
+            /*case R.id.nav_global:
                 intent = new Intent(this, com.example.bee_v03.GlobalActivity.class);
                 startActivity(intent);
-                break;
+                break;*/
             case R.id.nav_select:
                 intent = new Intent(this, com.example.bee_v03.SelectActivity.class);
                 intent.putExtra("TARGET", "view");
                 startActivity(intent);
                 break;
-            case R.id.nav_settings:
+            /*case R.id.nav_settings:
                 intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
-                break;
+                break;*/
         }
 
         drawer.closeDrawer(GravityCompat.START);
@@ -278,36 +286,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
+    //obsolete
     private void onDataChanged() {
         //TODO Fill Dashboard
-
-        //region Fills timeline
-        listViewTimeline = (ListView) findViewById(R.id.list_view_dashboard_timeline);
-
-        String[] from = new String[] {"name", "record"};
-        int[] to = new int[] {R.id.adapter_view_dashboard_timeline_hive, R.id.adapter_view_dashboard_timeline_date};
-
-        if (allRecords == null || allRecords.size() == 0) {
-            Toast.makeText(MainActivity.this, "There are no hives!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        TimelineAdapter timelineAdapter = new TimelineAdapter(this, recordData(allRecords), R.layout.adapter_view_dashboard_timeline, from, to);
-        listViewTimeline.setAdapter(timelineAdapter);
-        //endregion
-    }
-
-    private ArrayList<HashMap<String, Object>> recordData(List<Record> records) {
-        ArrayList<HashMap<String, Object>> data = new ArrayList<>();
-        for (Record record : records) {
-            //WE CAN PUT MULTIPLE ITEMS and then PASS THEM BY KEY, even a list of WARNINGS
-            HashMap<String, Object> item = new HashMap<>();
-            //I honestly doubt this is gonna work
-            item.put("name", allHives.stream().filter(hive -> hive.getId_hive() == record.getId_hive()).collect(Collectors.toList()).get(0).getName());
-            item.put("record", record);
-            data.add(item);
-        }
-        return data;
     }
     //endregion
 }

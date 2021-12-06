@@ -8,17 +8,22 @@
             android:id="@+id/nav_dashboard"
             android:icon="@drawable/ic_dashboard"
             android:title="Dashboard" />
+
+        <!--
         <item
             android:id="@+id/nav_global"
             android:icon="@drawable/ic_global"
             android:title="Global stats" />
+        -->
         <item
             android:id="@+id/nav_select"
             android:icon="@drawable/ic_select"
             android:title="Select unit" />
+        <!--
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings"
             android:title="Settings" />
+            -->
     </group>
 </menu>

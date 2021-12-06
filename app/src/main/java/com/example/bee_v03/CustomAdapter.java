@@ -2,36 +2,42 @@ package com.example.bee_v03;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.lifecycle.Lifecycle;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-public class CustomAdapter extends FragmentPagerAdapter {
+import java.util.List;
 
-    private Context context;
-    int numberOfTabs;
+public class CustomAdapter extends FragmentStateAdapter {
 
-    public CustomAdapter(Context context, FragmentManager fm, int numberOfTabs) {
-        super(fm);
-        this.context = context;
-        this.numberOfTabs = numberOfTabs;
+    private List<Record> allRecords;
+    private List<Hive> allHives;
+    private List<Alert> allAlerts;
+
+    public CustomAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, List<Record> allRecords, List<Hive> allHives, List<Alert> allAlerts) {
+        super(fragmentManager, lifecycle);
+        this.allRecords = allRecords;
+        this.allHives = allHives;
+        this.allAlerts = allAlerts;
     }
 
+    @NonNull
     @Override
-    public Fragment getItem(int position) {
+    public Fragment createFragment(int position) {
         switch (position) {
             case(0):
-                DashboardFragment dashboardFragment = new DashboardFragment();
-                return dashboardFragment;
+                return DashboardFragment.newInstance(allHives, allAlerts);
             case(1):
-                TimelineFragment timelineFragment = new TimelineFragment();
-                return timelineFragment;
-            default: return null;
+                return TimelineFragment.newInstance(allRecords, allHives);
+            default: return new DashboardFragment();
         }
     }
 
     @Override
-    public int getCount() {
-        return numberOfTabs;
+    public int getItemCount() {
+        return 2;
     }
 }

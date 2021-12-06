@@ -56,12 +56,10 @@ public class AddLocationActivity extends AppCompatActivity {
                     Location location = task.getResult();
                     if (location != null) {
                         try {
-                            Geocoder geocoder = new Geocoder(AddLocationActivity.this, Locale.getDefault());
-                            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                            textViewLatitude.setText(Double.toString(addresses.get(0).getLatitude()));
-                            textViewLongitude.setText(Double.toString(addresses.get(0).getLongitude()));
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                            textViewLatitude.setText(Double.toString(location.getLatitude()));
+                            textViewLongitude.setText(Double.toString(location.getLongitude()));
+                        } catch (Exception e) {
+                            Toast.makeText(AddLocationActivity.this, "No location acquired", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else {

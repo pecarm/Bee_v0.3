@@ -33,8 +33,8 @@ public class TimelineAdapter extends SimpleAdapter {
             convertView = layoutInflater.inflate(R.layout.adapter_view_dashboard_timeline, null);
         }
 
-        TextView twDate = (TextView) convertView.findViewById(R.id.adapter_view_dashboard_timeline_date);
-        TextView twName = (TextView) convertView.findViewById(R.id.adapter_view_dashboard_timeline_hive);
+        TextView twDate = convertView.findViewById(R.id.adapter_view_dashboard_timeline_date);
+        TextView twName = convertView.findViewById(R.id.adapter_view_dashboard_timeline_hive);
 
         twDate.setText(date);
         twName.setText(name);

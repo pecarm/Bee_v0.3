@@ -47,6 +47,9 @@ public class SelectActivity extends AppCompatActivity {
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListViewSelect);
         selectViewModel = new ViewModelProvider(this).get(SelectViewModel.class);
 
+        //region Observers
+
+        //DALO BY SE PŘEPSAT, OPTIMALIZOVAT, použít lokální proměnné a alokaci v onChanged
         selectViewModel.getAllHives().observe(this, new Observer<List<Hive>>() {
             @Override
             public void onChanged(List<Hive> hives) {
@@ -67,6 +70,7 @@ public class SelectActivity extends AppCompatActivity {
                 allHives = selectViewModel.getAllHives().getValue();
             }
         });
+        //endregion
 
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override

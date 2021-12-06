@@ -11,16 +11,17 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SelectCustomExpandableListAdapter extends BaseExpandableListAdapter {
+public class AlertsCustomExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context;
-    private List<HivesLocation> expandableListTitle;
-    private List<Hive> expandableListDetail;
+    private List<String> expandableListTitle;
+    private List<Alert> expandableListDetail;
 
-    public SelectCustomExpandableListAdapter(Context context, List<HivesLocation> expandableListTitle, List<Hive> expandableListDetail) {
+    public AlertsCustomExpandableListAdapter(Context context, List<String> levels, List<Alert> alerts) {
         this.context = context;
-        this.expandableListDetail = expandableListDetail;
-        this.expandableListTitle = expandableListTitle;
+        this.expandableListTitle = levels;
+        this.expandableListDetail = alerts;
     }
+
 
     //region Inherited methods
     @Override
@@ -31,10 +32,10 @@ public class SelectCustomExpandableListAdapter extends BaseExpandableListAdapter
     @Override
     public int getChildrenCount(int groupPosition) {
         try {
-            List<Hive> filteredHives = this.expandableListDetail.stream()
-                    .filter(hive -> hive.getId_location() == this.expandableListTitle.get(groupPosition).getId_location())
+            List<Alert> filteredAlerts = this.expandableListDetail.stream()
+                    .filter(alert -> alert.getSeverity() == groupPosition + 1)
                     .collect(Collectors.toList());
-            return filteredHives.size();
+            return filteredAlerts.size();
         } catch (Exception e) {
             return 0;
         }
@@ -47,10 +48,10 @@ public class SelectCustomExpandableListAdapter extends BaseExpandableListAdapter
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        List<Hive> filteredHives = this.expandableListDetail.stream()
-                .filter(hive -> hive.getId_location() == this.expandableListTitle.get(groupPosition).getId_location())
+        List<Alert> filteredAlerts = this.expandableListDetail.stream()
+                .filter(alert -> alert.getSeverity() == groupPosition + 1)
                 .collect(Collectors.toList());
-        return filteredHives.get(childPosition);
+        return filteredAlerts.get(childPosition);
     }
 
     @Override
@@ -84,13 +85,18 @@ public class SelectCustomExpandableListAdapter extends BaseExpandableListAdapter
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        final String expandedListText = getChild(groupPosition, childPosition).toString();
+        Alert alert = (Alert) getChild(groupPosition, childPosition);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.expandable_list_select_hive, null);
         }
         TextView expandedListTextView = (TextView) convertView.findViewById(R.id.expandableListSelectHive);
-        expandedListTextView.setText(expandedListText);
+
+        String preview;
+        if (alert.getText().length() > 30) {
+            preview = alert.getText().substring(0, 27) + "...";
+        } else preview = alert.getText();
+        expandedListTextView.setText(alert.getDate() + ", " + preview);
         return convertView;
     }
 

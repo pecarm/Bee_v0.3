@@ -12,12 +12,14 @@ public class ObjectAdapter extends FragmentStateAdapter {
 
     private List<Hive> allHives;
     private List<Record> allRecords;
+    private List<Alert> allAlerts;
     private int idHive;
 
-    public ObjectAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, List<Hive> allHives, List<Record> allRecords, int idHive) {
+    public ObjectAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, List<Hive> allHives, List<Record> allRecords, List<Alert> allAlerts, int idHive) {
         super(fragmentManager, lifecycle);
         this.allHives = allHives;
         this.allRecords = allRecords;
+        this.allAlerts = allAlerts;
         this.idHive = idHive;
     }
 
@@ -26,7 +28,7 @@ public class ObjectAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return new AlertsFragment();
+                return AlertsFragment.newInstance(allAlerts, idHive);
             case 1:
                 return HistoryFragment.newInstance(allRecords, idHive);
             case 2:

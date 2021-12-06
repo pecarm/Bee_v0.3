@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -15,18 +14,15 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ObjectActivity extends AppCompatActivity  {
-    ListView listViewHistory;
     FloatingActionButton fab;
     TabLayout tabLayout;
     ViewPager2 viewPager;
     List<Hive> allHives;
     List<Record> allRecords;
+    List<Alert> allAlerts;
     ObjectAdapter adapter;
     int idHive;
 
@@ -44,7 +40,7 @@ public class ObjectActivity extends AppCompatActivity  {
         }
 
         ObjectViewModel viewModel = new ViewModelProvider(this).get(ObjectViewModel.class);
-        fab = (FloatingActionButton) findViewById(R.id.fab_object);
+        fab = (FloatingActionButton) findViewById(R.id.fab_object_add_record);
 
         //region Tablayout and viewpager
         tabLayout = (TabLayout) findViewById(R.id.tabLayoutObject);
@@ -84,15 +80,13 @@ public class ObjectActivity extends AppCompatActivity  {
         });
         //endregion
 
-        listViewHistory = (ListView) findViewById(R.id.list_view_object_history);
-
         //region Observers
         viewModel.getAllHives().observe(this, new Observer<List<Hive>>() {
             @Override
             public void onChanged(List<Hive> hives) {
                 allHives = hives;
                 if (allRecords != null) {
-                    adapter = new ObjectAdapter(fm, getLifecycle(), allHives, allRecords, idHive);
+                    adapter = new ObjectAdapter(fm, getLifecycle(), allHives, allRecords, allAlerts, idHive);
                     viewPager.setAdapter(adapter);
                 }
             }
@@ -103,7 +97,18 @@ public class ObjectActivity extends AppCompatActivity  {
             public void onChanged(List<Record> records) {
                 allRecords = records;
                 if (allRecords != null) {
-                    adapter = new ObjectAdapter(fm, getLifecycle(), allHives, allRecords, idHive);
+                    adapter = new ObjectAdapter(fm, getLifecycle(), allHives, allRecords, allAlerts, idHive);
+                    viewPager.setAdapter(adapter);
+                }
+            }
+        });
+
+        viewModel.getAllAlerts().observe(this, new Observer<List<Alert>>() {
+            @Override
+            public void onChanged(List<Alert> alerts) {
+                allAlerts = alerts;
+                if (allRecords != null) {
+                    adapter = new ObjectAdapter(fm, getLifecycle(), allHives, allRecords, allAlerts, idHive);
                     viewPager.setAdapter(adapter);
                 }
             }
@@ -118,17 +123,12 @@ public class ObjectActivity extends AppCompatActivity  {
                 startActivity(intent);
             }
         });
-
-
     }
 
+    //OBSOLETE NOW
     private void onDataChanged() {
 
         //TODO Fill alerts
-
-        //TODO Fill history
-
-        //TODO Fill stats
 
     }
 }

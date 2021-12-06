@@ -23,4 +23,16 @@ public class AddRecordViewModel extends AndroidViewModel {
     public LiveData<List<Hive>> getAllHives() {
         return repository.getAllHives();
     }
+
+    public void insert(Alert alert) {
+        repository.insert(alert);
+    }
+
+    public void delete(Alert alert) {
+        repository.delete(alert);
+    }
+
+    public LiveData<List<Alert>> getAllAlerts() {
+        return repository.getAllAlerts();
+    }
 }
