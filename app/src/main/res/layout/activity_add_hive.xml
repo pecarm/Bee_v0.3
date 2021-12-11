@@ -117,20 +117,20 @@
         app:layout_constraintTop_toBottomOf="@+id/ratingBarAgresivnost" />
 
     <TextView
-        android:id="@+id/textViewMezolitostPlodu"
+        android:id="@+id/textViewMezerovitostPlodu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Mezolitost plodu"
+        android:text="Mezerovitost plodu"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBarMezolitostPlodu"
-        app:layout_constraintEnd_toStartOf="@id/ratingBarMezolitostPlodu"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBarMezerovitostPlodu"
+        app:layout_constraintEnd_toStartOf="@id/ratingBarMezerovitostPlodu"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ratingBarMezolitostPlodu" />
+        app:layout_constraintTop_toTopOf="@+id/ratingBarMezerovitostPlodu" />
 
     <RatingBar
-        android:id="@+id/ratingBarMezolitostPlodu"
+        android:id="@+id/ratingBarMezerovitostPlodu"
         style="@style/Widget.AppCompat.RatingBar.Indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
         android:stepSize="0.01"
         android:isIndicator="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewMezolitostPlodu"
+        app:layout_constraintStart_toEndOf="@+id/textViewMezerovitostPlodu"
         app:layout_constraintTop_toBottomOf="@+id/ratingBarStavZasob" />
 
     <TextView
@@ -170,7 +170,7 @@
         android:isIndicator="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewSilaVcelstva"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBarMezolitostPlodu" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingBarMezerovitostPlodu" />
 
     <TextView
         android:id="@+id/textViewStavebniPud"

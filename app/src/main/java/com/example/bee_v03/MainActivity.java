@@ -288,7 +288,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //obsolete
     private void onDataChanged() {
-        //TODO Fill Dashboard
+
     }
     //endregion
 }

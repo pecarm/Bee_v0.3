@@ -64,7 +64,7 @@ public class StatsFragment extends Fragment {
         row.setText(((Integer) hive.getRow()).toString());
         rb_agr.setRating(hive.getAgresivnost());
         rb_stz.setRating(hive.getStav_zasob());
-        rb_mep.setRating(hive.getMezolitost_plodu());
+        rb_mep.setRating(hive.getMezerovitost_plodu());
         rb_siv.setRating(hive.getSila_vcelstva());
         rb_stp.setRating(hive.getStavebni_pud());
         rb_bod.setRating(hive.getBodavost());

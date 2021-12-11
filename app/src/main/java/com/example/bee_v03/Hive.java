@@ -16,20 +16,20 @@ public class Hive implements Serializable {
     private int row;
     private int agresivnost;
     private int stav_zasob;
-    private int mezolitost_plodu;
+    private int mezerovitost_plodu;
     private int sila_vcelstva;
     private int stavebni_pud;
     private int bodavost;
     private int slidivost;
 
     //region Constructor
-    public Hive(int id_location, String name, int row, int agresivnost, int stav_zasob, int mezolitost_plodu, int sila_vcelstva, int stavebni_pud, int bodavost, int slidivost) {
+    public Hive(int id_location, String name, int row, int agresivnost, int stav_zasob, int mezerovitost_plodu, int sila_vcelstva, int stavebni_pud, int bodavost, int slidivost) {
         this.id_location = id_location;
         this.name = name;
         this.row = row;
         this.agresivnost = agresivnost;
         this.stav_zasob = stav_zasob;
-        this.mezolitost_plodu = mezolitost_plodu;
+        this.mezerovitost_plodu = mezerovitost_plodu;
         this.sila_vcelstva = sila_vcelstva;
         this.stavebni_pud = stavebni_pud;
         this.bodavost = bodavost;
@@ -86,12 +86,12 @@ public class Hive implements Serializable {
         this.stav_zasob = stav_zasob;
     }
 
-    public int getMezolitost_plodu() {
-        return mezolitost_plodu;
+    public int getMezerovitost_plodu() {
+        return mezerovitost_plodu;
     }
 
-    public void setMezolitost_plodu(int mezolitost_plodu) {
-        this.mezolitost_plodu = mezolitost_plodu;
+    public void setMezerovitost_plodu(int mezerovitost_plodu) {
+        this.mezerovitost_plodu = mezerovitost_plodu;
     }
 
     public int getSila_vcelstva() {

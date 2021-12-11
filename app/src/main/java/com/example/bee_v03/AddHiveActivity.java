@@ -20,7 +20,7 @@ import java.util.List;
 public class AddHiveActivity extends AppCompatActivity {
     Spinner spinnerLocations;
     EditText editTextName, editTextRow;
-    RatingBar rbAgresivnost, rbStavZasob, rbMezolitostPlodu, rbSilaVcelstva, rbStavebniPud, rbBodavost, rbSlidivost;
+    RatingBar rbAgresivnost, rbStavZasob, rbMezerovitostPlodu, rbSilaVcelstva, rbStavebniPud, rbBodavost, rbSlidivost;
     Button buttonAdd;
     AddHiveViewModel addHiveViewModel;
     HivesLocation selectedLocation;
@@ -50,7 +50,7 @@ public class AddHiveActivity extends AppCompatActivity {
         editTextRow = (EditText) findViewById(R.id.add_hive_row);
         rbAgresivnost = (RatingBar) findViewById(R.id.ratingBarAgresivnost);
         rbStavZasob = (RatingBar) findViewById(R.id.ratingBarStavZasob);
-        rbMezolitostPlodu = (RatingBar) findViewById(R.id.ratingBarMezolitostPlodu);
+        rbMezerovitostPlodu = (RatingBar) findViewById(R.id.ratingBarMezerovitostPlodu);
         rbSilaVcelstva = (RatingBar) findViewById(R.id.ratingBarSilaVcelstva);
         rbStavebniPud = (RatingBar) findViewById(R.id.ratingBarStavebniPud);
         rbBodavost = (RatingBar) findViewById(R.id.ratingBodavost);
@@ -88,10 +88,10 @@ public class AddHiveActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!editTextName.equals("") && !editTextRow.equals("") && (rbAgresivnost.getRating() != 0) &&
-                        (rbStavZasob.getRating() != 0) && (rbMezolitostPlodu.getRating() != 0) && (rbSilaVcelstva.getRating() != 0) && (rbStavebniPud.getRating() != 0) &&
+                        (rbStavZasob.getRating() != 0) && (rbMezerovitostPlodu.getRating() != 0) && (rbSilaVcelstva.getRating() != 0) && (rbStavebniPud.getRating() != 0) &&
                         (rbBodavost.getRating() != 0) && (rbSlidivost.getRating() != 0)) {
                     Hive hive = new Hive(selectedLocation.getId_location(), editTextName.getText().toString(), Integer.parseInt(editTextRow.getText().toString()),
-                            (int)rbAgresivnost.getRating(), (int)rbStavZasob.getRating(), (int)rbMezolitostPlodu.getRating(),
+                            (int)rbAgresivnost.getRating(), (int)rbStavZasob.getRating(), (int)rbMezerovitostPlodu.getRating(),
                             (int)rbSilaVcelstva.getRating(), (int)rbStavebniPud.getRating(), (int)rbBodavost.getRating(), (int)rbSlidivost.getRating());
                     addHiveViewModel.insert(hive);
                     Toast.makeText(AddHiveActivity.this, "Hive added!", Toast.LENGTH_SHORT).show();
@@ -113,7 +113,7 @@ public class AddHiveActivity extends AppCompatActivity {
     private void makeRatingBarsBehave() {
         setRatingBarToRegisterProperly(rbAgresivnost);
         setRatingBarToRegisterProperly(rbBodavost);
-        setRatingBarToRegisterProperly(rbMezolitostPlodu);
+        setRatingBarToRegisterProperly(rbMezerovitostPlodu);
         setRatingBarToRegisterProperly(rbSlidivost);
         setRatingBarToRegisterProperly(rbSilaVcelstva);
         setRatingBarToRegisterProperly(rbStavebniPud);
