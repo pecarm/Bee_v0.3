@@ -139,7 +139,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <!--navigation drawer with header and menu inside-->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
