@@ -114,8 +114,8 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
 
     @Override
     public void applyTexts(String severity, String text) {
-        Toast.makeText(this, severity, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, severity, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
 
         String shortened = text;
         if (text.length() > 30) {
