@@ -48,6 +48,7 @@ public class AddLocationActivity extends AppCompatActivity {
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
+        //TODO: Přepsat na výběr z mapy, usnadní to všechno všem
         //works, just need to get location first (e.g. open gmaps)
         if (ActivityCompat.checkSelfPermission(AddLocationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
