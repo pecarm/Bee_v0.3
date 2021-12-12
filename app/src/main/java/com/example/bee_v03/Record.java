@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 import java.sql.Date;
 
-@Entity(tableName = "record_table", foreignKeys = @ForeignKey(entity = Hive.class, parentColumns = "id_hive", childColumns = "id_hive"))
+@Entity(tableName = "record_table", foreignKeys = @ForeignKey(onDelete = ForeignKey.CASCADE, entity = Hive.class, parentColumns = "id_hive", childColumns = "id_hive"))
 public class Record implements Serializable {
 
     @PrimaryKey(autoGenerate = true)

@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "alert_table", foreignKeys = @ForeignKey(entity = Hive.class, parentColumns = "id_hive", childColumns = "id_hive"))
+@Entity(tableName = "alert_table", foreignKeys = @ForeignKey(onDelete = ForeignKey.CASCADE, entity = Hive.class, parentColumns = "id_hive", childColumns = "id_hive"))
 public class Alert implements Serializable {
 
     @PrimaryKey(autoGenerate = true)

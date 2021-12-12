@@ -66,7 +66,7 @@ public class AlertsFragment extends Fragment {
             severities.add("Medium");
             severities.add("Low");
 
-            adapter = new AlertsCustomExpandableListAdapter(getContext(), severities, allAlerts);
+            adapter = new AlertsCustomExpandableListAdapter(getContext(), severities, alerts);
             ExpandableListView elv = view.findViewById(R.id.expandable_list_view_alerts);
             elv.setAdapter(adapter);
         }

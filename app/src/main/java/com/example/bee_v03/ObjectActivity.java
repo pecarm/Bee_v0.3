@@ -124,11 +124,4 @@ public class ObjectActivity extends AppCompatActivity  {
             }
         });
     }
-
-    //OBSOLETE NOW
-    private void onDataChanged() {
-
-        //TODO Fill alerts
-
-    }
 }

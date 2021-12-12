@@ -49,7 +49,8 @@ public class SelectActivity extends AppCompatActivity {
 
         //region Observers
 
-        //DALO BY SE PŘEPSAT, OPTIMALIZOVAT, použít lokální proměnné a alokaci v onChanged
+        //TODO: Předělat na stejný způsob jako všude jinde
+        //PŘEPSAT, OPTIMALIZOVAT, použít lokální proměnné a alokaci v onChanged
         selectViewModel.getAllHives().observe(this, new Observer<List<Hive>>() {
             @Override
             public void onChanged(List<Hive> hives) {
@@ -110,7 +111,9 @@ public class SelectActivity extends AppCompatActivity {
                     selectViewModel.delete(hivesLocation);
                 } else if (itemType == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
                     Hive hive = (Hive) adapter.getChild(groupPosition, childPosition);
-                    selectViewModel.delete(hive);
+                    try {
+                        selectViewModel.delete(hive);
+                    } catch (Exception e) {}
                 }
 
                 return false;
