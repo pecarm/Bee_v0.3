@@ -68,6 +68,10 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
                     Record r = new Record(idHive, textViewSelectedDate.getText().toString(), editText.getText().toString());
                     addRecordViewModel.insert(r);
                     Toast.makeText(AddRecordActivity.this, "Record added!", Toast.LENGTH_SHORT).show();
+                    for (Alert alert:addedAlerts
+                    ) {
+                        addRecordViewModel.insert(alert);
+                    }
                     AddRecordActivity.this.finish();
                 } else {
                     Toast.makeText(AddRecordActivity.this, "Date or text not inserted!", Toast.LENGTH_SHORT).show();
@@ -84,6 +88,7 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
 
         adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_item, R.id.list_item_item, alerts);
         listView = findViewById(R.id.add_record_list_view_alerts);
+        listView.setAdapter(adapter);
 
         addRecordViewModel.getAllAlerts().observe(this, new Observer<List<Alert>>() {
             @Override
@@ -144,17 +149,7 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
         }
         Alert alert = new Alert(idHive, svrt, textViewSelectedDate.getText().toString(), text);
         addedAlerts.add(alert);
-        addRecordViewModel.insert(alert);
         alerts.add(severity + ", " + shortened);
         adapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        for (Alert alert:addedAlerts
-             ) {
-            addRecordViewModel.delete(alert);
-        }
     }
 }
