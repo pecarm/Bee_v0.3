@@ -22,7 +22,7 @@ public interface HivesLocationDao {
     void delete(HivesLocation location);
 
     @Query("SELECT * FROM hives_location_table")
-    LiveData<List<HivesLocation>> getLocations();
+    LiveData<List<HivesLocation>> getAllLocations();
 
     //THIS SHIT NOT BE WORKING
     @Query("SELECT * FROM hives_location_table WHERE name LIKE :name")

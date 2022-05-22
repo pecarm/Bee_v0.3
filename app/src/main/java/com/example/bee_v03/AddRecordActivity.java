@@ -2,11 +2,9 @@ package com.example.bee_v03;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -15,10 +13,11 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.NumberPicker;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -26,14 +25,17 @@ import java.util.List;
 public class AddRecordActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, AddAlertDialog.AddAlertDialogListener {
     Button buttonSelectDate, buttonAddRecord, buttonAddAlert;
     TextView textViewSelectedDate;
-    EditText editText;
+    EditText editTextNote, editTextFeeding;
     AddRecordViewModel addRecordViewModel;
     ListView listView;
+    RatingBar rbResourcesState, rbBroodIntegrity;
+    NumberPicker numberPicker;
     List<Alert> allAlerts;
     ArrayList<String> alerts = new ArrayList<>();
     ArrayList<Alert> addedAlerts = new ArrayList<>();
     ArrayAdapter<String> adapter;
     int idHive;
+    int bases;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +50,37 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
         addRecordViewModel = new ViewModelProvider(this).get(AddRecordViewModel.class);
 
         buttonAddRecord = (Button) findViewById(R.id.buttonAddRecord);
-        buttonSelectDate = (Button) findViewById(R.id.buttonSelectDate);
+        buttonSelectDate = (Button) findViewById(R.id.buttonSelectDateRecord);
         buttonAddAlert = (Button) findViewById(R.id.buttonAddAlert);
         textViewSelectedDate = (TextView) findViewById(R.id.add_record_text_view_date);
-        editText = (EditText) findViewById(R.id.add_record_edit_text_record);
+        editTextNote = (EditText) findViewById(R.id.add_record_edit_text_record);
+        rbResourcesState = (RatingBar) findViewById(R.id.ratingBarResourcesState);
+        rbBroodIntegrity = (RatingBar) findViewById(R.id.ratingBarBroodIntegrity);
+        editTextFeeding = (EditText) findViewById(R.id.add_record_edit_text_feeding);
+
+        numberPicker = (NumberPicker) findViewById(R.id.numberPickerBases);
+        numberPicker.setMinValue(0);
+        numberPicker.setMaxValue(40);
+        numberPicker.setValue(20);
+
+        numberPicker.setFormatter(new NumberPicker.Formatter() {
+            @Override
+            public String format(int value) {
+                return Integer.toString(value - 20);
+            }
+        });
+
+        setRatingBarToRegisterProperly(rbBroodIntegrity);
+        setRatingBarToRegisterProperly(rbResourcesState);
+
+        bases = 0;
+
+        numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                bases = newVal - 20;
+            }
+        });
 
         buttonSelectDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,8 +93,11 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
         buttonAddRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!textViewSelectedDate.getText().equals("Select date") && !editText.getText().toString().equals("")) {
-                    Record r = new Record(idHive, textViewSelectedDate.getText().toString(), editText.getText().toString());
+                if (!textViewSelectedDate.getText().equals("Datum") && (int)rbResourcesState.getRating()!=0 && (int)rbBroodIntegrity.getRating()!=0) {
+                    String[] date = textViewSelectedDate.getText().toString().split("/");
+
+                    Record r = new Record(idHive, Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]), (int)rbResourcesState.getRating(),
+                            (int)rbBroodIntegrity.getRating(), editTextFeeding.getText().toString(), bases, editTextNote.getText().toString());
                     addRecordViewModel.insert(r);
                     Toast.makeText(AddRecordActivity.this, "Record added!", Toast.LENGTH_SHORT).show();
                     for (Alert alert:addedAlerts
@@ -74,7 +106,7 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
                     }
                     AddRecordActivity.this.finish();
                 } else {
-                    Toast.makeText(AddRecordActivity.this, "Date or text not inserted!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddRecordActivity.this, "Date or ratings not selected!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -108,8 +140,7 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar c = Calendar.getInstance();
         c.set(year, month, dayOfMonth);
-        String selectedDate = DateFormat.getDateInstance().format(c.getTime());
-        textViewSelectedDate.setText(selectedDate);
+        textViewSelectedDate.setText(c.get(Calendar.YEAR) + "/" + (c.get(Calendar.MONTH)+1) + "/" + c.get(Calendar.DAY_OF_MONTH));
     }
 
     private void openDialog() {
@@ -124,32 +155,42 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
 
         String shortened = text;
         if (text.length() > 30) {
-            shortened = text.substring(27) + "...";
+            shortened = text.substring(0, 27) + "...";
         }
 
         int svrt;
 
         switch (severity) {
-            case "High":
+            case "Vysoká":
                 svrt = 1;
                 break;
-            case "Medium":
+            case "Střední":
                 svrt = 2;
                 break;
-            case "Low":
+            case "Nízká":
                 svrt = 3;
                 break;
             default:
                 svrt = 0;
         }
 
-        if (textViewSelectedDate.getText().toString().equals("Select date")) {
+        if (textViewSelectedDate.getText().toString().equals("Datum")) {
             Toast.makeText(this, "Select date first", Toast.LENGTH_SHORT).show();
             return;
         }
-        Alert alert = new Alert(idHive, svrt, textViewSelectedDate.getText().toString(), text);
+        String[] date = textViewSelectedDate.getText().toString().split("/");
+        Alert alert = new Alert(idHive, svrt, Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]), text, false);
         addedAlerts.add(alert);
         alerts.add(severity + ", " + shortened);
         adapter.notifyDataSetChanged();
+    }
+
+    private void setRatingBarToRegisterProperly(RatingBar rb) {
+        rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                if (fromUser) ratingBar.setRating((float) Math.ceil(rating));
+            }
+        });
     }
 }

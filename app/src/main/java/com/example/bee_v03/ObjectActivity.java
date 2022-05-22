@@ -3,44 +3,67 @@ package com.example.bee_v03;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.compose.runtime.Stable;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ObjectActivity extends AppCompatActivity  {
-    FloatingActionButton fab;
+    ExtendedFloatingActionButton fab;
+    FloatingActionButton fabAddRecord, fabAddHarvest;
+    TextView fabAddRecordText, fabAddHarvestText;
     TabLayout tabLayout;
     ViewPager2 viewPager;
+    List<HivesLocation> allLocations;
     List<Hive> allHives;
     List<Record> allRecords;
     List<Alert> allAlerts;
+    List<HoneyHarvest> allHarvests;
     ObjectAdapter adapter;
+
+    boolean isFabOpen;
     int idHive;
+    boolean isArchive;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_object);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        setContentView(R.layout.activity_object);
+        getSupportActionBar().setTitle("Včelstvo");
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             idHive = extras.getInt("HIVE_ID");
+            isArchive = extras.getBoolean("IS_ARCHIVE");
         }
 
         ObjectViewModel viewModel = new ViewModelProvider(this).get(ObjectViewModel.class);
-        fab = (FloatingActionButton) findViewById(R.id.fab_object_add_record);
+
+        fab = (ExtendedFloatingActionButton) findViewById(R.id.fab_object);
+        fabAddRecord = (FloatingActionButton) findViewById(R.id.fab_object_add_record);
+        fabAddHarvest = (FloatingActionButton) findViewById(R.id.fab_object_add_harvest);
+        fabAddRecordText = (TextView) findViewById(R.id.fab_object_add_record_text);
+        fabAddHarvestText = (TextView) findViewById(R.id.fab_object_add_harvest_text);
+        isFabOpen = false;
+
+        fabAddHarvest.setVisibility(View.GONE);
+        fabAddRecord.setVisibility(View.GONE);
+        fabAddHarvestText.setVisibility(View.GONE);
+        fabAddRecordText.setVisibility(View.GONE);
+
+        fab.shrink();
 
         //region Tablayout and viewpager
         tabLayout = (TabLayout) findViewById(R.id.tabLayoutObject);
@@ -48,10 +71,12 @@ public class ObjectActivity extends AppCompatActivity  {
 
         FragmentManager fm = getSupportFragmentManager();
 
-        tabLayout.addTab(tabLayout.newTab().setText("Alerts"));
-        tabLayout.addTab(tabLayout.newTab().setText("History"));
-        tabLayout.addTab(tabLayout.newTab().setText("Stats"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.addTab(tabLayout.newTab().setText("Upozornění"));
+        tabLayout.addTab(tabLayout.newTab().setText("Historie"));
+        tabLayout.addTab(tabLayout.newTab().setText("Medobraní"));
+        tabLayout.addTab(tabLayout.newTab().setText("Info"));
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
 
         viewPager.setOffscreenPageLimit(100);
 
@@ -81,13 +106,34 @@ public class ObjectActivity extends AppCompatActivity  {
         //endregion
 
         //region Observers
+        viewModel.getAllLocations().observe(this, new Observer<List<HivesLocation>>() {
+            @Override
+            public void onChanged(List<HivesLocation> locations) {
+                allLocations = locations;
+                if (locations != null) {
+                    adapter = new ObjectAdapter(fm, getLifecycle(), allHives, allRecords, allAlerts, allLocations, allHarvests, idHive, isArchive);
+                    try {
+                        viewPager.setAdapter(adapter);
+                        getSupportActionBar().setTitle("Včelstvo - " + allHives.stream().filter(hive -> hive.getId_hive() == idHive).collect(Collectors.toList()).get(0).getName());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
         viewModel.getAllHives().observe(this, new Observer<List<Hive>>() {
             @Override
             public void onChanged(List<Hive> hives) {
                 allHives = hives;
-                if (allRecords != null) {
-                    adapter = new ObjectAdapter(fm, getLifecycle(), allHives, allRecords, allAlerts, idHive);
-                    viewPager.setAdapter(adapter);
+                if (allHives != null) {
+                    adapter = new ObjectAdapter(fm, getLifecycle(), allHives, allRecords, allAlerts, allLocations, allHarvests, idHive, isArchive);
+                    try {
+                        viewPager.setAdapter(adapter);
+                        getSupportActionBar().setTitle("Včelstvo - " + allHives.stream().filter(hive -> hive.getId_hive() == idHive).collect(Collectors.toList()).get(0).getName());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -97,8 +143,13 @@ public class ObjectActivity extends AppCompatActivity  {
             public void onChanged(List<Record> records) {
                 allRecords = records;
                 if (allRecords != null) {
-                    adapter = new ObjectAdapter(fm, getLifecycle(), allHives, allRecords, allAlerts, idHive);
-                    viewPager.setAdapter(adapter);
+                    adapter = new ObjectAdapter(fm, getLifecycle(), allHives, allRecords, allAlerts, allLocations, allHarvests, idHive, isArchive);
+                    try {
+                        viewPager.setAdapter(adapter);
+                        getSupportActionBar().setTitle("Včelstvo - " + allHives.stream().filter(hive -> hive.getId_hive() == idHive).collect(Collectors.toList()).get(0).getName());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -107,9 +158,30 @@ public class ObjectActivity extends AppCompatActivity  {
             @Override
             public void onChanged(List<Alert> alerts) {
                 allAlerts = alerts;
-                if (allRecords != null) {
-                    adapter = new ObjectAdapter(fm, getLifecycle(), allHives, allRecords, allAlerts, idHive);
-                    viewPager.setAdapter(adapter);
+                if (allAlerts != null) {
+                    adapter = new ObjectAdapter(fm, getLifecycle(), allHives, allRecords, allAlerts, allLocations, allHarvests, idHive, isArchive);
+                    try {
+                        viewPager.setAdapter(adapter);
+                        getSupportActionBar().setTitle("Včelstvo - " + allHives.stream().filter(hive -> hive.getId_hive() == idHive).collect(Collectors.toList()).get(0).getName());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        viewModel.getAllHarvests().observe(this, new Observer<List<HoneyHarvest>>() {
+            @Override
+            public void onChanged(List<HoneyHarvest> honeyHarvests) {
+                allHarvests = honeyHarvests;
+                if (allHarvests != null) {
+                    adapter = new ObjectAdapter(fm, getLifecycle(), allHives, allRecords, allAlerts, allLocations, allHarvests, idHive, isArchive);
+                    try {
+                        viewPager.setAdapter(adapter);
+                        getSupportActionBar().setTitle("Včelstvo - " + allHives.stream().filter(hive -> hive.getId_hive() == idHive).collect(Collectors.toList()).get(0).getName());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -118,10 +190,44 @@ public class ObjectActivity extends AppCompatActivity  {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!isFabOpen) {
+                    fabAddHarvest.show();
+                    fabAddRecord.show();
+                    fabAddRecordText.setVisibility(View.VISIBLE);
+                    fabAddHarvestText.setVisibility(View.VISIBLE);
+                    fab.extend();
+                    isFabOpen = true;
+                } else {
+                    fabAddHarvest.hide();
+                    fabAddRecord.hide();
+                    fabAddRecordText.setVisibility(View.GONE);
+                    fabAddHarvestText.setVisibility(View.GONE);
+                    fab.shrink();
+                    isFabOpen = false;
+                }
+            }
+        });
+
+        fabAddRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), com.example.bee_v03.AddRecordActivity.class);
                 intent.putExtra("HIVE_ID", idHive);
                 startActivity(intent);
             }
         });
+
+        fabAddHarvest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), com.example.bee_v03.AddHoneyHarvestActivity.class);
+                intent.putExtra("HIVE_ID", idHive);
+                startActivity(intent);
+            }
+        });
+
+        if (isArchive) {
+            fab.setEnabled(false);
+        }
     }
 }

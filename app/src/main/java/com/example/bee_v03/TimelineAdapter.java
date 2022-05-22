@@ -25,7 +25,8 @@ public class TimelineAdapter extends SimpleAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        String date = ((Record) arrayList.get(position).get("record")).getDate();
+        Record record = (Record) arrayList.get(position).get("record");
+        String date = record.getYear()+"/"+record.getMonth()+"/"+record.getDay();
         String name = arrayList.get(position).get("name").toString();
 
         if (convertView == null) {

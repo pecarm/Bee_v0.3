@@ -96,7 +96,7 @@ public class AlertsCustomExpandableListAdapter extends BaseExpandableListAdapter
         if (alert.getText().length() > 30) {
             preview = alert.getText().substring(0, 27) + "...";
         } else preview = alert.getText();
-        expandedListTextView.setText(alert.getDate() + ", " + preview);
+        expandedListTextView.setText(alert.getYear() + "/" + alert.getMonth() + "/" + alert.getDay() + ", " + preview);
         return convertView;
     }
 

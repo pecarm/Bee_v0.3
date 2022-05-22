@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         viewPager = (ViewPager2) findViewById(R.id.viewPager);
 
         //initializes tabLayout
-        tabLayout.addTab(tabLayout.newTab().setText("Dashboard"));
-        tabLayout.addTab(tabLayout.newTab().setText("Timeline"));
+        tabLayout.addTab(tabLayout.newTab().setText("Upozornění"));
+        tabLayout.addTab(tabLayout.newTab().setText("Návštěvy"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         //fills viewpager with fragments
@@ -145,19 +145,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.nav_dashboard:
                 break;
-            /*case R.id.nav_global:
-                intent = new Intent(this, com.example.bee_v03.GlobalActivity.class);
-                startActivity(intent);
-                break;*/
             case R.id.nav_select:
                 intent = new Intent(this, com.example.bee_v03.SelectActivity.class);
                 intent.putExtra("TARGET", "view");
                 startActivity(intent);
                 break;
-            /*case R.id.nav_settings:
-                intent = new Intent(this, SettingsActivity.class);
+            case R.id.nav_archive:
+                intent = new Intent(this, com.example.bee_v03.SelectActivity.class);
+                intent.putExtra("TARGET", "archive");
                 startActivity(intent);
-                break;*/
+                break;
+            case R.id.nav_stats:
+                intent = new Intent(this, com.example.bee_v03.ScopeSelectorActivity.class);
+                startActivity(intent);
+                break;
         }
 
         drawer.closeDrawer(GravityCompat.START);
@@ -271,7 +272,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toast.makeText(MainActivity.this, "There are no locations, add a location first", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 Intent intent = new Intent(v.getContext(), com.example.bee_v03.AddHiveActivity.class);
                 intent.putExtra("PARENT_ACTIVITY", "dashboard");
                 startActivity(intent);
@@ -286,11 +286,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
-    }
-
-    //obsolete
-    private void onDataChanged() {
-
     }
     //endregion
 }

@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".AddLocationActivity">
 
-
-    <TextView
-        android:id="@+id/add_location_longitude"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Longitude"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_location_latitude" />
-
     <EditText
         android:id="@+id/add_location_location_name"
         android:layout_width="match_parent"
@@ -28,32 +14,63 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="Name of location"
+        android:hint="Název lokality"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/add_location_latitude"/>
 
-    <TextView
+    <EditText
         android:id="@+id/add_location_latitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Latitude"
-        android:textSize="16sp"
+        android:hint="Zeměpisná šířka (S/J = +/-)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_location_location_name" />
+        app:layout_constraintTop_toBottomOf="@+id/add_location_location_name"
+        app:layout_constraintBottom_toTopOf="@id/add_location_longitude"/>
+
+    <EditText
+        android:id="@+id/add_location_longitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Zeměpisná délka (V/Z = +/-)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_location_latitude" />
+
+    <Button
+        android:id="@+id/add_location_button_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zobrazit na mapě"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_location_longitude" />
+
+    <Button
+        android:id="@+id/add_location_button_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/add_location_button_add"
+        android:text="Určit současnou polohu (GPS)" />
 
     <Button
         android:id="@+id/add_location_button_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Add location"
+        android:text="Přidat lokalitu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

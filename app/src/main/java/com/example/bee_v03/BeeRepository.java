@@ -1,12 +1,9 @@
 package com.example.bee_v03;
 
 import android.app.Application;
-import android.app.AsyncNotedAppOp;
-import android.location.Location;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
-import androidx.loader.content.AsyncTaskLoader;
 
 import java.util.List;
 
@@ -16,11 +13,13 @@ public class BeeRepository {
     private HiveDao hiveDao;
     private RecordDao recordDao;
     private AlertDao alertDao;
+    private HoneyHarvestDao honeyHarvestDao;
 
     private LiveData<List<HivesLocation>> allLocations;
     private LiveData<List<Hive>> allHives;
     private LiveData<List<Record>> allRecords;
     private LiveData<List<Alert>> allAlerts;
+    private LiveData<List<HoneyHarvest>> allHoneyHarvests;
 
     //region Constructor
     public BeeRepository(Application application) {
@@ -30,14 +29,17 @@ public class BeeRepository {
         hiveDao = database.hiveDao();
         recordDao = database.recordDao();
         alertDao = database.alertDao();
+        honeyHarvestDao = database.honeyHarvestDao();
 
-        allLocations = locationDao.getLocations();
+        allLocations = locationDao.getAllLocations();
         allHives = hiveDao.getAllHives();
         allRecords = recordDao.getAllRecords();
         allAlerts = alertDao.getAllAlerts();
+        allHoneyHarvests = honeyHarvestDao.getAllHoneyHarvests();
     }
     //endregion
 
+    //region Methods
     //region Location methods
     public void insert(HivesLocation location) {
         new InsertLocationAsyncTask(locationDao).execute(location);
@@ -130,6 +132,26 @@ public class BeeRepository {
     }
     //endregion
 
+    //region Honey harvest methods
+    public void insert(HoneyHarvest harvest) {
+        new InsertHoneyHarvestAsyncTask(honeyHarvestDao).execute(harvest);
+    }
+
+    public void update(HoneyHarvest harvest) {
+        new UpdateHoneyHarvestAsyncTask(honeyHarvestDao).execute(harvest);
+    }
+
+    public void delete(HoneyHarvest harvest) {
+        new DeleteHoneyHarvestAsyncTask(honeyHarvestDao).execute(harvest);
+    }
+
+    public LiveData<List<HoneyHarvest>> getAllHoneyHarvests() {
+        return allHoneyHarvests;
+    }
+    //endregion
+    //endregion
+
+    //region Async methods
     //region Async hiveLocation methods
     private static class InsertLocationAsyncTask extends AsyncTask<HivesLocation, Void, Void> {
         private HivesLocationDao locationDao;
@@ -304,5 +326,50 @@ public class BeeRepository {
             return null;
         }
     }
+    //endregion
+
+    //region Async honeyHarvest methods
+    private static class InsertHoneyHarvestAsyncTask extends AsyncTask<HoneyHarvest, Void, Void> {
+        private HoneyHarvestDao honeyHarvestDao;
+
+        private InsertHoneyHarvestAsyncTask(HoneyHarvestDao honeyHarvestDao) {
+            this.honeyHarvestDao = honeyHarvestDao;
+        }
+
+        @Override
+        protected Void doInBackground(HoneyHarvest... harvests) {
+            honeyHarvestDao.insert(harvests[0]);
+            return null;
+        }
+    }
+
+    private static class UpdateHoneyHarvestAsyncTask extends AsyncTask<HoneyHarvest, Void, Void> {
+        private HoneyHarvestDao honeyHarvestDao;
+
+        private UpdateHoneyHarvestAsyncTask(HoneyHarvestDao honeyHarvestDao) {
+            this.honeyHarvestDao = honeyHarvestDao;
+        }
+
+        @Override
+        protected Void doInBackground(HoneyHarvest... harvests) {
+            honeyHarvestDao.update(harvests[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteHoneyHarvestAsyncTask extends AsyncTask<HoneyHarvest, Void, Void> {
+        private HoneyHarvestDao honeyHarvestDao;
+
+        private DeleteHoneyHarvestAsyncTask(HoneyHarvestDao honeyHarvestDao) {
+            this.honeyHarvestDao = honeyHarvestDao;
+        }
+
+        @Override
+        protected Void doInBackground(HoneyHarvest... harvests) {
+            honeyHarvestDao.delete(harvests[0]);
+            return null;
+        }
+    }
+    //endregion
     //endregion
 }

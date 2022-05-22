@@ -14,26 +14,39 @@ public class Hive implements Serializable {
     private int id_location;
     private String name;
     private int row;
-    private int agresivnost;
-    private int stav_zasob;
-    private int mezerovitost_plodu;
-    private int sila_vcelstva;
-    private int stavebni_pud;
-    private int bodavost;
-    private int slidivost;
+    private int aggressivity;
+    private int hive_strength;
+    private int build_instinct;
+    private int stinging_instinct;
+    private int exploration_instinct;
+    private int cleaning_instinct;
+    private int mother_year;
+    private boolean archived;
+    //instead of complete deletion it just gets moved to an archive where the stats can still be seen, but CANNOT be added or removed anything, except for the whole thing
 
     //region Constructor
-    public Hive(int id_location, String name, int row, int agresivnost, int stav_zasob, int mezerovitost_plodu, int sila_vcelstva, int stavebni_pud, int bodavost, int slidivost) {
+    public Hive(int id_location,
+                String name,
+                int row,
+                int aggressivity,
+                int hive_strength,
+                int build_instinct,
+                int stinging_instinct,
+                int exploration_instinct,
+                int cleaning_instinct,
+                int mother_year,
+                boolean archived) {
         this.id_location = id_location;
         this.name = name;
         this.row = row;
-        this.agresivnost = agresivnost;
-        this.stav_zasob = stav_zasob;
-        this.mezerovitost_plodu = mezerovitost_plodu;
-        this.sila_vcelstva = sila_vcelstva;
-        this.stavebni_pud = stavebni_pud;
-        this.bodavost = bodavost;
-        this.slidivost = slidivost;
+        this.aggressivity = aggressivity;
+        this.hive_strength = hive_strength;
+        this.build_instinct = build_instinct;
+        this.stinging_instinct = stinging_instinct;
+        this.exploration_instinct = exploration_instinct;
+        this.cleaning_instinct = cleaning_instinct;
+        this.mother_year = mother_year;
+        this.archived = archived;
     }
     //endregion
 
@@ -70,62 +83,70 @@ public class Hive implements Serializable {
         this.row = row;
     }
 
-    public int getAgresivnost() {
-        return agresivnost;
+    public int getAggressivity() {
+        return aggressivity;
     }
 
-    public void setAgresivnost(int agresivnost) {
-        this.agresivnost = agresivnost;
+    public void setAggressivity(int aggressivity) {
+        this.aggressivity = aggressivity;
     }
 
-    public int getStav_zasob() {
-        return stav_zasob;
+    public int getHive_strength() {
+        return hive_strength;
     }
 
-    public void setStav_zasob(int stav_zasob) {
-        this.stav_zasob = stav_zasob;
+    public void setHive_strength(int hive_strength) {
+        this.hive_strength = hive_strength;
     }
 
-    public int getMezerovitost_plodu() {
-        return mezerovitost_plodu;
+    public int getBuild_instinct() {
+        return build_instinct;
     }
 
-    public void setMezerovitost_plodu(int mezerovitost_plodu) {
-        this.mezerovitost_plodu = mezerovitost_plodu;
+    public void setBuild_instinct(int build_instinct) {
+        this.build_instinct = build_instinct;
     }
 
-    public int getSila_vcelstva() {
-        return sila_vcelstva;
+    public int getStinging_instinct() {
+        return stinging_instinct;
     }
 
-    public void setSila_vcelstva(int sila_vcelstva) {
-        this.sila_vcelstva = sila_vcelstva;
+    public void setStinging_instinct(int stinging_instinct) {
+        this.stinging_instinct = stinging_instinct;
     }
 
-    public int getStavebni_pud() {
-        return stavebni_pud;
+    public int getExploration_instinct() {
+        return exploration_instinct;
     }
 
-    public void setStavebni_pud(int stavebni_pud) {
-        this.stavebni_pud = stavebni_pud;
+    public void setExploration_instinct(int exploration_instinct) {
+        this.exploration_instinct = exploration_instinct;
     }
 
-    public int getBodavost() {
-        return bodavost;
+    public int getCleaning_instinct() {
+        return cleaning_instinct;
     }
 
-    public void setBodavost(int bodavost) {
-        this.bodavost = bodavost;
+    public void setCleaning_instinct(int cleaning_instinct) {
+        this.cleaning_instinct = cleaning_instinct;
     }
 
-    public int getSlidivost() {
-        return slidivost;
+    public int getMother_year() {
+        return mother_year;
     }
 
-    public void setSlidivost(int slidivost) {
-        this.slidivost = slidivost;
+    public void setMother_year(int mother_year) {
+        this.mother_year = mother_year;
     }
-    //endregion
+
+    public boolean isArchived() {
+        return archived;
+    }
+
+    public void setArchived(boolean archived) {
+        this.archived = archived;
+    }
+//endregion
 
     @Override
     public String toString() {

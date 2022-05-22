@@ -14,6 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bee_v03">
         <activity
+            android:name=".StatsActivity"
+            android:exported="false"
+            android:parentActivityName=".ScopeSelectorActivity"/>
+        <activity
+            android:name=".StatsHiveActivity"
+            android:exported="false"
+            android:parentActivityName=".ScopeSelectorActivity"/>
+        <activity
+            android:name=".ScopeSelectorActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".AddHoneyHarvestActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddRecordActivity"
             android:exported="false" />
         <activity

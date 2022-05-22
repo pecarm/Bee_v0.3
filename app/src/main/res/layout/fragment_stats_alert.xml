@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StatsAlertFragment"
+    android:id="@+id/fragment_stats_alert">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/stats_alert_total_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Celkový počet:"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/stats_alert_solved_text"/>
+
+        <TextView
+            android:id="@+id/stats_alert_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Počet"
+            android:textSize="16dp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/stats_alert_total_text"
+            app:layout_constraintTop_toTopOf="@id/stats_alert_total_text"
+            app:layout_constraintBottom_toBottomOf="@id/stats_alert_total_text"/>
+
+        <TextView
+            android:id="@+id/stats_alert_solved_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Počet vyřešených:"
+            android:textSize="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stats_alert_total_text"
+            app:layout_constraintBottom_toTopOf="@id/stats_alert_high_text"/>
+
+        <TextView
+            android:id="@+id/stats_alert_solved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Počet"
+            android:textSize="16dp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/stats_alert_solved_text"
+            app:layout_constraintTop_toTopOf="@id/stats_alert_solved_text"
+            app:layout_constraintBottom_toBottomOf="@id/stats_alert_solved_text"/>
+
+        <TextView
+            android:id="@+id/stats_alert_high_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Počet upozornění\ns vysokou závažností\n(vyřešených):"
+            android:textSize="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stats_alert_solved_text"
+            app:layout_constraintBottom_toTopOf="@+id/stats_alert_medium_text"/>
+
+        <TextView
+            android:id="@+id/stats_alert_high"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Počet (vyřešených)"
+            android:textSize="16dp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/stats_alert_high_text"
+            app:layout_constraintTop_toTopOf="@id/stats_alert_high_text"
+            app:layout_constraintBottom_toBottomOf="@id/stats_alert_high_text"/>
+
+        <TextView
+            android:id="@+id/stats_alert_medium_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Počet upozornění\nse střední závažností\n(vyřešených):"
+            android:textSize="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stats_alert_high_text"
+            app:layout_constraintBottom_toTopOf="@+id/stats_alert_low_text"/>
+
+        <TextView
+            android:id="@+id/stats_alert_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Počet (vyřešených)"
+            android:textSize="16dp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/stats_alert_medium_text"
+            app:layout_constraintTop_toTopOf="@id/stats_alert_medium_text"
+            app:layout_constraintBottom_toBottomOf="@id/stats_alert_medium_text"/>
+
+        <TextView
+            android:id="@+id/stats_alert_low_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Počet upozornění\ns nízkou závažností\n(vyřešených):"
+            android:textSize="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stats_alert_medium_text" />
+
+        <TextView
+            android:id="@+id/stats_alert_low"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Počet (vyřešených)"
+            android:textSize="16dp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/stats_alert_low_text"
+            app:layout_constraintTop_toTopOf="@id/stats_alert_low_text"
+            app:layout_constraintBottom_toBottomOf="@id/stats_alert_low_text"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

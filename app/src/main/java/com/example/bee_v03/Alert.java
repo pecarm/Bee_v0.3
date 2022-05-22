@@ -1,6 +1,7 @@
 package com.example.bee_v03;
 
-import androidx.annotation.NonNull;
+import android.os.Parcelable;
+
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
@@ -8,21 +9,30 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 
 @Entity(tableName = "alert_table", foreignKeys = @ForeignKey(onDelete = ForeignKey.CASCADE, entity = Hive.class, parentColumns = "id_hive", childColumns = "id_hive"))
-public class Alert implements Serializable {
+public class Alert implements Serializable{
 
     @PrimaryKey(autoGenerate = true)
     private int id_alert;
     private int id_hive;
+    //1 high, 2 med, 3 low
     private int severity;
-    private String date;
+    //region private region date
+    private int year;
+    private int month;
+    private int day;
+    //endregion
     private String text;
+    private boolean archived;
 
     //region Constructor
-    public Alert(int id_hive, int severity, String date, String text) {
+    public Alert(int id_hive, int severity, int year, int month, int day, String text, boolean archived) {
         this.id_hive = id_hive;
         this.severity = severity;
-        this.date = date;
+        this.year = year;
+        this.month = month;
+        this.day = day;
         this.text = text;
+        this.archived = archived;
     }
     //endregion
 
@@ -60,12 +70,37 @@ public class Alert implements Serializable {
         this.severity = severity;
     }
 
-    public String getDate() {
-        return date;
+    public int getYear() {
+        return year;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setYear(int year) {
+        this.year = year;
     }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public boolean isArchived() {
+        return archived;
+    }
+
+    public void setArchived(boolean archived) {
+        this.archived = archived;
+    }
+
     //endregion
 }

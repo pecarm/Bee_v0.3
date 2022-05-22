@@ -29,8 +29,8 @@ public class AddAlertDialog extends DialogFragment {
         View view = inflater.inflate(R.layout.dialog_add_alert, null);
 
         builder.setView(view)
-                .setTitle("Alert")
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setTitle("Upozornění")
+                .setNegativeButton("Zrušit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -48,7 +48,7 @@ public class AddAlertDialog extends DialogFragment {
         text = view.findViewById(R.id.alert_edit_text);
         spinner = view.findViewById(R.id.alert_spinner_severity);
 
-        String[] severities = new String[] {"High", "Medium", "Low"};
+        String[] severities = new String[] {"Vysoká", "Střední", "Nízká"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, severities);
         spinner.setAdapter(adapter);
 

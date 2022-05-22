@@ -13,6 +13,8 @@ public class ObjectViewModel extends AndroidViewModel {
     LiveData<List<Hive>> allHives;
     LiveData<List<Record>> allRecords;
     LiveData<List<Alert>> allAlerts;
+    LiveData<List<HivesLocation>> allLocations;
+    LiveData<List<HoneyHarvest>> allHarvests;
 
     public ObjectViewModel(@NonNull Application application) {
         super(application);
@@ -20,6 +22,8 @@ public class ObjectViewModel extends AndroidViewModel {
         allHives = repository.getAllHives();
         allRecords = repository.getAllRecords();
         allAlerts = repository.getAllAlerts();
+        allLocations = repository.getAllLocations();
+        allHarvests = repository.getAllHoneyHarvests();
     }
 
     public LiveData<List<Hive>> getAllHives() {
@@ -32,5 +36,13 @@ public class ObjectViewModel extends AndroidViewModel {
 
     public LiveData<List<Alert>> getAllAlerts() {
         return allAlerts;
+    }
+
+    public LiveData<List<HivesLocation>> getAllLocations() {
+        return allLocations;
+    }
+
+    public LiveData<List<HoneyHarvest>> getAllHarvests() {
+        return allHarvests;
     }
 }

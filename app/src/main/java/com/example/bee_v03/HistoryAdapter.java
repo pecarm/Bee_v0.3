@@ -26,18 +26,22 @@ public class HistoryAdapter extends SimpleAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         String date = arrayList.get(position).get("date").toString();
-        String preview = arrayList.get(position).get("preview").toString();
+        Record record = (Record) arrayList.get(position).get("record");
+        String preview;
+        if (record.getText().length() > 30) {
+            preview = record.getText().substring(0, 27) + "...";
+        } else preview = record.getText();
 
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.adapter_view_object_history, null);
         }
 
-        TextView twDate = convertView.findViewById(R.id.adapter_view_object_history_date);
-        TextView twPreview = convertView.findViewById(R.id.adapter_view_object_history_text);
+        TextView tvDate = convertView.findViewById(R.id.adapter_view_object_history_date);
+        TextView tvPreview = convertView.findViewById(R.id.adapter_view_object_history_text);
 
-        twDate.setText(date);
-        twPreview.setText(preview);
+        tvDate.setText(date);
+        tvPreview.setText(preview);
         return convertView;
     }
 }

@@ -4,35 +4,37 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.room.EntityDeletionOrUpdateAdapter;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
+import android.location.LocationManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
 
 public class AddLocationActivity extends AppCompatActivity {
-    TextView textViewLatitude, textViewLongitude;
-    Button buttonAddLocation;
+    EditText editTextLatitude, editTextLongitude;
+    Button buttonAddLocation,buttonSelectLocation, buttonShowMap;
     EditText editTextLocationName;
     AddLocationViewModel addLocationViewModel;
 
-    FusedLocationProviderClient fusedLocationProviderClient;
+    LocationRequest locationRequest;
+
+    double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,49 +44,93 @@ public class AddLocationActivity extends AppCompatActivity {
         addLocationViewModel = new ViewModelProvider(this).get(AddLocationViewModel.class);
 
         editTextLocationName = (EditText) findViewById(R.id.add_location_location_name);
-        textViewLatitude = (TextView) findViewById(R.id.add_location_latitude);
-        textViewLongitude = (TextView) findViewById(R.id.add_location_longitude);
+        editTextLatitude = (EditText) findViewById(R.id.add_location_latitude);
+        editTextLongitude = (EditText) findViewById(R.id.add_location_longitude);
         buttonAddLocation = (Button) findViewById(R.id.add_location_button_add);
+        buttonSelectLocation = (Button) findViewById(R.id.add_location_button_select);
+        buttonShowMap = (Button) findViewById(R.id.add_location_button_map);
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        locationRequest = LocationRequest.create();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setInterval(5000);
+        locationRequest.setFastestInterval(2000);
 
-        //TODO: Přepsat na výběr z mapy, usnadní to všechno všem
-        //works, just need to get location first (e.g. open gmaps)
-        if (ActivityCompat.checkSelfPermission(AddLocationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-                @Override
-                public void onComplete(@NonNull Task<Location> task) {
-                    Location location = task.getResult();
-                    if (location != null) {
-                        try {
-                            textViewLatitude.setText(Double.toString(location.getLatitude()));
-                            textViewLongitude.setText(Double.toString(location.getLongitude()));
-                        } catch (Exception e) {
-                            Toast.makeText(AddLocationActivity.this, "No location acquired", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    else {
-                        Toast.makeText(AddLocationActivity.this, "No location acquired", Toast.LENGTH_SHORT).show();
-                    }
+        //Lol, labely jsou v současné době bugnuté, našel jsem neopravený bug od googlu :D
+        buttonShowMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!editTextLongitude.getText().toString().equals("") && !editTextLatitude.getText().toString().equals("")) {
+                    String uri = "geo:0,0?q=" + editTextLatitude.getText().toString() + "," + editTextLongitude.getText().toString()+ "(" + editTextLocationName.getText().toString() + ")";
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    startActivity(intent);
                 }
-            });
-        } else {
-            ActivityCompat.requestPermissions(AddLocationActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
-        }
+            }
+        });
+
+        buttonSelectLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getLocation();
+            }
+        });
 
         buttonAddLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!textViewLongitude.getText().toString().equals("Longitude") && !editTextLocationName.getText().toString().equals("")) {
-                    addLocation(editTextLocationName.getText().toString(), textViewLatitude.getText().toString(), textViewLongitude.getText().toString());
+                if (!editTextLongitude.getText().toString().equals("") && !editTextLatitude.getText().toString().equals("") && !editTextLocationName.getText().toString().equals("")) {
+                    addLocation(editTextLocationName.getText().toString(), editTextLatitude.getText().toString(), editTextLongitude.getText().toString());
                     Toast.makeText(AddLocationActivity.this, "Location added!", Toast.LENGTH_SHORT).show();
                     AddLocationActivity.this.finish();
                 }
                 else {
-                    Toast.makeText(AddLocationActivity.this, "Name or location not provided!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddLocationActivity.this, "Name or coordinates not provided!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    private void getLocation() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ActivityCompat.checkSelfPermission(AddLocationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                if (!isGpsOn()) {
+                    Toast.makeText(this, "Zapněte určování polohy pomocí GPS", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                LocationServices.getFusedLocationProviderClient(AddLocationActivity.this)
+                        .requestLocationUpdates(locationRequest, new LocationCallback() {
+                    @Override
+                    public void onLocationResult(@NonNull LocationResult locationResult) {
+                        super.onLocationResult(locationResult);
+
+                        LocationServices.getFusedLocationProviderClient(AddLocationActivity.this).removeLocationUpdates(this);
+                        if (locationResult != null && locationResult.getLocations().size() > 0) {
+                            //int i = locationResult.getLocations().size() - 1;
+                            latitude = locationResult.getLastLocation().getLatitude();
+                            longitude = locationResult.getLastLocation().getLongitude();
+
+                            editTextLatitude.setText(Double.toString(latitude));
+                            editTextLongitude.setText(Double.toString(longitude));
+                        }
+                    }
+                }, Looper.getMainLooper());
+
+            } else {
+                ActivityCompat.requestPermissions(AddLocationActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+            }
+        }
+    }
+
+    private boolean isGpsOn() {
+        LocationManager lm = null;
+        boolean isOn = false;
+
+        if (lm == null) {
+            lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        }
+
+        isOn = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        return isOn;
     }
 
     private void addLocation(String name, String latitude, String longitude) {

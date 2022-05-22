@@ -15,11 +15,13 @@ public class SelectCustomExpandableListAdapter extends BaseExpandableListAdapter
     private Context context;
     private List<HivesLocation> expandableListTitle;
     private List<Hive> expandableListDetail;
+    private String target;
 
-    public SelectCustomExpandableListAdapter(Context context, List<HivesLocation> expandableListTitle, List<Hive> expandableListDetail) {
+    public SelectCustomExpandableListAdapter(Context context, List<HivesLocation> expandableListTitle, List<Hive> expandableListDetail, String target) {
         this.context = context;
         this.expandableListDetail = expandableListDetail;
         this.expandableListTitle = expandableListTitle;
+        this.target = target;
     }
 
     //region Inherited methods
@@ -31,9 +33,22 @@ public class SelectCustomExpandableListAdapter extends BaseExpandableListAdapter
     @Override
     public int getChildrenCount(int groupPosition) {
         try {
-            List<Hive> filteredHives = this.expandableListDetail.stream()
-                    .filter(hive -> hive.getId_location() == this.expandableListTitle.get(groupPosition).getId_location())
-                    .collect(Collectors.toList());
+            List<Hive> filteredHives;
+
+            if (target.equals("active")) {
+                filteredHives = this.expandableListDetail.stream()
+                        .filter(hive -> (hive.getId_location() == this.expandableListTitle.get(groupPosition).getId_location()) && !hive.isArchived())
+                        .collect(Collectors.toList());
+            } else if (target.equals("archive")){
+                filteredHives = this.expandableListDetail.stream()
+                        .filter(hive -> (hive.getId_location() == this.expandableListTitle.get(groupPosition).getId_location()) && hive.isArchived())
+                        .collect(Collectors.toList());
+            } else {
+                filteredHives = this.expandableListDetail.stream()
+                        .filter(hive -> hive.getId_location() == this.expandableListTitle.get(groupPosition).getId_location())
+                        .collect(Collectors.toList());
+            }
+
             return filteredHives.size();
         } catch (Exception e) {
             return 0;
@@ -47,9 +62,22 @@ public class SelectCustomExpandableListAdapter extends BaseExpandableListAdapter
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        List<Hive> filteredHives = this.expandableListDetail.stream()
-                .filter(hive -> hive.getId_location() == this.expandableListTitle.get(groupPosition).getId_location())
-                .collect(Collectors.toList());
+        List<Hive> filteredHives;
+
+        if (target.equals("active")) {
+            filteredHives = this.expandableListDetail.stream()
+                    .filter(hive -> (hive.getId_location() == this.expandableListTitle.get(groupPosition).getId_location()) && !hive.isArchived())
+                    .collect(Collectors.toList());
+        } else if (target.equals("archive")){
+            filteredHives = this.expandableListDetail.stream()
+                    .filter(hive -> (hive.getId_location() == this.expandableListTitle.get(groupPosition).getId_location()) && hive.isArchived())
+                    .collect(Collectors.toList());
+        } else {
+            filteredHives = this.expandableListDetail.stream()
+                    .filter(hive -> hive.getId_location() == this.expandableListTitle.get(groupPosition).getId_location())
+                    .collect(Collectors.toList());
+        }
+
         return filteredHives.get(childPosition);
     }
 

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/dialog_record_date_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:text="Datum:"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/dialog_record_date"
+        app:layout_constraintBottom_toBottomOf="@id/dialog_record_date"
+        app:layout_constraintEnd_toStartOf="@id/dialog_record_date"/>
+
+    <TextView
+        android:id="@+id/dialog_record_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:text="Zobrazené datum"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/dialog_record_date_text"
+        app:layout_constraintBottom_toTopOf="@id/ratingBarDialogResourcesState"/>
+
+    <TextView
+        android:id="@+id/textViewDialogResourcesState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Stav zásob"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBarDialogResourcesState"
+        app:layout_constraintEnd_toStartOf="@id/ratingBarDialogResourcesState"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ratingBarDialogResourcesState"/>
+
+    <RatingBar
+        android:id="@+id/ratingBarDialogResourcesState"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:numStars="5"
+        android:stepSize="1"
+        android:isIndicator="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewDialogResourcesState"
+        app:layout_constraintBottom_toTopOf="@+id/ratingBarDialogBroodIntegrity"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_record_date"/>
+
+    <TextView
+        android:id="@+id/textViewDialogBroodIntegrity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Mezerovitost\nplodu"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBarDialogBroodIntegrity"
+        app:layout_constraintEnd_toStartOf="@id/ratingBarDialogBroodIntegrity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ratingBarDialogBroodIntegrity" />
+
+    <RatingBar
+        android:id="@+id/ratingBarDialogBroodIntegrity"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:numStars="5"
+        android:stepSize="1"
+        android:isIndicator="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewDialogBroodIntegrity"
+        app:layout_constraintBottom_toTopOf="@+id/dialog_record_bases"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBarDialogResourcesState"/>
+
+    <TextView
+        android:id="@+id/dialog_record_bases_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:text="Mezistěny:"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/dialog_record_bases"
+        app:layout_constraintBottom_toBottomOf="@id/dialog_record_bases"/>
+
+    <TextView
+        android:id="@+id/dialog_record_bases"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:text="0"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ratingBarDialogBroodIntegrity"
+        app:layout_constraintBottom_toTopOf="@id/dialog_record_feeding"/>
+
+    <TextView
+        android:id="@+id/dialog_record_feeding_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:text="Krmení/\npřikrmování:"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/dialog_record_feeding"
+        app:layout_constraintBottom_toBottomOf="@id/dialog_record_feeding"/>
+
+    <TextView
+        android:id="@+id/dialog_record_feeding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:text="Nezadáno"
+        android:maxEms="12"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_record_bases"
+        app:layout_constraintBottom_toTopOf="@id/dialog_record_text"/>
+
+    <TextView
+        android:id="@+id/dialog_record_text_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:text="Poznámka:"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/dialog_record_text"
+        app:layout_constraintBottom_toBottomOf="@id/dialog_record_text"/>
+
+    <TextView
+        android:id="@+id/dialog_record_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:text="Nezadána"
+        android:maxEms="12"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_record_feeding"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

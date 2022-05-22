@@ -1,13 +1,12 @@
 package com.example.bee_v03;
 
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
-import android.location.Location;
+
+import java.io.Serializable;
 
 @Entity(tableName = "hives_location_table")
-public class HivesLocation {
+public class HivesLocation implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id_location;

@@ -101,7 +101,7 @@ public class DashboardCustomExpandableListAdapter extends BaseExpandableListAdap
         if (alert.getText().length() > 20) {
             preview = alert.getText().substring(0, 17) + "...";
         } else preview = alert.getText();
-        expandedListTextView.setText(alert.getDate() + ", " + hive.getName() + ", " + preview);
+        expandedListTextView.setText(alert.getYear() + "/" + alert.getMonth() + "/" + alert.getDay() + ", " + hive.getName() + ", " + preview);
         return convertView;
     }
 

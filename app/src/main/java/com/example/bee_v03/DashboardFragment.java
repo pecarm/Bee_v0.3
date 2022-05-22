@@ -1,5 +1,6 @@
 package com.example.bee_v03;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DashboardFragment extends Fragment {
 
@@ -39,7 +41,10 @@ public class DashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         if (getArguments() != null) {
             allHives = (List<Hive>) getArguments().getSerializable("ALL_HIVES");
-            allAlerts = (List<Alert>) getArguments().getSerializable("ALL_ALERTS");
+            List<Integer> archivedHiveIds = allHives.stream().filter(hive -> hive.isArchived()).map(hive -> hive.getId_hive()).collect(Collectors.toList());
+            List<Alert> alerts = (List<Alert>) getArguments().getSerializable("ALL_ALERTS");
+            allAlerts = alerts.stream().filter(
+                    alert -> !archivedHiveIds.contains(alert.getId_alert()) && !alert.isArchived()).collect(Collectors.toList());
         }
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_dashboard, container, false);
@@ -54,13 +59,24 @@ public class DashboardFragment extends Fragment {
             Toast.makeText(getContext(), "There are no alerts!", Toast.LENGTH_SHORT).show();
         } else {
             List<String> severities = new ArrayList<>();
-            severities.add("High");
-            severities.add("Medium");
-            severities.add("Low");
+            severities.add("Vysoká");
+            severities.add("Střední");
+            severities.add("Nízká");
 
             adapter = new DashboardCustomExpandableListAdapter(getContext(), severities, allAlerts, allHives);
             ExpandableListView elv = view.findViewById(R.id.expandable_list_view_dashboard);
             elv.setAdapter(adapter);
+
+            elv.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+                @Override
+                public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                    Intent intent;
+                    intent = new Intent(v.getContext(), com.example.bee_v03.ObjectActivity.class);
+                    intent.putExtra("HIVE_ID", ((Alert)adapter.getChild(groupPosition, childPosition)).getId_hive());
+                    startActivity(intent);
+                    return false;
+                }
+            });
         }
     }
 }

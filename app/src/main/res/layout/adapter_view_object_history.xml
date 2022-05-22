@@ -10,14 +10,12 @@
         android:layout_height="60dp"
         android:text="Date"
         android:gravity="center"
-        android:textAlignment="center"
         android:id="@+id/adapter_view_object_history_date"
-        android:layout_weight="66.6"
-        />
+        android:layout_weight="66.6"/>
 
     <TextView
         android:gravity="center"
-        android:text="Hive name"
+        android:text="Text"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_weight="33.3"
