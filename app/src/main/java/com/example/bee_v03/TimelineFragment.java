@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -81,8 +83,19 @@ public class TimelineFragment extends Fragment {
     }
 
     private ArrayList<HashMap<String, Object>> recordData(List<Record> records) {
+        try {
+            Collections.sort(records, new Comparator<Record>() {
+                @Override
+                public int compare(Record o1, Record o2) {
+                    return o2.getDate().compareTo(o1.getDate());
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         ArrayList<HashMap<String, Object>> data = new ArrayList<>();
-        for (Record record : records) {
+        for (Record record: records) {
             //WE CAN PUT MULTIPLE ITEMS and then PASS THEM BY KEY, even a list of WARNINGS
             HashMap<String, Object> item = new HashMap<>();
             item.put("name", allHives.stream().filter(hive -> hive.getId_hive() == record.getId_hive()).collect(Collectors.toList()).get(0).getName());

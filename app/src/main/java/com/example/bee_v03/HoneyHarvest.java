@@ -5,6 +5,7 @@ import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity(tableName = "honey_harvest_table", foreignKeys = @ForeignKey(onDelete = ForeignKey.CASCADE, entity = Hive.class, parentColumns = "id_hive", childColumns = "id_hive"))
 public class HoneyHarvest implements Serializable {
@@ -107,6 +108,10 @@ public class HoneyHarvest implements Serializable {
 
     public void setWater_content(double water_content) {
         this.water_content = water_content;
+    }
+
+    public LocalDate getDate() {
+        return LocalDate.of(this.getYear(), this.getMonth(), this.getDay());
     }
 
     //endregion

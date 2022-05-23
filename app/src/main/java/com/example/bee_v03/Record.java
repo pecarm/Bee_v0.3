@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity(tableName = "record_table", foreignKeys = @ForeignKey(onDelete = ForeignKey.CASCADE, entity = Hive.class, parentColumns = "id_hive", childColumns = "id_hive"))
 public class Record implements Serializable {
@@ -117,6 +118,10 @@ public class Record implements Serializable {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public LocalDate getDate() {
+        return LocalDate.of(this.getYear(), this.getMonth(), this.getDay());
     }
 
     //endregion

@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -89,6 +91,17 @@ public class HoneyHarvestFragment extends Fragment {
     }
 
     private ArrayList<HashMap<String, Object>> recordData(List<HoneyHarvest> harvests) {
+        try {
+            Collections.sort(harvests, new Comparator<HoneyHarvest>() {
+                @Override
+                public int compare(HoneyHarvest o1, HoneyHarvest o2) {
+                    return o2.getDate().compareTo(o1.getDate());
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         ArrayList<HashMap<String, Object>> data = new ArrayList<>();
         for (HoneyHarvest harvest : harvests) {
             //WE CAN PUT MULTIPLE ITEMS and then PASS THEM BY KEY, even a list of WARNINGS

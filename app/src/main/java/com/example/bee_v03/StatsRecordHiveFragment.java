@@ -25,6 +25,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -145,6 +146,17 @@ public class StatsRecordHiveFragment extends Fragment {
     }
 
     private ArrayList<HashMap<String, Object>> recordData(List<Record> records) {
+        try {
+            Collections.sort(records, new Comparator<Record>() {
+                @Override
+                public int compare(Record o1, Record o2) {
+                    return o2.getDate().compareTo(o1.getDate());
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         ArrayList<HashMap<String, Object>> data = new ArrayList<>();
         for (Record record : records) {
             //WE CAN PUT MULTIPLE ITEMS and then PASS THEM BY KEY

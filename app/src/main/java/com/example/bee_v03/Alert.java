@@ -7,6 +7,7 @@ import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity(tableName = "alert_table", foreignKeys = @ForeignKey(onDelete = ForeignKey.CASCADE, entity = Hive.class, parentColumns = "id_hive", childColumns = "id_hive"))
 public class Alert implements Serializable{
@@ -100,6 +101,10 @@ public class Alert implements Serializable{
 
     public void setArchived(boolean archived) {
         this.archived = archived;
+    }
+
+    public LocalDate getDate() {
+        return LocalDate.of(this.getYear(), this.getMonth(), this.getDay());
     }
 
     //endregion
