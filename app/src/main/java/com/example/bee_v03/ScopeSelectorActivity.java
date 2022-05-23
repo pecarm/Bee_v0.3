@@ -42,6 +42,9 @@ public class ScopeSelectorActivity extends AppCompatActivity implements DatePick
 
         today = LocalDate.now();
 
+        buttonFrom.setEnabled(false);
+        buttonTo.setEnabled(false);
+
         radioGroupScope.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
