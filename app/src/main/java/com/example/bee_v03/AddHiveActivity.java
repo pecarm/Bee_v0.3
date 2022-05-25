@@ -64,27 +64,12 @@ public class AddHiveActivity extends AppCompatActivity {
         numberPicker.setMaxValue(2050);
         numberPicker.setValue(queenYear);
 
+        setColourSquare(queenYear);
+
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                queenYear = newVal;
-                switch (newVal % 5) {
-                    case 0:
-                        colourSquare.setBackgroundColor(Color.parseColor("#0000ff"));
-                        break;
-                    case 1:
-                        colourSquare.setBackgroundResource(R.drawable.border_white);
-                        break;
-                    case 2:
-                        colourSquare.setBackgroundColor(Color.parseColor("#ffff00"));
-                        break;
-                    case 3:
-                        colourSquare.setBackgroundColor(Color.parseColor("#ff0000"));
-                        break;
-                    case 4:
-                        colourSquare.setBackgroundColor(Color.parseColor("#006400"));
-                        break;
-                }
+                setColourSquare(newVal);
             }
         });
 
@@ -154,5 +139,25 @@ public class AddHiveActivity extends AppCompatActivity {
                 if (fromUser) ratingBar.setRating((float) Math.ceil(rating));
             }
         });
+    }
+
+    private void setColourSquare(int year) {
+        switch (year % 5) {
+            case 0:
+                colourSquare.setBackgroundColor(Color.parseColor("#0000ff"));
+                break;
+            case 1:
+                colourSquare.setBackgroundResource(R.drawable.border_white);
+                break;
+            case 2:
+                colourSquare.setBackgroundColor(Color.parseColor("#ffff00"));
+                break;
+            case 3:
+                colourSquare.setBackgroundColor(Color.parseColor("#ff0000"));
+                break;
+            case 4:
+                colourSquare.setBackgroundColor(Color.parseColor("#006400"));
+                break;
+        }
     }
 }

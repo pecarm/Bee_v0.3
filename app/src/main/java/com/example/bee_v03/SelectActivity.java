@@ -102,6 +102,7 @@ public class SelectActivity extends AppCompatActivity {
                     bundle.putBoolean("INCLUDE_ARCHIVE", includeArchive);
                     intent.putExtras(bundle);
                     startActivity(intent);
+                    return true;
                 }
                 return false;
             }
@@ -151,6 +152,9 @@ public class SelectActivity extends AppCompatActivity {
         expandableListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                if (!target.equals("view") && !target.equals("record")) {
+                    return false;
+                }
                 long packedPosition = expandableListView.getExpandableListPosition(position);
                 int itemType = ExpandableListView.getPackedPositionType(packedPosition);
                 int groupPosition = ExpandableListView.getPackedPositionGroup(packedPosition);

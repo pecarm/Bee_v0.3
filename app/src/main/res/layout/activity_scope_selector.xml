@@ -94,7 +94,7 @@
                 android:id="@+id/scope_radio_month"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Posledních 30 dní"
+                android:text="Poslední měsíc"
                 android:textSize="16sp"/>
 
             <RadioButton

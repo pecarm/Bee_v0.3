@@ -12,9 +12,9 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.time.LocalDate;
-import java.util.Calendar;
 
 public class ScopeSelectorActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private RadioGroup radioGroupScope, radioGroupTimeframe;
@@ -119,6 +119,16 @@ public class ScopeSelectorActivity extends AppCompatActivity implements DatePick
             public void onClick(View v) {
                 archivedCheck = (CheckBox) findViewById(R.id.scope_checkbox);
                 Intent intent;
+                if (textFrom.getText().equals("Od") || textTo.getText().equals("Do")) {
+                    Toast.makeText(ScopeSelectorActivity.this, "Vyberte časový rozsah!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (target == null) {
+                    Toast.makeText(ScopeSelectorActivity.this, "Vyberte rozsah!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 switch (target) {
                     case "hive":
                         intent = new Intent(v.getContext(), com.example.bee_v03.SelectActivity.class);
@@ -167,13 +177,29 @@ public class ScopeSelectorActivity extends AppCompatActivity implements DatePick
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         if (isFrom) {
-            Calendar c = Calendar.getInstance();
-            c.set(year, month, dayOfMonth);
-            textFrom.setText(c.get(Calendar.YEAR) + "/" + (c.get(Calendar.MONTH)+1) + "/" + c.get(Calendar.DAY_OF_MONTH));
+            if (LocalDate.of(year, month + 1, dayOfMonth).isAfter(today)) {
+                Toast.makeText(this, "Zvolené datum je pozdější, než dnešní.", Toast.LENGTH_SHORT).show();
+                return;
+            } else if (!textTo.getText().equals("Do")) {
+                String[] date = textTo.getText().toString().split("/");
+                if (LocalDate.of(year, month + 1, dayOfMonth).isAfter(LocalDate.of(Integer.valueOf(date[0]), Integer.valueOf(date[1]), Integer.valueOf(date[2])))) {
+                    Toast.makeText(this, "Zvolené datum Od je po datu Do.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+            textFrom.setText(year + "/" + (month+1) + "/" + dayOfMonth);
         } else {
-            Calendar c = Calendar.getInstance();
-            c.set(year, month, dayOfMonth);
-            textTo.setText(c.get(Calendar.YEAR) + "/" + (c.get(Calendar.MONTH)+1) + "/" + c.get(Calendar.DAY_OF_MONTH));
+            if (LocalDate.of(year, month + 1, dayOfMonth).isAfter(today)) {
+                Toast.makeText(this, "Zvolené datum je pozdější, než dnešní.", Toast.LENGTH_SHORT).show();
+                return;
+            } else if (!textFrom.getText().equals("Od")) {
+                String[] date = textFrom.getText().toString().split("/");
+                if (LocalDate.of(year, month + 1, dayOfMonth).isBefore(LocalDate.of(Integer.valueOf(date[0]), Integer.valueOf(date[1]), Integer.valueOf(date[2])))) {
+                    Toast.makeText(this, "Zvolené datum Do je před datem Od.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+            textTo.setText(year + "/" + (month+1) + "/" + dayOfMonth);
         }
     }
 }

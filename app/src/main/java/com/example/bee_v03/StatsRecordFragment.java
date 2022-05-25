@@ -71,8 +71,8 @@ public class StatsRecordFragment extends Fragment {
 
         //FILL IT WITH DATA
 
-        String[] from = new String[] {"date", "record"};
-        int[] to = new int[] {R.id.adapter_view_object_history_date, R.id.adapter_view_object_history_text};
+        String[] from = new String[] {"date", "record", "name"};
+        int[] to = new int[] {R.id.adapter_view_record_date, R.id.adapter_view_record_hive_name, R.id.adapter_view_record_feeding};
 
         try {
             //filtruje záznamy podle toho, jestli se nacházejí v lokalitě a/nebo jestli jsou archivované
@@ -106,7 +106,7 @@ public class StatsRecordFragment extends Fragment {
         } else {
             //ListView of feeding
             ArrayList<HashMap<String, Object>> data = recordData(records);
-            FeedingAdapter feedingAdapter = new FeedingAdapter(getContext(), data, R.layout.adapter_view_object_history, from, to);
+            FeedingAdapter feedingAdapter = new FeedingAdapter(getContext(), data, R.layout.adapter_view_record, from, to);
 
             ListView lv = getView().findViewById(R.id.stats_record_list_view);
             lv.setAdapter(feedingAdapter);
@@ -160,11 +160,14 @@ public class StatsRecordFragment extends Fragment {
         ArrayList<HashMap<String, Object>> data = new ArrayList<>();
         for (Record record : records) {
             //WE CAN PUT MULTIPLE ITEMS and then PASS THEM BY KEY, even a list of WARNINGS
-            HashMap<String, Object> item = new HashMap<>();
-            String date = record.getYear()+"/"+record.getMonth()+"/"+record.getDay();
-            item.put("date", date);
-            item.put("record", record);
-            data.add(item);
+            if (!record.getFeeding().equals("")) {
+                HashMap<String, Object> item = new HashMap<>();
+                String date = record.getYear() + "/" + record.getMonth() + "/" + record.getDay();
+                item.put("date", date);
+                item.put("record", record);
+                item.put("name", allHives.stream().filter(hive -> hive.getId_hive() == record.getId_hive()).collect(Collectors.toList()).get(0).getName().toString());
+                data.add(item);
+            }
         }
         return data;
     }

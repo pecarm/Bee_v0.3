@@ -12,6 +12,7 @@ import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StatsHiveActivity extends AppCompatActivity {
     private TabLayout tabLayout;
@@ -31,7 +32,6 @@ public class StatsHiveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats_hive);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Statistiky včelstva");
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -87,6 +87,7 @@ public class StatsHiveActivity extends AppCompatActivity {
                     adapter = new StatsHiveAdapter(fm, getLifecycle(), allHives, allRecords, allAlerts, allLocations, allHarvests, idHive, from, to);
                     try {
                         viewPager.setAdapter(adapter);
+                        getSupportActionBar().setTitle("Statistiky včelstva - " + allHives.stream().filter(hive -> hive.getId_hive() == idHive).collect(Collectors.toList()).get(0).getName());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -102,6 +103,7 @@ public class StatsHiveActivity extends AppCompatActivity {
                     adapter = new StatsHiveAdapter(fm, getLifecycle(), allHives, allRecords, allAlerts, allLocations, allHarvests, idHive, from, to);
                     try {
                         viewPager.setAdapter(adapter);
+                        getSupportActionBar().setTitle("Statistiky včelstva - " + allHives.stream().filter(hive -> hive.getId_hive() == idHive).collect(Collectors.toList()).get(0).getName());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -117,6 +119,7 @@ public class StatsHiveActivity extends AppCompatActivity {
                     adapter = new StatsHiveAdapter(fm, getLifecycle(), allHives, allRecords, allAlerts, allLocations, allHarvests, idHive, from, to);
                     try {
                         viewPager.setAdapter(adapter);
+                        getSupportActionBar().setTitle("Statistiky včelstva - " + allHives.stream().filter(hive -> hive.getId_hive() == idHive).collect(Collectors.toList()).get(0).getName());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -132,6 +135,7 @@ public class StatsHiveActivity extends AppCompatActivity {
                     adapter = new StatsHiveAdapter(fm, getLifecycle(), allHives, allRecords, allAlerts, allLocations, allHarvests, idHive, from, to);
                     try {
                         viewPager.setAdapter(adapter);
+                        getSupportActionBar().setTitle("Statistiky včelstva - " + allHives.stream().filter(hive -> hive.getId_hive() == idHive).collect(Collectors.toList()).get(0).getName());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -147,6 +151,7 @@ public class StatsHiveActivity extends AppCompatActivity {
                     adapter = new StatsHiveAdapter(fm, getLifecycle(), allHives, allRecords, allAlerts, allLocations, allHarvests, idHive, from, to);
                     try {
                         viewPager.setAdapter(adapter);
+                        getSupportActionBar().setTitle("Statistiky včelstva - " + allHives.stream().filter(hive -> hive.getId_hive() == idHive).collect(Collectors.toList()).get(0).getName());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

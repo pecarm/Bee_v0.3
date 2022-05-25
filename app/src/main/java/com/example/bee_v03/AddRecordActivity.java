@@ -18,8 +18,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class AddRecordActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, AddAlertDialog.AddAlertDialogListener {
@@ -138,9 +138,12 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        Calendar c = Calendar.getInstance();
-        c.set(year, month, dayOfMonth);
-        textViewSelectedDate.setText(c.get(Calendar.YEAR) + "/" + (c.get(Calendar.MONTH)+1) + "/" + c.get(Calendar.DAY_OF_MONTH));
+        LocalDate today = LocalDate.now();
+        if (LocalDate.of(year, month + 1, dayOfMonth).isAfter(today)) {
+            Toast.makeText(this, "Zvolené datum je pozdější, než dnešní.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        textViewSelectedDate.setText(year + "/" + (month+1) + "/" + month);
     }
 
     private void openDialog() {

@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -94,10 +93,10 @@ public class StatsRecordHiveFragment extends Fragment {
         } else {
             //ListView of feeding
             ArrayList<HashMap<String, Object>> data = recordData(records);
-            FeedingAdapter feedingAdapter = new FeedingAdapter(getContext(), data, R.layout.adapter_view_object_history, from, to);
+            FeedingHiveAdapter feedingHiveAdapter = new FeedingHiveAdapter(getContext(), data, R.layout.adapter_view_object_history, from, to);
 
             ListView lv = getView().findViewById(R.id.stats_record_list_view);
-            lv.setAdapter(feedingAdapter);
+            lv.setAdapter(feedingHiveAdapter);
 
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override

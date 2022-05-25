@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Date"
+        android:gravity="center"
+        android:id="@+id/adapter_view_record_date"
+        android:layout_weight="33.3"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Hive name"
+        android:gravity="center"
+        android:id="@+id/adapter_view_record_hive_name"
+        android:layout_weight="33.3"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Preview"
+        android:gravity="center"
+        android:id="@+id/adapter_view_record_feeding"
+        android:layout_weight="33.3"/>
+
+</LinearLayout>
