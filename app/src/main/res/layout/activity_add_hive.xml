@@ -48,7 +48,8 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerLocations" />
+            app:layout_constraintTop_toBottomOf="@+id/spinnerLocations"
+            android:backgroundTint="@color/dark"/>
 
         <EditText
             android:id="@+id/add_hive_row"
@@ -62,7 +63,8 @@
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_hive_name" />
+            app:layout_constraintTop_toBottomOf="@+id/add_hive_name"
+            android:backgroundTint="@color/dark"/>
 
         <TextView
             android:id="@+id/textViewAgresivnost"
@@ -79,11 +81,11 @@
 
         <RatingBar
             android:id="@+id/ratingBarAgresivnost"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            style="@style/CustomRatingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:numStars="5"
             android:stepSize="0.01"
@@ -107,11 +109,11 @@
 
         <RatingBar
             android:id="@+id/ratingBarSilaVcelstva"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            style="@style/CustomRatingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:numStars="5"
             android:stepSize="0.01"
@@ -135,11 +137,11 @@
 
         <RatingBar
             android:id="@+id/ratingBarStavebniPud"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            style="@style/CustomRatingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:numStars="5"
             android:stepSize="0.01"
@@ -163,11 +165,11 @@
 
         <RatingBar
             android:id="@+id/ratingCisticiPud"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            style="@style/CustomRatingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:numStars="5"
             android:stepSize="0.01"
@@ -191,11 +193,11 @@
 
         <RatingBar
             android:id="@+id/ratingBodavost"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            style="@style/CustomRatingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:numStars="5"
             android:stepSize="0.01"
@@ -219,11 +221,11 @@
 
         <RatingBar
             android:id="@+id/ratingSlidivost"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            style="@style/CustomRatingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:numStars="5"
             android:stepSize="0.01"
@@ -253,7 +255,8 @@
             android:layout_marginBottom="10dp"
             app:layout_constraintStart_toEndOf="@+id/textMatka"
             app:layout_constraintTop_toBottomOf="@id/ratingSlidivost"
-            app:layout_constraintEnd_toStartOf="@id/colourSquare"/>
+            app:layout_constraintEnd_toStartOf="@id/colourSquare"
+            android:backgroundTint="@color/dark"/>
 
         <LinearLayout
             android:id="@+id/colourSquare"
@@ -277,7 +280,8 @@
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/numberPickerMatka"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:backgroundTint="@color/dark"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

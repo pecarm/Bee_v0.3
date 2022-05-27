@@ -34,21 +34,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Včelstvo"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:buttonTint="@color/dark"/>
 
             <RadioButton
                 android:id="@+id/scope_radio_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lokalitu"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:buttonTint="@color/dark"/>
 
             <RadioButton
                 android:id="@+id/scope_radio_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Všechna včelstva"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:buttonTint="@color/dark"/>
         </RadioGroup>
 
         <CheckBox
@@ -59,7 +62,8 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/scope_radio_subset"
-            app:layout_constraintBottom_toTopOf="@id/scope_line"/>
+            app:layout_constraintBottom_toTopOf="@id/scope_line"
+            android:backgroundTint="@color/dark"/>
 
         <View
             android:id="@+id/scope_line"
@@ -95,35 +99,40 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Poslední měsíc"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:buttonTint="@color/dark"/>
 
             <RadioButton
                 android:id="@+id/scope_radio_year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Poslední rok"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:buttonTint="@color/dark"/>
 
             <RadioButton
                 android:id="@+id/scope_radio_this_month"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Od začátku měsíce"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:buttonTint="@color/dark"/>
 
             <RadioButton
                 android:id="@+id/scope_radio_this_year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Od záčátku roku"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:buttonTint="@color/dark"/>
 
             <RadioButton
                 android:id="@+id/scope_radio_from_to"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Od - do"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:buttonTint="@color/dark"/>
         </RadioGroup>
 
         <TextView
@@ -147,7 +156,8 @@
             android:layout_marginTop="4sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/scope_button_to"
-            app:layout_constraintTop_toBottomOf="@id/scope_from"/>
+            app:layout_constraintTop_toBottomOf="@id/scope_from"
+            android:backgroundTint="@color/dark"/>
 
         <TextView
             android:id="@+id/scope_to"
@@ -169,7 +179,8 @@
             android:layout_marginTop="4sp"
             app:layout_constraintStart_toEndOf="@id/scope_button_from"
             app:layout_constraintTop_toBottomOf="@id/scope_to"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/dark"/>
 
         <Button
             android:id="@+id/scope_button_proceed"
@@ -180,7 +191,8 @@
             android:layout_marginTop="16sp"
             app:layout_constraintTop_toBottomOf="@id/scope_button_to"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/dark"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

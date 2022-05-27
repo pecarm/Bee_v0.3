@@ -1,6 +1,8 @@
 package com.example.bee_v03;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,6 +44,7 @@ public class SelectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Vyberte cíl");
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4F1308")));
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {

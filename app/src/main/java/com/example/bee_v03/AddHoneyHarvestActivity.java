@@ -5,6 +5,8 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.DatePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +29,9 @@ public class AddHoneyHarvestActivity extends AppCompatActivity implements DatePi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_honey_harvest);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Nové medobraní");
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4F1308")));
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {

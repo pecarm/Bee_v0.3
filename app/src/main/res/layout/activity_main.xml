@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity"
-    tools:openDrawer="start">
+    >
+
+    <!--tools:openDrawer="start"-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,7 +25,7 @@
                 android:id="@+id/main_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/design_default_color_primary"
+                android:background="@color/dark"
                 android:elevation="4dp"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
@@ -32,7 +34,9 @@
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/purple_200"
+                android:background="@color/mid"
+                app:tabIndicatorColor="@color/light"
+                app:tabIndicatorHeight="4dp"
                 app:tabTextColor="@color/white" />
 
             <androidx.viewpager2.widget.ViewPager2
@@ -51,6 +55,7 @@
             android:gravity="end"
             android:text="Akce"
             app:icon="@drawable/ic_add"
+            android:backgroundTint="@color/light"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -59,10 +64,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:src="@drawable/ic_add"
+            android:src="@drawable/ic_add_location"
             app:fabSize="normal"
+            android:backgroundTint="@color/light"
             app:layout_constraintBottom_toTopOf="@id/fab_main"
-            app:layout_constraintEnd_toEndOf="@id/fab_main" />
+            app:layout_constraintEnd_toEndOf="@id/fab_main"/>
 
         <TextView
             android:id="@+id/fab_main_add_location_text"
@@ -80,8 +86,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:src="@drawable/ic_add"
+            android:src="@drawable/ic_add_hive"
             app:fabSize="normal"
+            android:backgroundTint="@color/light"
             app:layout_constraintBottom_toTopOf="@id/fab_main_add_location"
             app:layout_constraintEnd_toEndOf="@id/fab_main_add_location" />
 
@@ -101,8 +108,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:src="@drawable/ic_add"
+            android:src="@drawable/ic_add_record"
             app:fabSize="normal"
+            android:backgroundTint="@color/light"
             app:layout_constraintBottom_toTopOf="@id/fab_main_add_hive"
             app:layout_constraintEnd_toEndOf="@id/fab_main_add_hive" />
 
@@ -122,8 +130,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:src="@drawable/ic_add"
+            android:src="@drawable/ic_hive"
             app:fabSize="normal"
+            android:backgroundTint="@color/light"
             app:layout_constraintBottom_toTopOf="@id/fab_main_record"
             app:layout_constraintEnd_toEndOf="@id/fab_main_record" />
 

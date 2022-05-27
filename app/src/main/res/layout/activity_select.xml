@@ -25,7 +25,8 @@
         android:layout_marginEnd="16dp"
         android:text="Akce"
         android:gravity="end"
-        app:icon="@drawable/ic_add"/>
+        app:icon="@drawable/ic_add"
+        android:backgroundTint="@color/light"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_select_add_location"
@@ -34,8 +35,9 @@
         app:layout_constraintBottom_toTopOf="@id/fab_select"
         app:layout_constraintEnd_toEndOf="@id/fab_select"
         android:layout_marginBottom="24dp"
-        android:src="@drawable/ic_add"
-        app:fabSize="normal"/>
+        android:src="@drawable/ic_add_location"
+        app:fabSize="normal"
+        android:backgroundTint="@color/light"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -55,8 +57,9 @@
         app:layout_constraintBottom_toTopOf="@id/fab_select_add_location"
         app:layout_constraintEnd_toEndOf="@id/fab_select_add_location"
         android:layout_marginBottom="24dp"
-        android:src="@drawable/ic_add"
-        app:fabSize="normal"/>
+        android:src="@drawable/ic_add_hive"
+        app:fabSize="normal"
+        android:backgroundTint="@color/light"/>
 
     <TextView
         android:layout_width="wrap_content"

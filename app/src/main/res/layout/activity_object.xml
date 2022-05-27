@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ShowHiveActivity"
-    tools:openDrawer="start">
+    tools:context=".ShowHiveActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +22,7 @@
                 android:id="@+id/show_hive_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/design_default_color_primary"
+                android:background="@color/dark"
                 android:elevation="4dp"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
@@ -32,7 +31,9 @@
                 android:id="@+id/tabLayoutObject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/purple_200"
+                android:background="@color/mid"
+                app:tabIndicatorColor="@color/light"
+                app:tabIndicatorHeight="4dp"
                 app:tabTextColor="@color/white" />
 
             <androidx.viewpager2.widget.ViewPager2
@@ -52,17 +53,19 @@
             android:text="Akce"
             app:icon="@drawable/ic_add"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/light"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_object_add_record"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:src="@drawable/ic_add"
+            android:src="@drawable/ic_add_record"
             app:fabSize="normal"
             app:layout_constraintBottom_toTopOf="@id/fab_object"
-            app:layout_constraintEnd_toEndOf="@id/fab_object" />
+            app:layout_constraintEnd_toEndOf="@id/fab_object"
+            android:backgroundTint="@color/light"/>
 
         <TextView
             android:id="@+id/fab_object_add_record_text"
@@ -80,10 +83,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:src="@drawable/ic_add"
+            android:src="@drawable/ic_add_harvest"
             app:fabSize="normal"
             app:layout_constraintBottom_toTopOf="@id/fab_object_add_record"
-            app:layout_constraintEnd_toEndOf="@id/fab_object_add_record" />
+            app:layout_constraintEnd_toEndOf="@id/fab_object_add_record"
+            android:backgroundTint="@color/light"/>
 
         <TextView
             android:id="@+id/fab_object_add_harvest_text"

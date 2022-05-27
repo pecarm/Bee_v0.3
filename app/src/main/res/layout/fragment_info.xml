@@ -51,11 +51,11 @@
 
         <RatingBar
             android:id="@+id/fragment_info_rb_agr"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            style="@style/CustomRatingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:numStars="5"
             android:stepSize="0.01"
@@ -79,11 +79,11 @@
 
         <RatingBar
             android:id="@+id/fragment_info_rb_siv"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            style="@style/CustomRatingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:numStars="5"
             android:stepSize="0.01"
@@ -107,11 +107,11 @@
 
         <RatingBar
             android:id="@+id/fragment_info_rb_stp"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            style="@style/CustomRatingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:numStars="5"
             android:stepSize="0.01"
@@ -135,11 +135,11 @@
 
         <RatingBar
             android:id="@+id/fragment_info_rb_cip"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            style="@style/CustomRatingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:numStars="5"
             android:stepSize="0.01"
@@ -163,11 +163,11 @@
 
         <RatingBar
             android:id="@+id/fragment_info_rb_bod"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            style="@style/CustomRatingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:numStars="5"
             android:stepSize="0.01"
@@ -191,11 +191,11 @@
 
         <RatingBar
             android:id="@+id/fragment_info_rb_sli"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            style="@style/CustomRatingBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:numStars="5"
             android:stepSize="0.01"
@@ -250,7 +250,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="Zobrazit na mapě"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/dark"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

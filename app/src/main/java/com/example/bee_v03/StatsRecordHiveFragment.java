@@ -1,5 +1,6 @@
 package com.example.bee_v03;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -121,6 +122,7 @@ public class StatsRecordHiveFragment extends Fragment {
             GraphView graphResources = (GraphView) getView().findViewById(R.id.stats_record_hive_graph_resources);
             LineGraphSeries<DataPoint> dataResources = new LineGraphSeries<>(new DataPoint[0]);
             dataResources.resetData(recordDataResources());
+            dataResources.setColor(Color.parseColor("#a86807"));
             graphResources.addSeries(dataResources);
             graphResources.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
             graphResources.getGridLabelRenderer().setNumHorizontalLabels(4);
@@ -133,6 +135,7 @@ public class StatsRecordHiveFragment extends Fragment {
             GraphView graphIntegrity = (GraphView) getView().findViewById(R.id.stats_record_hive_graph_integrity);
             LineGraphSeries<DataPoint> dataIntegrity = new LineGraphSeries<>(new DataPoint[0]);
             dataIntegrity.resetData(recordDataIntegrity());
+            dataIntegrity.setColor(Color.parseColor("#a86807"));
             graphIntegrity.addSeries(dataIntegrity);
             graphIntegrity.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
             graphIntegrity.getGridLabelRenderer().setNumHorizontalLabels(4);

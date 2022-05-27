@@ -20,7 +20,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/add_location_latitude"/>
+        app:layout_constraintBottom_toTopOf="@id/add_location_latitude"
+        android:backgroundTint="@color/dark"/>
 
     <EditText
         android:id="@+id/add_location_latitude"
@@ -33,7 +34,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_location_location_name"
-        app:layout_constraintBottom_toTopOf="@id/add_location_longitude"/>
+        app:layout_constraintBottom_toTopOf="@id/add_location_longitude"
+        android:backgroundTint="@color/dark"/>
 
     <EditText
         android:id="@+id/add_location_longitude"
@@ -45,7 +47,8 @@
         android:hint="Zeměpisná délka (V/Z = +/-)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_location_latitude" />
+        app:layout_constraintTop_toBottomOf="@+id/add_location_latitude"
+        android:backgroundTint="@color/dark"/>
 
     <Button
         android:id="@+id/add_location_button_map"
@@ -54,7 +57,8 @@
         android:text="Zobrazit na mapě"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_location_longitude" />
+        app:layout_constraintTop_toBottomOf="@+id/add_location_longitude"
+        android:backgroundTint="@color/dark"/>
 
     <Button
         android:id="@+id/add_location_button_select"
@@ -63,7 +67,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/add_location_button_add"
-        android:text="Určit současnou polohu (GPS)" />
+        android:text="Určit současnou polohu (GPS)"
+        android:backgroundTint="@color/dark" />
 
     <Button
         android:id="@+id/add_location_button_add"
@@ -73,5 +78,6 @@
         android:text="Přidat lokalitu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/dark"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".StatsActivity"
-    tools:openDrawer="start">
+    tools:context=".StatsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +17,7 @@
             android:id="@+id/stats_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/design_default_color_primary"
+            android:background="@color/dark"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
@@ -27,7 +26,9 @@
             android:id="@+id/tabLayoutStats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/purple_200"
+            android:background="@color/mid"
+            app:tabIndicatorColor="@color/light"
+            app:tabIndicatorHeight="4dp"
             app:tabTextColor="@color/white" />
 
         <androidx.viewpager2.widget.ViewPager2

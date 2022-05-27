@@ -5,6 +5,8 @@ import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +33,7 @@ public class ScopeSelectorActivity extends AppCompatActivity implements DatePick
         setContentView(R.layout.activity_scope_selector);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Vyberte rozsah");
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#4F1308")));
 
         radioGroupScope = (RadioGroup) findViewById(R.id.scope_radio_subset);
         radioGroupTimeframe = (RadioGroup) findViewById(R.id.scope_radio_timeframe);
