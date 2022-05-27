@@ -58,19 +58,43 @@
             app:layout_constraintTop_toTopOf="@id/stats_harvest_hive_water_text"
             app:layout_constraintBottom_toBottomOf="@id/stats_harvest_hive_water_text"/>
 
+        <TextView
+            android:id="@+id/stats_harvest_hive_graph_amounts_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Množství vytočeného medu [kg]"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/stats_harvest_hive_water"
+            app:layout_constraintBottom_toTopOf="@+id/stats_harvest_hive_graph_amounts"/>
+
         <com.jjoe64.graphview.GraphView
             android:id="@+id/stats_harvest_hive_graph_amounts"
             android:layout_width="match_parent"
             android:layout_height="300dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/stats_harvest_hive_graph_amounts_text"/>
+
+        <TextView
+            android:id="@+id/stats_harvest_hive_graph_water_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Průměrný obsah vody [%]"
+            android:textSize="16dp"
+            android:textColor="@color/black"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/stats_harvest_hive_water_text"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/stats_harvest_hive_graph_amounts"
+            app:layout_constraintBottom_toTopOf="@+id/stats_harvest_hive_graph_water"/>
 
         <com.jjoe64.graphview.GraphView
             android:id="@+id/stats_harvest_hive_graph_water"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/stats_harvest_hive_graph_amounts"/>
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/stats_harvest_hive_graph_water_text"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -75,7 +75,7 @@ public class TimelineFragment extends Fragment {
                 //just get the RAW DATA, extract id_hive from there
                 Record record = (Record) data.get(position).get("record");
 
-                Intent intent = new Intent(view.getContext(), com.example.bee_v03.ObjectActivity.class);
+                Intent intent = new Intent(view.getContext(), ShowHiveActivity.class);
                 intent.putExtra("HIVE_ID", record.getId_hive());
                 startActivity(intent);
             }

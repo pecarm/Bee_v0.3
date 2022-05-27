@@ -143,6 +143,8 @@ public class StatsHarvestFragment extends Fragment {
             graphAmount.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
             graphAmount.getGridLabelRenderer().setNumHorizontalLabels(4);
             graphAmount.getGridLabelRenderer().setHumanRounding(false);
+            graphAmount.getViewport().setMinY(0);
+            graphAmount.getViewport().setYAxisBoundsManual(true);
 
             GraphView graphWater = (GraphView) getView().findViewById(R.id.stats_harvest_hive_graph_water);
             LineGraphSeries<DataPoint> dataWater = new LineGraphSeries<>(new DataPoint[0]);

@@ -32,8 +32,8 @@
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tabTextColor="@color/white"
-                android:background="@color/purple_200" />
+                android:background="@color/purple_200"
+                app:tabTextColor="@color/white" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager"
@@ -43,100 +43,100 @@
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fab_main"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="16dp"
             android:layout_marginEnd="16dp"
-            android:text="Akce"
+            android:layout_marginBottom="16dp"
             android:gravity="end"
-            app:icon="@drawable/ic_add"/>
+            android:text="Akce"
+            app:icon="@drawable/ic_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_main_add_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/fab_main"
-            app:layout_constraintEnd_toEndOf="@id/fab_main"
             android:layout_marginBottom="24dp"
             android:src="@drawable/ic_add"
-            app:fabSize="normal"/>
+            app:fabSize="normal"
+            app:layout_constraintBottom_toTopOf="@id/fab_main"
+            app:layout_constraintEnd_toEndOf="@id/fab_main" />
 
         <TextView
+            android:id="@+id/fab_main_add_location_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fab_main_add_location_text"
-            android:text="Přidat lokalitu"
             android:layout_marginEnd="8dp"
+            android:text="Přidat lokalitu"
+            android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="@id/fab_main_add_location"
             app:layout_constraintEnd_toStartOf="@+id/fab_main_add_location"
-            app:layout_constraintTop_toTopOf="@+id/fab_main_add_location"
-            android:textColor="@android:color/black"/>
+            app:layout_constraintTop_toTopOf="@+id/fab_main_add_location" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_main_add_hive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/fab_main_add_location"
-            app:layout_constraintEnd_toEndOf="@id/fab_main_add_location"
             android:layout_marginBottom="24dp"
             android:src="@drawable/ic_add"
-            app:fabSize="normal"/>
+            app:fabSize="normal"
+            app:layout_constraintBottom_toTopOf="@id/fab_main_add_location"
+            app:layout_constraintEnd_toEndOf="@id/fab_main_add_location" />
 
         <TextView
+            android:id="@+id/fab_main_add_hive_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fab_main_add_hive_text"
-            android:text="Přidat včelstvo"
             android:layout_marginEnd="8dp"
+            android:text="Přidat včelstvo"
+            android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="@id/fab_main_add_hive"
             app:layout_constraintEnd_toStartOf="@+id/fab_main_add_hive"
-            app:layout_constraintTop_toTopOf="@+id/fab_main_add_hive"
-            android:textColor="@android:color/black"/>
+            app:layout_constraintTop_toTopOf="@+id/fab_main_add_hive" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_main_record"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/fab_main_add_hive"
-            app:layout_constraintEnd_toEndOf="@id/fab_main_add_hive"
             android:layout_marginBottom="24dp"
             android:src="@drawable/ic_add"
-            app:fabSize="normal"/>
+            app:fabSize="normal"
+            app:layout_constraintBottom_toTopOf="@id/fab_main_add_hive"
+            app:layout_constraintEnd_toEndOf="@id/fab_main_add_hive" />
 
         <TextView
+            android:id="@+id/fab_main_record_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fab_main_record_text"
-            android:text="Přidat záznam návštěvy"
             android:layout_marginEnd="8dp"
+            android:text="Přidat záznam návštěvy"
+            android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="@id/fab_main_record"
             app:layout_constraintEnd_toStartOf="@+id/fab_main_record"
-            app:layout_constraintTop_toTopOf="@+id/fab_main_record"
-            android:textColor="@android:color/black"/>
+            app:layout_constraintTop_toTopOf="@+id/fab_main_record" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_main_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/fab_main_record"
-            app:layout_constraintEnd_toEndOf="@id/fab_main_record"
             android:layout_marginBottom="24dp"
             android:src="@drawable/ic_add"
-            app:fabSize="normal"/>
+            app:fabSize="normal"
+            app:layout_constraintBottom_toTopOf="@id/fab_main_record"
+            app:layout_constraintEnd_toEndOf="@id/fab_main_record" />
 
         <TextView
+            android:id="@+id/fab_main_view_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fab_main_view_text"
-            android:text="Zobrazit včelstvo"
             android:layout_marginEnd="8dp"
+            android:text="Zobrazit včelstvo"
+            android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="@id/fab_main_view"
             app:layout_constraintEnd_toStartOf="@+id/fab_main_view"
-            app:layout_constraintTop_toTopOf="@+id/fab_main_view"
-            android:textColor="@android:color/black"/>
+            app:layout_constraintTop_toTopOf="@+id/fab_main_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

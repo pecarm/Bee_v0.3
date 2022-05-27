@@ -63,6 +63,11 @@ public class AddLocationActivity extends AppCompatActivity {
                     String uri = "geo:0,0?q=" + editTextLatitude.getText().toString() + "," + editTextLongitude.getText().toString()+ "(" + editTextLocationName.getText().toString() + ")";
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                     startActivity(intent);
+                } else if (editTextLongitude.getText().toString().equals("") && editTextLatitude.getText().toString().equals("")) {
+                    String uri = "geo:0,0?q=49.227109523641396,16.57445768637967(FEKT)";
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    startActivity(intent);
+                    // :)
                 }
             }
         });
@@ -70,6 +75,7 @@ public class AddLocationActivity extends AppCompatActivity {
         buttonSelectLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(AddLocationActivity.this, "Počkejte prosím...", Toast.LENGTH_SHORT).show();
                 getLocation();
             }
         });
@@ -79,11 +85,11 @@ public class AddLocationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!editTextLongitude.getText().toString().equals("") && !editTextLatitude.getText().toString().equals("") && !editTextLocationName.getText().toString().equals("")) {
                     addLocation(editTextLocationName.getText().toString(), editTextLatitude.getText().toString(), editTextLongitude.getText().toString());
-                    Toast.makeText(AddLocationActivity.this, "Location added!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddLocationActivity.this, "Lokalita včelnice přidána!", Toast.LENGTH_SHORT).show();
                     AddLocationActivity.this.finish();
                 }
                 else {
-                    Toast.makeText(AddLocationActivity.this, "Name or coordinates not provided!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddLocationActivity.this, "Zadejte jméno a souřadnice!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -105,12 +111,12 @@ public class AddLocationActivity extends AppCompatActivity {
 
                         LocationServices.getFusedLocationProviderClient(AddLocationActivity.this).removeLocationUpdates(this);
                         if (locationResult != null && locationResult.getLocations().size() > 0) {
-                            //int i = locationResult.getLocations().size() - 1;
                             latitude = locationResult.getLastLocation().getLatitude();
                             longitude = locationResult.getLastLocation().getLongitude();
 
                             editTextLatitude.setText(Double.toString(latitude));
                             editTextLongitude.setText(Double.toString(longitude));
+                            Toast.makeText(AddLocationActivity.this, "Poloha úspěšně určena!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, Looper.getMainLooper());

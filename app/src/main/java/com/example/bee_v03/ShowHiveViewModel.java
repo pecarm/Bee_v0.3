@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-public class ObjectViewModel extends AndroidViewModel {
+public class ShowHiveViewModel extends AndroidViewModel {
     private BeeRepository repository;
     LiveData<List<Hive>> allHives;
     LiveData<List<Record>> allRecords;
@@ -16,7 +16,7 @@ public class ObjectViewModel extends AndroidViewModel {
     LiveData<List<HivesLocation>> allLocations;
     LiveData<List<HoneyHarvest>> allHarvests;
 
-    public ObjectViewModel(@NonNull Application application) {
+    public ShowHiveViewModel(@NonNull Application application) {
         super(application);
         this.repository = new BeeRepository(application);
         allHives = repository.getAllHives();

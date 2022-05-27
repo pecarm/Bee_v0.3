@@ -18,7 +18,6 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
-import java.util.Locale;
 
 public class SelectActivity extends AppCompatActivity {
     private ExpandableListView expandableListView;
@@ -114,7 +113,7 @@ public class SelectActivity extends AppCompatActivity {
                 Intent intent;
                 switch (target) {
                     case "archive":
-                        intent = new Intent(v.getContext(), com.example.bee_v03.ObjectActivity.class);
+                        intent = new Intent(v.getContext(), ShowHiveActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putInt("HIVE_ID", ((Hive)adapter.getChild(groupPosition,childPosition)).getId_hive());
                         bundle.putBoolean("IS_ARCHIVE", true);
@@ -122,7 +121,7 @@ public class SelectActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case "view":
-                        intent = new Intent(v.getContext(), com.example.bee_v03.ObjectActivity.class);
+                        intent = new Intent(v.getContext(), ShowHiveActivity.class);
                         Bundle bndl = new Bundle();
                         bndl.putInt("HIVE_ID", ((Hive)adapter.getChild(groupPosition,childPosition)).getId_hive());
                         bndl.putBoolean("IS_ARCHIVE", false);
@@ -166,6 +165,7 @@ public class SelectActivity extends AppCompatActivity {
                     Hive hive = (Hive) adapter.getChild(groupPosition, childPosition);
 
                     PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
+                    popupMenu.inflate(R.menu.select_activity_popup);
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
@@ -182,10 +182,8 @@ public class SelectActivity extends AppCompatActivity {
                             }
                         }
                     });
-                    popupMenu.inflate(R.menu.select_activity_popup);
                     popupMenu.show();
                 }
-
                 return true;
             }
         });
@@ -274,7 +272,16 @@ public class SelectActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
+        if (isFabOpen) {
+            fabAddLocation.hide();
+            fabAddHive.hide();
+            addLocationText.setVisibility(View.GONE);
+            addHiveText.setVisibility(View.GONE);
+            fab.shrink();
+            isFabOpen = false;
+        } else {
+            finish();
+        }
         //super.onBackPressed();
     }
 }

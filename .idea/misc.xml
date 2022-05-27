@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2835" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/drawable/bordeYellow.xml" value="0.2685" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/drawable/border.xml" value="0.2685" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/drawable/borderWhite.xml" value="0.2685" />
@@ -10,14 +11,15 @@
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/drawable/ic_add.xml" value="0.3828125" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/drawable/ic_archive.xml" value="0.2755" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/drawable/ic_dashboard.xml" value="0.2755" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2835" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/drawable/ic_stats.xml" value="0.2755" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/activity_add_hive.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/activity_add_hive_old.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/activity_add_honey_harvest.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/activity_add_location.xml" value="0.33" />
-        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/activity_add_record.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/activity_add_record.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/activity_global.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/activity_object.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/activity_object2.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/activity_scope_selector.xml" value="0.30085470085470084" />
@@ -36,10 +38,10 @@
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/dialog_update_delete_hive.xml" value="0.365625" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/expandable_list_hive.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/expandable_list_location.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/expandable_list_select_hive.xml" value="0.1" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/expandable_list_select_hive.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/expandable_list_select_location.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/fragment_alerts.xml" value="0.37864583333333335" />
-        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/fragment_dashboard.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/fragment_alerts.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/fragment_dashboard.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/fragment_date_picker.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/fragment_history.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/fragment_honey_harvest.xml" value="0.3009833262077811" />
@@ -48,7 +50,7 @@
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/fragment_stats_alert.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/fragment_stats_alert_hive.xml" value="0.30085470085470084" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/fragment_stats_harvest_hive.xml" value="0.3009833262077811" />
-        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/fragment_stats_record.xml" value="0.5200823892893924" />
+        <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/fragment_stats_record.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/fragment_stats_record_hive.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/fragment_timeline.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Martin/AndroidStudioProjects/Bee_v03/app/src/main/res/layout/list_item.xml" value="0.36666666666666664" />

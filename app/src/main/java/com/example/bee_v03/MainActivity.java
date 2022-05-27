@@ -27,7 +27,6 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
     TabLayout tabLayout;
     ViewPager2 viewPager;
     DrawerLayout drawer;

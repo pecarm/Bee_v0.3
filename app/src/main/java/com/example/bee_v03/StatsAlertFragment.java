@@ -23,6 +23,7 @@ public class StatsAlertFragment extends Fragment {
     private List<Alert> allAlerts;
     private int idLocation;
     private String from, to;
+    private AlertsCustomExpandableListAdapter adapter;
     private boolean includeArchived;
 
     public StatsAlertFragment(){
@@ -72,6 +73,7 @@ public class StatsAlertFragment extends Fragment {
         TextView high = (TextView) getView().findViewById(R.id.stats_alert_high);
         TextView medium = (TextView) getView().findViewById(R.id.stats_alert_medium);
         TextView low = (TextView) getView().findViewById(R.id.stats_alert_low);
+        ExpandableListView expandableListView = (ExpandableListView) getView().findViewById(R.id.stats_alert_expandable_list_view);
 
 
         List<Alert> alerts = new ArrayList<>();
@@ -118,7 +120,24 @@ public class StatsAlertFragment extends Fragment {
             severities.add("Střední");
             severities.add("Nízká");
 
+            adapter = new AlertsCustomExpandableListAdapter(getContext(), severities, alerts);
+            expandableListView.setAdapter(adapter);
 
+            expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+                @Override
+                public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                    Alert alert = (Alert) adapter.getChild(groupPosition, childPosition);
+
+                    ShowAlertDialog dialog = new ShowAlertDialog();
+                    Bundle bundle = new Bundle();
+
+                    bundle.putSerializable("ALERT", alert);
+
+                    dialog.setArguments(bundle);
+                    dialog.show(getParentFragmentManager(), "Alert dialog");
+                    return false;
+                }
+            });
         }
     }
 }

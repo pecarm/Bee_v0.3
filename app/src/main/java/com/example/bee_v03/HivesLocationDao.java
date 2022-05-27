@@ -23,8 +23,4 @@ public interface HivesLocationDao {
 
     @Query("SELECT * FROM hives_location_table")
     LiveData<List<HivesLocation>> getAllLocations();
-
-    //THIS SHIT NOT BE WORKING
-    @Query("SELECT * FROM hives_location_table WHERE name LIKE :name")
-    LiveData<List<HivesLocation>> getLocationsByName(String name);
 }

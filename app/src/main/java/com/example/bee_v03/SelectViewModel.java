@@ -36,10 +36,6 @@ public class SelectViewModel extends AndroidViewModel {
     public LiveData<List<HivesLocation>> getAllLocations() {
         return allLocations;
     }
-
-    public LiveData<List<HivesLocation>> getLocationIdByName(String name) {
-        return repository.getLocationIdByName(name);
-    }
     //endregion
 
     //region Hive methods

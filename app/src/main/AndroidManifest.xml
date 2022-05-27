@@ -16,15 +16,17 @@
         <activity
             android:name=".StatsActivity"
             android:exported="false"
-            android:parentActivityName=".ScopeSelectorActivity"/>
+            android:parentActivityName=".ScopeSelectorActivity"
+            android:theme="@style/Theme.Bee_v03.NoActionBar" />
         <activity
             android:name=".StatsHiveActivity"
             android:exported="false"
-            android:parentActivityName=".ScopeSelectorActivity"/>
+            android:parentActivityName=".ScopeSelectorActivity"
+            android:theme="@style/Theme.Bee_v03.NoActionBar" />
         <activity
             android:name=".ScopeSelectorActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AddHoneyHarvestActivity"
             android:exported="false" />
@@ -40,9 +42,10 @@
             android:exported="false"
             android:parentActivityName=".SelectActivity" />
         <activity
-            android:name=".ObjectActivity"
+            android:name=".ShowHiveActivity"
             android:exported="false"
-            android:parentActivityName=".SelectActivity" />
+            android:parentActivityName=".SelectActivity"
+            android:theme="@style/Theme.Bee_v03.NoActionBar" />
         <activity
             android:name=".GlobalActivity"
             android:exported="false"

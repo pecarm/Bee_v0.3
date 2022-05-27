@@ -71,7 +71,7 @@ public class DashboardFragment extends Fragment {
                 @Override
                 public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                     Intent intent;
-                    intent = new Intent(v.getContext(), com.example.bee_v03.ObjectActivity.class);
+                    intent = new Intent(v.getContext(), ShowHiveActivity.class);
                     intent.putExtra("HIVE_ID", ((Alert)adapter.getChild(groupPosition, childPosition)).getId_hive());
                     startActivity(intent);
                     return false;

@@ -8,7 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import java.util.List;
 
-public class ObjectAdapter extends FragmentStateAdapter {
+public class ShowHiveAdapter extends FragmentStateAdapter {
 
     private List<Hive> allHives;
     private List<Record> allRecords;
@@ -18,7 +18,7 @@ public class ObjectAdapter extends FragmentStateAdapter {
     private int idHive;
     private boolean isArchive;
 
-    public ObjectAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, List<Hive> allHives, List<Record> allRecords, List<Alert> allAlerts, List<HivesLocation> allLocations, List<HoneyHarvest> allHarvests, int idHive, boolean isArchive) {
+    public ShowHiveAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, List<Hive> allHives, List<Record> allRecords, List<Alert> allAlerts, List<HivesLocation> allLocations, List<HoneyHarvest> allHarvests, int idHive, boolean isArchive) {
         super(fragmentManager, lifecycle);
         this.allHives = allHives;
         this.allRecords = allRecords;

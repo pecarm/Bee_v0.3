@@ -56,10 +56,6 @@ public class BeeRepository {
     public LiveData<List<HivesLocation>> getAllLocations() {
         return allLocations;
     }
-
-    public LiveData<List<HivesLocation>> getLocationIdByName(String name) {
-        return locationDao.getLocationsByName(name);
-    }
     //endregion
 
     //region Hive methods

@@ -1,177 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddRecordActivity">
 
-    <Button
-        android:id="@+id/buttonAddRecord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Uložit návštěvu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_record_list_view_alerts" />
-
-    <TextView
-        android:id="@+id/add_record_text_view_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Datum"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonSelectDateRecord"
-        app:layout_constraintEnd_toStartOf="@id/buttonSelectDateRecord"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/buttonSelectDateRecord" />
-
-    <Button
-        android:id="@+id/buttonSelectDateRecord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Vybrat datum"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/add_record_text_view_date"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:id="@+id/textViewResourcesState"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Stav zásob"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBarResourcesState"
-        app:layout_constraintEnd_toStartOf="@id/ratingBarResourcesState"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ratingBarResourcesState"/>
-
-    <RatingBar
-        android:id="@+id/ratingBarResourcesState"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:numStars="5"
-        android:stepSize="0.01"
-        android:isIndicator="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewResourcesState"
-        app:layout_constraintBottom_toTopOf="@+id/ratingBarBroodIntegrity"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSelectDateRecord"/>
-
-    <TextView
-        android:id="@+id/textViewBroodIntegrity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Mezerovitost plodu"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBarBroodIntegrity"
-        app:layout_constraintEnd_toStartOf="@id/ratingBarBroodIntegrity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ratingBarBroodIntegrity" />
-
-    <RatingBar
-        android:id="@+id/ratingBarBroodIntegrity"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:numStars="5"
-        android:stepSize="0.01"
-        android:isIndicator="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewBroodIntegrity"
-        app:layout_constraintBottom_toTopOf="@+id/add_record_edit_text_feeding"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBarResourcesState"/>
-
-    <EditText
-        android:id="@+id/add_record_edit_text_feeding"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:maxLines="8"
-        android:gravity="start|top"
-        android:hint="Krmení/přikrmování"
-        android:inputType="textMultiLine"
-        android:scrollbars="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBarBroodIntegrity"
-        app:layout_constraintBottom_toTopOf="@id/add_record_edit_text_record"/>
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/add_record_edit_text_record"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:maxLines="8"
-        android:gravity="start|top"
-        android:hint="Poznámka"
-        android:inputType="textMultiLine"
-        android:scrollbars="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_record_edit_text_feeding"
-        app:layout_constraintBottom_toTopOf="@id/numberPickerBases"/>
 
-    <TextView
-        android:id="@+id/textMezisteny"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mezistěny"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/numberPickerBases"
-        app:layout_constraintEnd_toStartOf="@id/numberPickerBases"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/numberPickerBases"/>
+        <Button
+            android:id="@+id/buttonAddRecord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Uložit návštěvu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_record_list_view_alerts" />
 
-    <NumberPicker
-        android:id="@+id/numberPickerBases"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintStart_toEndOf="@+id/textMezisteny"
-        app:layout_constraintTop_toBottomOf="@id/add_record_edit_text_record"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAddAlert"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/add_record_text_view_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Datum"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonSelectDateRecord"
+            app:layout_constraintEnd_toStartOf="@id/buttonSelectDateRecord"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/buttonSelectDateRecord" />
 
-    <Button
-        android:id="@+id/buttonAddAlert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/numberPickerBases"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:text="Přidat upozornění" />
+        <Button
+            android:id="@+id/buttonSelectDateRecord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Vybrat datum"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/add_record_text_view_date"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <ListView
-        android:id="@+id/add_record_list_view_alerts"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/buttonAddAlert"
-        app:layout_constraintBottom_toTopOf="@id/buttonAddRecord"
-        tools:layout_editor_absoluteX="0dp" />
+        <TextView
+            android:id="@+id/textViewResourcesState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Stav zásob"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ratingBarResourcesState"
+            app:layout_constraintEnd_toStartOf="@id/ratingBarResourcesState"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ratingBarResourcesState"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RatingBar
+            android:id="@+id/ratingBarResourcesState"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:numStars="5"
+            android:stepSize="0.01"
+            android:isIndicator="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewResourcesState"
+            app:layout_constraintBottom_toTopOf="@+id/ratingBarBroodIntegrity"
+            app:layout_constraintTop_toBottomOf="@+id/buttonSelectDateRecord"/>
+
+        <TextView
+            android:id="@+id/textViewBroodIntegrity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Mezerovitost plodu"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ratingBarBroodIntegrity"
+            app:layout_constraintEnd_toStartOf="@id/ratingBarBroodIntegrity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ratingBarBroodIntegrity" />
+
+        <RatingBar
+            android:id="@+id/ratingBarBroodIntegrity"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:numStars="5"
+            android:stepSize="0.01"
+            android:isIndicator="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewBroodIntegrity"
+            app:layout_constraintBottom_toTopOf="@+id/add_record_edit_text_feeding"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBarResourcesState"/>
+
+        <EditText
+            android:id="@+id/add_record_edit_text_feeding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:maxLines="8"
+            android:gravity="start|top"
+            android:hint="Krmení/přikrmování"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBarBroodIntegrity"
+            app:layout_constraintBottom_toTopOf="@id/add_record_edit_text_record"/>
+
+        <EditText
+            android:id="@+id/add_record_edit_text_record"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:maxLines="8"
+            android:gravity="start|top"
+            android:hint="Poznámka"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_record_edit_text_feeding"
+            app:layout_constraintBottom_toTopOf="@id/numberPickerBases"/>
+
+        <TextView
+            android:id="@+id/textMezisteny"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mezistěny"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/numberPickerBases"
+            app:layout_constraintEnd_toStartOf="@id/numberPickerBases"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/numberPickerBases"/>
+
+        <NumberPicker
+            android:id="@+id/numberPickerBases"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintStart_toEndOf="@+id/textMezisteny"
+            app:layout_constraintTop_toBottomOf="@id/add_record_edit_text_record"
+            app:layout_constraintBottom_toTopOf="@+id/buttonAddAlert"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/buttonAddAlert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/numberPickerBases"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:text="Přidat upozornění" />
+
+        <ListView
+            android:id="@+id/add_record_list_view_alerts"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:nestedScrollingEnabled="true"
+            app:layout_constraintTop_toBottomOf="@id/buttonAddAlert"
+            app:layout_constraintBottom_toTopOf="@id/buttonAddRecord"
+            tools:layout_editor_absoluteX="0dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

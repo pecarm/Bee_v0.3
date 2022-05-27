@@ -134,7 +134,7 @@ public class StatsRecordFragment extends Fragment {
             TextView unique = getView().findViewById(R.id.stats_record_unique);
             int uniqueDays = 0;
             List<LocalDate> recordDates = new ArrayList<>();
-            for (Record r: allRecords) {
+            for (Record r: records) {
                 LocalDate recordDate = LocalDate.of(r.getYear(), r.getMonth(), r.getDay());
                 if (!recordDates.contains(recordDate)) {
                     uniqueDays++;
