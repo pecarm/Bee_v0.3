@@ -21,7 +21,8 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_record_list_view_alerts"
-            android:backgroundTint="@color/dark"/>
+            android:backgroundTint="@color/dark"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/add_record_text_view_date"
@@ -45,7 +46,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/add_record_text_view_date"
             app:layout_constraintTop_toTopOf="parent"
-            android:backgroundTint="@color/dark"/>
+            android:backgroundTint="@color/dark"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/textViewResourcesState"
@@ -176,7 +178,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/numberPickerBases"
-            android:backgroundTint="@color/dark"/>
+            android:backgroundTint="@color/dark"
+            android:textColor="@color/white"/>
 
         <ListView
             android:id="@+id/add_record_list_view_alerts"

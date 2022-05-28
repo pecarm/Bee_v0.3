@@ -157,7 +157,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/scope_button_to"
             app:layout_constraintTop_toBottomOf="@id/scope_from"
-            android:backgroundTint="@color/dark"/>
+            android:backgroundTint="@color/dark"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/scope_to"
@@ -180,7 +181,8 @@
             app:layout_constraintStart_toEndOf="@id/scope_button_from"
             app:layout_constraintTop_toBottomOf="@id/scope_to"
             app:layout_constraintEnd_toEndOf="parent"
-            android:backgroundTint="@color/dark"/>
+            android:backgroundTint="@color/dark"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/scope_button_proceed"
@@ -192,7 +194,8 @@
             app:layout_constraintTop_toBottomOf="@id/scope_button_to"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:backgroundTint="@color/dark"/>
+            android:backgroundTint="@color/dark"
+            android:textColor="@color/white"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

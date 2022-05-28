@@ -281,7 +281,8 @@
             app:layout_constraintTop_toBottomOf="@id/numberPickerMatka"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:backgroundTint="@color/dark"/>
+            android:backgroundTint="@color/dark"
+            android:textColor="@color/white"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

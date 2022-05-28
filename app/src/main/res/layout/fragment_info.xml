@@ -251,7 +251,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:text="Zobrazit na mapě"
             android:layout_marginTop="16dp"
-            android:backgroundTint="@color/dark"/>
+            android:backgroundTint="@color/dark"
+            android:textColor="@color/white"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -28,7 +28,8 @@
         app:layout_constraintStart_toEndOf="@+id/add_harvest_text_view_date"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/add_harvest_amount"
-        android:backgroundTint="@color/dark"/>
+        android:backgroundTint="@color/dark"
+        android:textColor="@color/white"/>
 
     <EditText
         android:id="@+id/add_harvest_amount"
@@ -128,7 +129,8 @@
         app:layout_constraintTop_toBottomOf="@id/add_harvest_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/dark"/>
+        android:backgroundTint="@color/dark"
+        android:textColor="@color/white"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
