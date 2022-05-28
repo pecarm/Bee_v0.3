@@ -174,7 +174,6 @@ public class StatsRecordHiveFragment extends Fragment {
     }
 
     private DataPoint[] recordDataResources() {
-        DataPoint[] data = new DataPoint[records.size()];
         HashMap<LocalDate, Double> dataHelp = new HashMap<>();
         for (Record r: records) {
             LocalDate date = LocalDate.of(r.getYear(), r.getMonth(), r.getDay());
@@ -185,6 +184,8 @@ public class StatsRecordHiveFragment extends Fragment {
 
         List<LocalDate> keyList = new ArrayList<>(dataHelp.keySet());
         Collections.sort(keyList);
+
+        DataPoint[] data = new DataPoint[keyList.size()];
 
         int i = 0;
         for (LocalDate key: keyList) {
@@ -197,7 +198,6 @@ public class StatsRecordHiveFragment extends Fragment {
     }
 
     private DataPoint[] recordDataIntegrity() {
-        DataPoint[] data = new DataPoint[records.size()];
         HashMap<LocalDate, Double> dataHelp = new HashMap<>();
         for (Record r: records) {
             LocalDate date = LocalDate.of(r.getYear(), r.getMonth(), r.getDay());
@@ -208,6 +208,8 @@ public class StatsRecordHiveFragment extends Fragment {
 
         List<LocalDate> keyList = new ArrayList<>(dataHelp.keySet());
         Collections.sort(keyList);
+
+        DataPoint[] data = new DataPoint[keyList.size()];
 
         int i = 0;
         for (LocalDate key: keyList) {
