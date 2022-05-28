@@ -60,11 +60,11 @@ public class HoneyHarvestFragment extends Fragment {
         try {
             harvests = allHarvests.stream().filter(harvest -> harvest.getId_hive() == idHive).collect(Collectors.toList());
         } catch (Exception e) {
-            Toast.makeText(getContext(), "There are no harvests!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "There are no harvests!", Toast.LENGTH_SHORT).show();
         }
 
         if (harvests == null || harvests.size() == 0) {
-            Toast.makeText(getContext(), "There are no harvests!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Žádná medobraní!", Toast.LENGTH_SHORT).show();
         } else {
             ArrayList<HashMap<String, Object>> data = recordData(harvests);
 

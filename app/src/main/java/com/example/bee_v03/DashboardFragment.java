@@ -56,7 +56,7 @@ public class DashboardFragment extends Fragment {
 
         //FILL IT WITH DATA
         if (allAlerts== null || allAlerts.size() == 0) {
-            Toast.makeText(getContext(), "There are no alerts!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Žádná upozornění!", Toast.LENGTH_SHORT).show();
         } else {
             List<String> severities = new ArrayList<>();
             severities.add("Vysoká");

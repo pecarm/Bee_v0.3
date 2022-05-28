@@ -105,10 +105,10 @@ public class StatsHarvestFragment extends Fragment {
                 }
             }
         } catch (Exception e) {
-            Toast.makeText(getContext(), "There are no records!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "There are no records!", Toast.LENGTH_SHORT).show();
         }
         if (harvests.size() == 0) {
-            Toast.makeText(getContext(), "There are no harvests!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Žádné záznamy!", Toast.LENGTH_SHORT).show();
         } else {
             double totalAmount = 0;
             double sumWaterContent = 0;

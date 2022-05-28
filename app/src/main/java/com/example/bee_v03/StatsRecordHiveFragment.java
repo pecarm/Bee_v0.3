@@ -87,10 +87,10 @@ public class StatsRecordHiveFragment extends Fragment {
                 }
             }
         } catch (Exception e) {
-            Toast.makeText(getContext(), "There are no records!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "There are no records!", Toast.LENGTH_SHORT).show();
         }
         if (records == null || records.size() == 0) {
-            Toast.makeText(getContext(), "There are no records!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Žádné záznamy!", Toast.LENGTH_SHORT).show();
         } else {
             //ListView of feeding
             ArrayList<HashMap<String, Object>> data = recordData(records);

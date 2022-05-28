@@ -104,14 +104,14 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
                     Record r = new Record(idHive, Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]), (int)rbResourcesState.getRating(),
                             (int)rbBroodIntegrity.getRating(), editTextFeeding.getText().toString(), bases, editTextNote.getText().toString());
                     addRecordViewModel.insert(r);
-                    Toast.makeText(AddRecordActivity.this, "Record added!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddRecordActivity.this, "Záznam přidán!", Toast.LENGTH_SHORT).show();
                     for (Alert alert:addedAlerts
                     ) {
                         addRecordViewModel.insert(alert);
                     }
                     AddRecordActivity.this.finish();
                 } else {
-                    Toast.makeText(AddRecordActivity.this, "Date or ratings not selected!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddRecordActivity.this, "Není zadáno datum nebo hodnocení!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -183,7 +183,7 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
         }
 
         if (textViewSelectedDate.getText().toString().equals("Datum")) {
-            Toast.makeText(this, "Select date first", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Nejprve vyberte datum!", Toast.LENGTH_SHORT).show();
             return;
         }
         String[] date = textViewSelectedDate.getText().toString().split("/");

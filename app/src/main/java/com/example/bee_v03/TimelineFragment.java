@@ -58,7 +58,7 @@ public class TimelineFragment extends Fragment {
         int[] to = new int[] {R.id.adapter_view_dashboard_timeline_hive, R.id.adapter_view_dashboard_timeline_date};
 
         if (allRecords == null || allRecords.size() == 0) {
-            Toast.makeText(getContext(), "There are no hives!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Žádná včelstva!", Toast.LENGTH_SHORT).show();
             return;
         }
 

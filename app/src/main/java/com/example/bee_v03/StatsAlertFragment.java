@@ -102,10 +102,10 @@ public class StatsAlertFragment extends Fragment {
                 }
             }
         } catch (Exception e) {
-            Toast.makeText(getContext(), "There are no alerts!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "There are no alerts!", Toast.LENGTH_SHORT).show();
         }
         if (alerts == null || alerts.size() == 0) {
-            Toast.makeText(getContext(), "There are no alerts!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Žádná upozornění!", Toast.LENGTH_SHORT).show();
         } else {
             total.setText(Integer.toString(alerts.size()));
             solved.setText(Integer.toString(alerts.stream().filter(alert -> alert.isArchived()).collect(Collectors.toList()).size()));

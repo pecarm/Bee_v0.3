@@ -84,10 +84,10 @@ public class StatsHarvestHiveFragment extends Fragment {
                 }
             }
         } catch (Exception e) {
-            Toast.makeText(getContext(), "There are no harvests!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "There are no harvests!", Toast.LENGTH_SHORT).show();
         }
         if (harvests == null || harvests.size() == 0) {
-            Toast.makeText(getContext(), "There are no harvests!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Žádná medobraní!", Toast.LENGTH_SHORT).show();
         } else {
 
             double totalAmount = 0;

@@ -99,7 +99,7 @@ public class AddHiveActivity extends AppCompatActivity {
             }
         });
 
-        Toast.makeText(this, parentActivity, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, parentActivity, Toast.LENGTH_SHORT).show();
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override

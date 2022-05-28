@@ -244,7 +244,7 @@ public class SelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (selectViewModel.getAllLocations().getValue() == null || selectViewModel.getAllLocations().getValue().size() == 0) {
-                    Toast.makeText(SelectActivity.this, "There are no locations, add a location first", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SelectActivity.this, "Žádná lokalita!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Intent intent = new Intent(v.getContext(), com.example.bee_v03.AddHiveActivity.class);
@@ -269,7 +269,7 @@ public class SelectActivity extends AppCompatActivity {
         try {
             expandableListView.setAdapter(adapter);
         } catch (Exception e) {
-            Toast.makeText(this, "There are no hives!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Žádná včelstva!", Toast.LENGTH_SHORT).show();
         }
     }
 

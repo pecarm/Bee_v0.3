@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 if (allHives == null || allHives.size() == 0) {
-                    Toast.makeText(MainActivity.this, "There are no hives, add hive first!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Přidejte včelstvo!", Toast.LENGTH_SHORT).show();
                 }
 
                 Intent intent = new Intent(v.getContext(), com.example.bee_v03.SelectActivity.class);
@@ -268,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 if (allLocations == null || allLocations.size() == 0) {
-                    Toast.makeText(MainActivity.this, "There are no locations, add a location first", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Přidejte lokalitu!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Intent intent = new Intent(v.getContext(), com.example.bee_v03.AddHiveActivity.class);

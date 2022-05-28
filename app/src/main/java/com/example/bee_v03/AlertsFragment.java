@@ -64,10 +64,10 @@ public class AlertsFragment extends Fragment {
                 alerts = allAlerts.stream().filter(alert -> (alert.getId_hive() == idHive) && !alert.isArchived()).collect(Collectors.toList());
             }
         } catch (Exception e) {
-            Toast.makeText(getContext(), "There are no alerts!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "There are no alerts!", Toast.LENGTH_SHORT).show();
         }
         if (alerts == null || alerts.size() == 0) {
-            Toast.makeText(getContext(), "There are no alerts!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Žádná upozornění!", Toast.LENGTH_SHORT).show();
         } else {
             List<String> severities = new ArrayList<>();
             severities.add("Vysoká");

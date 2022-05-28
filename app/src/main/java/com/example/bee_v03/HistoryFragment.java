@@ -61,10 +61,10 @@ public class HistoryFragment extends Fragment {
         try {
             records = allRecords.stream().filter(record -> record.getId_hive() == idHive).collect(Collectors.toList());
         } catch (Exception e) {
-            Toast.makeText(getContext(), "There are no records!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "There are no records!", Toast.LENGTH_SHORT).show();
         }
         if (records == null || records.size() == 0) {
-            Toast.makeText(getContext(), "There are no records!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Žádné záznamy!", Toast.LENGTH_SHORT).show();
         } else {
             ArrayList<HashMap<String, Object>> data = recordData(records);
 
