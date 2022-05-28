@@ -148,7 +148,7 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
             Toast.makeText(this, "Zvolené datum je pozdější, než dnešní.", Toast.LENGTH_SHORT).show();
             return;
         }
-        textViewSelectedDate.setText(year + "/" + (month+1) + "/" + month);
+        textViewSelectedDate.setText(year + "/" + (month+1) + "/" + dayOfMonth);
     }
 
     private void openDialog() {

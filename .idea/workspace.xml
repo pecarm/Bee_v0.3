@@ -18,14 +18,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89b4f3fe-88ad-44e1-ba2d-4877eef4743a" name="Default Changelist" comment="Toasts translated">
+    <list default="true" id="89b4f3fe-88ad-44e1-ba2d-4877eef4743a" name="Default Changelist" comment="The great DP purge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_info.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stats_alert.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stats_alert.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stats_alert_hive.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stats_alert_hive.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stats_harvest_hive.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stats_harvest_hive.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stats_record.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stats_record.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stats_record_hive.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stats_record_hive.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/AddRecordActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/bee_v03/AddRecordActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -466,7 +461,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653698328838</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="The great DP purge">
+      <created>1653711107132</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1653711107132</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +502,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added global activity" />
     <MESSAGE value="Added .idea" />
     <MESSAGE value="Added initial design for object" />
     <MESSAGE value="Basic sqlite database" />
@@ -525,7 +526,8 @@
     <MESSAGE value="Bugfixes, QoL changes, added NavDrawer to display, renamed ObjectActivity" />
     <MESSAGE value="Re-skin" />
     <MESSAGE value="Toasts translated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Toasts translated" />
+    <MESSAGE value="The great DP purge" />
+    <option name="LAST_COMMIT_MESSAGE" value="The great DP purge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
