@@ -117,7 +117,6 @@ public class StatsHarvestHiveFragment extends Fragment {
             BigDecimal bd = new BigDecimal(Double.toString(averageWaterContent));
             bd = bd.setScale(3, RoundingMode.HALF_UP);
             average.setText(bd.doubleValue() + " %");
-            average.setText(averageWaterContent + " %");
 
             //Graphs
             GraphView graphAmount = (GraphView) getView().findViewById(R.id.stats_harvest_hive_graph_amounts);
