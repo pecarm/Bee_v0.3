@@ -1,5 +1,6 @@
 package com.example.bee_v03;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -136,13 +137,14 @@ public class StatsHarvestFragment extends Fragment {
             TextView average = (TextView) getView().findViewById(R.id.stats_harvest_hive_water);
             total.setText(totalAmount + " kg");
             BigDecimal bd = new BigDecimal(Double.toString(averageWaterContent));
-            bd.setScale(3, RoundingMode.HALF_UP);
+            bd = bd.setScale(3, RoundingMode.HALF_UP);
             average.setText(bd.doubleValue() + " %");
 
             //Graphs
             GraphView graphAmount = (GraphView) getView().findViewById(R.id.stats_harvest_hive_graph_amounts);
             BarGraphSeries<DataPoint> dataAmount = new BarGraphSeries<>(new DataPoint[0]);
             dataAmount.resetData(recordDataAmount(effectiveHarvests));
+            dataAmount.setColor(Color.parseColor("#a86807"));
             graphAmount.addSeries(dataAmount);
             graphAmount.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
             graphAmount.getGridLabelRenderer().setNumHorizontalLabels(4);
@@ -153,6 +155,7 @@ public class StatsHarvestFragment extends Fragment {
             GraphView graphWater = (GraphView) getView().findViewById(R.id.stats_harvest_hive_graph_water);
             LineGraphSeries<DataPoint> dataWater = new LineGraphSeries<>(new DataPoint[0]);
             dataWater.resetData(recordDataWater(effectiveHarvests));
+            dataWater.setColor(Color.parseColor("#a86807"));
             graphWater.addSeries(dataWater);
             graphWater.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
             graphWater.getGridLabelRenderer().setNumHorizontalLabels(4);

@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
@@ -31,7 +30,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 import java.util.stream.Collectors;
 
 public class StatsHarvestHiveFragment extends Fragment {
@@ -116,7 +115,7 @@ public class StatsHarvestHiveFragment extends Fragment {
             TextView average = (TextView) getView().findViewById(R.id.stats_harvest_hive_water);
             total.setText(totalAmount + " kg");
             BigDecimal bd = new BigDecimal(Double.toString(averageWaterContent));
-            bd.setScale(3, RoundingMode.HALF_UP);
+            bd = bd.setScale(3, RoundingMode.HALF_UP);
             average.setText(bd.doubleValue() + " %");
             average.setText(averageWaterContent + " %");
 
