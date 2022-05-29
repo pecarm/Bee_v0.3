@@ -19,6 +19,8 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -133,7 +135,9 @@ public class StatsHarvestFragment extends Fragment {
             TextView total = (TextView) getView().findViewById(R.id.stats_harvest_hive_total);
             TextView average = (TextView) getView().findViewById(R.id.stats_harvest_hive_water);
             total.setText(totalAmount + " kg");
-            average.setText(averageWaterContent + " %");
+            BigDecimal bd = new BigDecimal(Double.toString(averageWaterContent));
+            bd.setScale(3, RoundingMode.HALF_UP);
+            average.setText(bd.doubleValue() + " %");
 
             //Graphs
             GraphView graphAmount = (GraphView) getView().findViewById(R.id.stats_harvest_hive_graph_amounts);
