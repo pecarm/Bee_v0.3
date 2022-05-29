@@ -41,7 +41,7 @@ public class DashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         if (getArguments() != null) {
             allHives = (List<Hive>) getArguments().getSerializable("ALL_HIVES");
-            List<Integer> archivedHiveIds = allHives.stream().filter(hive -> hive.isArchived()).map(hive -> hive.getId_hive()).collect(Collectors.toList());
+            List<Integer> archivedHiveIds = allHives.stream().filter(hive -> !hive.isArchived()).map(hive -> hive.getId_hive()).collect(Collectors.toList());
             List<Alert> alerts = (List<Alert>) getArguments().getSerializable("ALL_ALERTS");
             allAlerts = alerts.stream().filter(
                     alert -> !archivedHiveIds.contains(alert.getId_alert()) && !alert.isArchived()).collect(Collectors.toList());
